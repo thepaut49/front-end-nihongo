@@ -1,0 +1,43 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "kanji pronunciation pronunciation pronunciation"
+    "kanji meaning meaning meaning"
+    "strokes strokes strokes strokes";
+}
+.kanji {
+  grid-area: kanji;
+  text-align: center;
+  font-weight: bold;
+  font-size: xx-large;
+}
+.pronunciation {
+  grid-area: pronunciation;
+  font-weight: bold;
+}
+
+.pronunciation span {
+  margin: 0.5em;
+}
+.meaning {
+  grid-area: meaning;
+  font-weight: bold;
+}
+.meaning span {
+  margin: 0.5em;
+}
+
+.onemeaning {
+  border: solid;
+  border-radius: 0.5em;
+}
+.strokes {
+  grid-area: strokes;
+}
+
+.strokes span {
+  margin: 0.5em;
+}
