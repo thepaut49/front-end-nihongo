@@ -1,52 +1,59 @@
 import { GridList, GridListTile } from "@material-ui/core";
 import { radicals } from "../common/Radicals";
+import CustomInput from "../common/CustomInput";
 
 import React from "react";
 
 function KanjiForm(props) {
-  const gridListStyle = { width: "400px" };
+  const gridListStyle = { width: "60%" };
 
   return (
-    <form>
-      <div className="form-group">
-        <label htmlFor="kanji">Kanji</label>
-        <div className="field">
-          <input
-            id="kanji"
-            type="text"
-            name="kanji"
-            className="form-control"
-            value=""
-          />
-        </div>
-      </div>
+    <form onSubmit={props.onSubmit}>
+      <CustomInput
+        id="kanji"
+        label="Kanji"
+        typeInput="text"
+        onChange={props.onChange}
+        name="kanji"
+        value={props.kanji.kanji}
+      />
 
-      <div className="form-group">
-        <label htmlFor="pronunciation">Pronunciation</label>
-        <div className="field">
-          <button>Add</button>
-        </div>
-      </div>
+      <CustomInput
+        id="pronunciation"
+        label="Pronunciation"
+        typeInput="text"
+        onChange={props.onChange}
+        name="pronunciation"
+        value={props.kanji.pronunciation}
+      />
 
-      <div className="form-group">
-        <label htmlFor="meaning">Meaning</label>
-        <div className="field">
-          <button>Add</button>
-        </div>
-      </div>
+      <CustomInput
+        id="meaning"
+        label="Meaning"
+        typeInput="text"
+        onChange={props.onChange}
+        name="meaning"
+        value={props.kanji.meaning}
+      />
 
-      <div className="form-group">
-        <label htmlFor="radical">Radicals</label>
-        <div className="field">
-          <input
-            id="radical"
-            type="text"
-            name="radical"
-            className="form-control"
-            value=""
-          />
-        </div>
-      </div>
+      <CustomInput
+        id="strokeNumber"
+        label="Strokes"
+        typeInput="number"
+        onChange={props.onChange}
+        step="1"
+        name="strokeNumber"
+        value={props.kanji.strokesNumber}
+      />
+
+      <CustomInput
+        id="radicals"
+        label="Radicals"
+        typeInput="text"
+        onChange={props.onChange}
+        name="radicals"
+        value={props.kanji.radicals}
+      />
 
       <input type="submit" value="Save" className="btn btn-primary" />
 

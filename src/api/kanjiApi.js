@@ -21,8 +21,15 @@ export function getKanjiByCharacter(character) {
 }
 
 export function saveKanji(kanji) {
-  return fetch(baseUrl + (kanji.id || ""), {
-    method: kanji.id ? "PUT" : "POST", // POST for create, PUT to update when id already exists.
+  const method = kanji.id ? "PUT" : "POST"; // POST for create, PUT to update when id already exists.
+  let url = baseUrl;
+  if (method === "POST") {
+    url = url + "create";
+  } else {
+    url = url + kanji.id;
+  }
+  return fetch(url, {
+    method: method, // POST for create, PUT to update when id already exists.
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
       ...kanji,
