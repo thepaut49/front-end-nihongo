@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
@@ -8,7 +9,9 @@ function HomePage() {
         Dictionnaires de kanji, mot de vocabulaire, verbes, règles de
         grammaires, adjectifs, ...
       </p>
-      <a href="/about">About</a>
+      <Link to="about" className="btn btn-primary">
+        About
+      </Link>
     </div>
   );
 }

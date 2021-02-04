@@ -1,6 +1,7 @@
 import React from "react";
 import "./KanjiPage.css";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 function KanjiList(props) {
   return (
@@ -11,7 +12,9 @@ function KanjiList(props) {
             <tr key={kanji.id}>
               <td>
                 <div className="grid-container">
-                  <div className="kanji">{kanji.kanji}</div>
+                  <div className="kanji">
+                    <Link to={"/kanji/" + kanji.kanji}>{kanji.kanji}</Link>
+                  </div>
                   <div className="pronunciation">
                     {kanji.pronunciation.map((pro, index) => {
                       return (

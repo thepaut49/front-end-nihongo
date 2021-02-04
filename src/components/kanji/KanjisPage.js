@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getKanjis } from "../../api/kanjiApi";
 import "./KanjiPage.css";
 import KanjiList from "./KanjiList";
+import { Link } from "react-router-dom";
 
 function KanjisPage(props) {
   const [kanjis, setKanjis] = useState([]);
@@ -14,6 +15,9 @@ function KanjisPage(props) {
   return (
     <>
       <h2>Kanjis</h2>
+      <Link className="btn btn-primary" to="/kanji">
+        Add Kanji
+      </Link>
       <KanjiList kanjis={kanjis} />
     </>
   );
