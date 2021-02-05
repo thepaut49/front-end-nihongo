@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import KanjiForm from "./KanjiForm";
 import * as kanjiApi from "../../api/kanjiApi";
+import { toast } from "react-toastify";
 
 const ManageKanjiPage = (props) => {
   const [kanji, setKanji] = useState({
@@ -36,7 +37,16 @@ const ManageKanjiPage = (props) => {
       radicals: kanji.radicals,
       strokeNumber: kanji.strokeNumber,
     };
-    kanjiApi.saveKanji(savedCourse);
+    kanjiApi.saveKanji(savedCourse).then(() => {
+      props.history.push("/kanjis");
+      toast.success("Kanji saved.");
+    });
+  }
+
+  function handleClick(event) {
+    event.preventDefault();
+    let _radicals = kanji.radicals + event.target.innerText;
+    setKanji({ ...setKanji, radicals: _radicals });
   }
 
   return (
@@ -46,6 +56,7 @@ const ManageKanjiPage = (props) => {
         kanji={kanji}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        onClick={handleClick}
       />
     </>
   );

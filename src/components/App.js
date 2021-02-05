@@ -6,10 +6,13 @@ import KanjisPage from "./kanji/KanjisPage";
 import { Route, Switch, Redirect } from "react-router-dom";
 import NotFoundPage from "./common/NotFoundPage";
 import ManageKanjiPage from "./kanji/ManageKanjiPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <div className="container-fluid">
+      <ToastContainer autoClose={3000} hideProgressBar />
       <Header />
       <Switch>
         <Route path="/" exact component={HomePage} />

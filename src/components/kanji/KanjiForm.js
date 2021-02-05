@@ -63,7 +63,7 @@ function KanjiForm(props) {
         {radicals.map((radical) => {
           return (
             <GridListTile key={radical} cols={1}>
-              <button>{radical}</button>
+              <button onClick={props.onClick}>{radical}</button>
             </GridListTile>
           );
         })}
