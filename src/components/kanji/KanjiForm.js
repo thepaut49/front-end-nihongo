@@ -1,6 +1,8 @@
 import { GridList, GridListTile } from "@material-ui/core";
 import { radicals } from "../common/Radicals";
 import CustomInput from "../common/CustomInput";
+import CustomIntegerInput from "../common/CustomIntegerInput";
+import PropTypes from "prop-types";
 
 import React from "react";
 
@@ -12,38 +14,38 @@ function KanjiForm(props) {
       <CustomInput
         id="kanji"
         label="Kanji"
-        typeInput="text"
         onChange={props.onChange}
         name="kanji"
         value={props.kanji.kanji}
+        maxLength="1"
+        error={props.errors.kanji}
       />
 
       <CustomInput
         id="pronunciation"
         label="Pronunciation"
-        typeInput="text"
         onChange={props.onChange}
         name="pronunciation"
         value={props.kanji.pronunciation}
+        error={props.errors.pronunciation}
       />
 
       <CustomInput
         id="meaning"
         label="Meaning"
-        typeInput="text"
         onChange={props.onChange}
         name="meaning"
         value={props.kanji.meaning}
+        error={props.errors.meaning}
       />
 
-      <CustomInput
+      <CustomIntegerInput
         id="strokeNumber"
         label="Strokes"
-        typeInput="number"
         onChange={props.onChange}
         step="1"
         name="strokeNumber"
-        value={props.kanji.strokesNumber}
+        value={props.kanji.strokeNumber}
       />
 
       <CustomInput
@@ -53,6 +55,7 @@ function KanjiForm(props) {
         onChange={props.onChange}
         name="radicals"
         value={props.kanji.radicals}
+        error={props.errors.radicals}
       />
 
       <input type="submit" value="Save" className="btn btn-primary" />
@@ -71,5 +74,12 @@ function KanjiForm(props) {
     </form>
   );
 }
+
+KanjiForm.propTypes = {
+  kanji: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+};
 
 export default KanjiForm;

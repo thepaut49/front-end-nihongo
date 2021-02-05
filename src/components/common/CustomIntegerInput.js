@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function CustomInput(props) {
+function CustomIntegerInput(props) {
   let wrapperClass = "form-group";
   if (props.error.length > 0) {
     wrapperClass += "has-error";
@@ -13,12 +13,12 @@ function CustomInput(props) {
       <div className="field">
         <input
           id={props.id}
-          type="text"
+          type="number"
           onChange={props.onChange}
           name={props.name}
           className="form-control"
           value={props.value}
-          maxLength={props.maxLength}
+          step={props.step}
         />
       </div>
       {props.error && <div className="alert alert-danger">{props.error}</div>}
@@ -26,19 +26,19 @@ function CustomInput(props) {
   );
 }
 
-CustomInput.defaultProps = {
+CustomIntegerInput.defaultProps = {
   error: "",
-  maxLength: "",
+  step: "",
 };
 
-CustomInput.propTypes = {
+CustomIntegerInput.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.object,
+  value: PropTypes.number,
   error: PropTypes.string,
-  maxLength: PropTypes.string,
+  step: PropTypes.string,
 };
 
-export default CustomInput;
+export default CustomIntegerInput;

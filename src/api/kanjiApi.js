@@ -8,16 +8,20 @@ export function getKanjis() {
 }
 
 export function getKanjiByCharacter(character) {
-  return fetch(baseUrl + character)
-    .then((response) => {
+  return fetch(baseUrl + "findByKanji/" + character)
+    .then(handleResponse)
+    .catch(handleError);
+  /*.then((response) => {
       if (!response.ok) throw new Error("Network response was not ok.");
+      debugger;
       return response.json().then((kanjis) => {
+        console.log(kanjis);
         if (kanjis.length !== 1)
           throw new Error("Kanji not found: " + character);
         return kanjis[0]; // should only find one course for a given slug, so return it.
       });
     })
-    .catch(handleError);
+    .catch(handleError);*/
 }
 
 export function saveKanji(kanji) {
