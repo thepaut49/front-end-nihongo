@@ -36,7 +36,7 @@ CustomInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.object,
+  value: PropTypes.string,
   error: PropTypes.string,
   maxLength: PropTypes.string,
 };

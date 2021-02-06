@@ -45,6 +45,9 @@ export function saveKanji(kanji) {
 
 export function deleteKanji(kanjiId) {
   return fetch(baseUrl + kanjiId, { method: "DELETE" })
-    .then(handleResponse)
+    .then((response) => {
+      if (!response.ok) throw new Error("Network response was not ok.");
+      return response.text;
+    })
     .catch(handleError);
 }

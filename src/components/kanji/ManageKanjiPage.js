@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import KanjiForm from "./KanjiForm";
-import * as kanjiApi from "../../api/kanjiApi";
 import { toast } from "react-toastify";
+import kanjiStore from "../../stores/kanjiStore";
 import { radicals as radicalsList } from "../common/Radicals";
+import { Prompt } from "react-router-dom";
+import * as kanjiActions from "../../actions/kanjiActions";
 
 const ManageKanjiPage = (props) => {
+  const [modified, setModified] = useState(false);
   const [errors, setErrors] = useState({});
   const [kanji, setKanji] = useState({
     id: null,
@@ -12,41 +15,41 @@ const ManageKanjiPage = (props) => {
     pronunciation: "",
     meaning: "",
     radicals: "",
-    strokeNumber: null,
+    strokeNumber: 0,
     version: null,
   });
 
   useEffect(() => {
     const character = props.match.params.kanji; // from the path /kanjis/:kanji
     if (character) {
-      kanjiApi.getKanjiByCharacter(character).then((_kanji) => {
-        // on transforme les listes de caractères en une seule chaine
-        debugger;
-        let newPronunciation = _kanji.pronunciation[0];
-        for (let i = 1; i < _kanji.pronunciation.length; i++) {
-          newPronunciation = newPronunciation + "・" + _kanji.pronunciation[i];
-        }
+      // on récupère le kanji du store et on le transforme pour qu'il corresponde au formulaire
+      let tempKanji = kanjiStore.getKanjiByCharacter(character);
+      // on transforme les listes de caractères en une seule chaine
+      let newPronunciation = tempKanji.pronunciation[0];
+      for (let i = 1; i < tempKanji.pronunciation.length; i++) {
+        newPronunciation = newPronunciation + "・" + tempKanji.pronunciation[i];
+      }
 
-        let newMeaning = _kanji.meaning[0];
-        for (let i = 1; i < _kanji.meaning.length; i++) {
-          newMeaning = newMeaning + ";" + _kanji.meaning[i];
-        }
-        const kanjiForm = {
-          id: _kanji.id,
-          kanji: _kanji.kanji,
-          pronunciation: newPronunciation,
-          meaning: newMeaning,
-          radicals: _kanji.radicals,
-          strokeNumber: _kanji.strokeNumber,
-          version: _kanji.version,
-        };
-        setKanji(kanjiForm);
-      });
+      let newMeaning = tempKanji.meaning[0];
+      for (let i = 1; i < tempKanji.meaning.length; i++) {
+        newMeaning = newMeaning + ";" + tempKanji.meaning[i];
+      }
+      const kanjiForm = {
+        id: tempKanji.id,
+        kanji: tempKanji.kanji,
+        pronunciation: newPronunciation,
+        meaning: newMeaning,
+        radicals: tempKanji.radicals,
+        strokeNumber: tempKanji.strokeNumber,
+        version: tempKanji.version,
+      };
+      setKanji(kanjiForm);
     }
   }, [props.match.params.kanji]);
 
   function handleChange(event) {
     setKanji({ ...kanji, [event.target.name]: event.target.value });
+    setModified(true);
   }
 
   function formIsValid() {
@@ -72,6 +75,7 @@ const ManageKanjiPage = (props) => {
   function handleSubmit(event) {
     event.preventDefault();
     if (!formIsValid()) return;
+    setModified(false);
     // on transforme les chaine de caractères en liste de chaines
     let newPronunciation = kanji.pronunciation.split("・");
     for (let i = 0; i < newPronunciation.length; i++) {
@@ -82,7 +86,7 @@ const ManageKanjiPage = (props) => {
     for (let j = 0; j < newMeaning.length; j++) {
       newMeaning[j] = newMeaning[j].replace(";", "");
     }
-    const savedCourse = {
+    const savedKanji = {
       id: kanji.id,
       kanji: kanji.kanji,
       pronunciation: newPronunciation,
@@ -91,7 +95,7 @@ const ManageKanjiPage = (props) => {
       strokeNumber: kanji.strokeNumber,
       version: kanji.version,
     };
-    kanjiApi.saveKanji(savedCourse).then(() => {
+    kanjiActions.saveKanji(savedKanji).then(() => {
       props.history.push("/kanjis");
       toast.success("Kanji saved.");
     });
@@ -106,6 +110,7 @@ const ManageKanjiPage = (props) => {
   return (
     <>
       <h2>Manage Kanji</h2>
+      <Prompt when={modified} message="Are you sure you want to leave ?" />
       <KanjiForm
         errors={errors}
         kanji={kanji}

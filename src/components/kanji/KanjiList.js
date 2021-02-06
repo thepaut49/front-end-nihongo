@@ -43,6 +43,16 @@ function KanjiList(props) {
                       {kanji.radicals}
                     </span>
                   </div>
+                  <div className="delete">
+                    <button
+                      className="btn btn-outline-danger"
+                      onClick={() => {
+                        props.deleteKanji(kanji.id);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </td>
             </tr>
@@ -54,6 +64,7 @@ function KanjiList(props) {
 }
 
 KanjiList.propTypes = {
+  deleteKanji: PropTypes.func.isRequired,
   kanjis: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
