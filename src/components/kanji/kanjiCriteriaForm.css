@@ -1,0 +1,31 @@
+.grid-container-form-criteria {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: min-content min-content min-content;
+  gap: 1em 1em;
+  grid-template-areas:
+    "divkanjiCriteria divpronunciationCriteria divmeaningCriteria"
+    "divstrokeNumberCriteria divminstrokeNumberCriteria divmaxstrokeNumberCriteria"
+    "divradicalsCriteria . .";
+}
+#divkanjiCriteria {
+  grid-area: divkanjiCriteria;
+}
+#divpronunciationCriteria {
+  grid-area: divpronunciationCriteria;
+}
+#divmeaningCriteria {
+  grid-area: divmeaningCriteria;
+}
+#divstrokeNumberCriteria {
+  grid-area: divstrokeNumberCriteria;
+}
+#divminstrokeNumberCriteria {
+  grid-area: divminstrokeNumberCriteria;
+}
+#divmaxstrokeNumberCriteria {
+  grid-area: divmaxstrokeNumberCriteria;
+}
+#divradicalsCriteria {
+  grid-area: divradicalsCriteria;
+}

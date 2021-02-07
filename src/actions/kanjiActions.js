@@ -33,3 +33,12 @@ export function loadKanjis() {
     });
   });
 }
+
+export function filterKanjis(kanjiCriteria) {
+  return kanjiApi.filterKanjis(kanjiCriteria).then((kanjis) => {
+    dispatcher.dispatch({
+      actionType: actionTypes.FILTER_KANJIS,
+      kanjis: kanjis,
+    });
+  });
+}

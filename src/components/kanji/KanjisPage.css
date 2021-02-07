@@ -1,8 +1,14 @@
+.kanjisPage {
+  display: grid;
+  grid-template-rows: min-content min-content min-content auto;
+  gap: 1em 1em;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  gap: 0px 0px;
+  gap: 1em 1em;
   grid-template-areas:
     "kanji pronunciation pronunciation pronunciation"
     "kanji meaning meaning meaning"

@@ -8,7 +8,7 @@ function CustomInput(props) {
   }
 
   return (
-    <div className={wrapperClass}>
+    <div id={"div" + props.id} className={wrapperClass}>
       <label htmlFor={props.id}>{props.label}</label>
       <div className="field">
         <input

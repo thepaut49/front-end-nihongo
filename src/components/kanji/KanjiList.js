@@ -1,5 +1,5 @@
 import React from "react";
-import "./KanjiPage.css";
+import "./KanjisPage.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 

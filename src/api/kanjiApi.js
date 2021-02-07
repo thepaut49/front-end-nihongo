@@ -51,3 +51,34 @@ export function deleteKanji(kanjiId) {
     })
     .catch(handleError);
 }
+
+export function filterKanjis(kanjiCriteria) {
+  let url = baseUrl + "findWithCriteria?";
+  if (kanjiCriteria.kanji) url = url + "kanji=" + kanjiCriteria.kanji;
+  if (kanjiCriteria.pronunciation)
+    url = url + "pronunciation=" + kanjiCriteria.pronunciation;
+  if (kanjiCriteria.meaning) url = url + "meaning=" + kanjiCriteria.meaning;
+  if (kanjiCriteria.strokeNumber)
+    url = url + "strokeNumber=" + kanjiCriteria.strokeNumber;
+  if (kanjiCriteria.minStrokeNumber)
+    url = url + "minStrokeNumber=" + kanjiCriteria.minStrokeNumber;
+  if (kanjiCriteria.maxStrokeNumber)
+    url = url + "maxStrokeNumber=" + kanjiCriteria.maxStrokeNumber;
+  if (kanjiCriteria.radicals) url = url + "radicals=" + kanjiCriteria.radicals;
+  return fetch(url)
+    .then((response) => {
+      if (response.ok) {
+        const result = response.json();
+        if (result) return result;
+        else return {};
+      }
+      if (response.status === 400) {
+        // So, a server-side validation error occurred.
+        // Server side validation returns a string error message, so parse as text instead of json.
+        const error = response.text();
+        throw new Error(error);
+      }
+      throw new Error("Network response was not ok.");
+    })
+    .catch(handleError);
+}

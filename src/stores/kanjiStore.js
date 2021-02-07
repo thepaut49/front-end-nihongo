@@ -48,6 +48,9 @@ Dispatcher.register((action) => {
       _kanjis = _kanjis.filter((kanji) => kanji.id !== parseInt(action.id, 10));
       store.emitChange();
       break;
+    case actionTypes.FILTER_KANJIS:
+      _kanjis = action.kanjis;
+      store.emitChange();
     default:
     // nothing to do here
   }

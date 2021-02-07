@@ -16,6 +16,7 @@ const ManageKanjiPage = (props) => {
     meaning: "",
     radicals: "",
     strokeNumber: 0,
+    numberOfUse: null,
     version: null,
   });
 
@@ -41,6 +42,7 @@ const ManageKanjiPage = (props) => {
         meaning: newMeaning,
         radicals: tempKanji.radicals,
         strokeNumber: tempKanji.strokeNumber,
+        numberOfUse: tempKanji.numberOfUse,
         version: tempKanji.version,
       };
       setKanji(kanjiForm);
@@ -93,6 +95,7 @@ const ManageKanjiPage = (props) => {
       meaning: newMeaning,
       radicals: kanji.radicals,
       strokeNumber: kanji.strokeNumber,
+      numberOfUse: kanji.numberOfUse,
       version: kanji.version,
     };
     kanjiActions.saveKanji(savedKanji).then(() => {
@@ -103,8 +106,17 @@ const ManageKanjiPage = (props) => {
 
   function handleClick(event) {
     event.preventDefault();
-    let _radicals = kanji.radicals + event.target.innerText;
-    setKanji({ ...setKanji, radicals: _radicals });
+    if (kanji.radicals.indexOf(event.target.innerText) > -1)
+      setKanji({
+        ...kanji,
+        radicals: kanji.radicals.replace(event.target.innerText, ""),
+      });
+    else {
+      setKanji({
+        ...kanji,
+        radicals: kanji.radicals + event.target.innerText,
+      });
+    }
   }
 
   return (
