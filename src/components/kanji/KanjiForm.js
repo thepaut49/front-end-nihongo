@@ -1,5 +1,5 @@
 import { GridList, GridListTile } from "@material-ui/core";
-import { radicals } from "../common/Radicals";
+import { radicals, nbrOfStrokesString } from "../common/Radicals";
 import CustomInput from "../common/CustomInput";
 import CustomIntegerInput from "../common/CustomIntegerInput";
 import PropTypes from "prop-types";
@@ -8,6 +8,12 @@ import React from "react";
 
 function KanjiForm(props) {
   const gridListStyle = { width: "60%" };
+  const numberStyle = {
+    "background-color": "blue",
+    color: "white",
+    "font-weight": "bold",
+    "text-align": "center",
+  };
 
   return (
     <form onSubmit={props.onSubmit}>
@@ -66,7 +72,11 @@ function KanjiForm(props) {
         {radicals.map((radical) => {
           return (
             <GridListTile key={radical} cols={1}>
-              <button onClick={props.onClick}>{radical}</button>
+              {nbrOfStrokesString.includes(radical) ? (
+                <button style={numberStyle}>{radical}</button>
+              ) : (
+                <button onClick={props.onClick}>{radical}</button>
+              )}
             </GridListTile>
           );
         })}

@@ -54,17 +54,70 @@ export function deleteKanji(kanjiId) {
 
 export function filterKanjis(kanjiCriteria) {
   let url = baseUrl + "findWithCriteria?";
-  if (kanjiCriteria.kanji) url = url + "kanji=" + kanjiCriteria.kanji;
-  if (kanjiCriteria.pronunciation)
-    url = url + "pronunciation=" + kanjiCriteria.pronunciation;
-  if (kanjiCriteria.meaning) url = url + "meaning=" + kanjiCriteria.meaning;
-  if (kanjiCriteria.strokeNumber)
-    url = url + "strokeNumber=" + kanjiCriteria.strokeNumber;
-  if (kanjiCriteria.minStrokeNumber)
-    url = url + "minStrokeNumber=" + kanjiCriteria.minStrokeNumber;
-  if (kanjiCriteria.maxStrokeNumber)
-    url = url + "maxStrokeNumber=" + kanjiCriteria.maxStrokeNumber;
-  if (kanjiCriteria.radicals) url = url + "radicals=" + kanjiCriteria.radicals;
+  let numberOfParameters = 0;
+  if (kanjiCriteria.kanji) {
+    numberOfParameters++;
+    if (numberOfParameters === 0) {
+      url = url + "kanji=" + kanjiCriteria.kanji;
+    } else {
+      url = url + "&kanji=" + kanjiCriteria.kanji;
+    }
+  }
+
+  if (kanjiCriteria.pronunciation) {
+    numberOfParameters++;
+    if (numberOfParameters === 0) {
+      url = url + "pronunciation=" + kanjiCriteria.pronunciation;
+    } else {
+      url = url + "&pronunciation=" + kanjiCriteria.pronunciation;
+    }
+  }
+
+  if (kanjiCriteria.meaning) {
+    numberOfParameters++;
+    if (numberOfParameters === 0) {
+      url = url + "meaning=" + kanjiCriteria.meaning;
+    } else {
+      url = url + "&meaning=" + kanjiCriteria.meaning;
+    }
+  }
+
+  if (kanjiCriteria.strokeNumber) {
+    numberOfParameters++;
+    if (numberOfParameters === 0) {
+      url = url + "strokeNumber=" + kanjiCriteria.strokeNumber;
+    } else {
+      url = url + "&strokeNumber=" + kanjiCriteria.strokeNumber;
+    }
+  }
+
+  if (kanjiCriteria.minStrokeNumber) {
+    numberOfParameters++;
+    if (numberOfParameters === 0) {
+      url = url + "minStrokeNumber=" + kanjiCriteria.minStrokeNumber;
+    } else {
+      url = url + "&minStrokeNumber=" + kanjiCriteria.minStrokeNumber;
+    }
+  }
+
+  if (kanjiCriteria.maxStrokeNumber) {
+    numberOfParameters++;
+    if (numberOfParameters === 0) {
+      url = url + "maxStrokeNumber=" + kanjiCriteria.maxStrokeNumber;
+    } else {
+      url = url + "maxStrokeNumber=" + kanjiCriteria.maxStrokeNumber;
+    }
+  }
+
+  if (kanjiCriteria.radicals) {
+    numberOfParameters++;
+    if (numberOfParameters === 0) {
+      url = url + "radicals=" + kanjiCriteria.radicals;
+    } else {
+      url = url + "&radicals=" + kanjiCriteria.radicals;
+    }
+  }
+
   return fetch(url)
     .then((response) => {
       if (response.ok) {

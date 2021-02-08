@@ -10,6 +10,7 @@ import {
 } from "../../actions/kanjiActions";
 import KanjiCriteriaForm from "./KanjiCriteriaForm";
 import { radicals as radicalsList } from "../common/Radicals";
+import { translateRomajiToKana } from "../common/TranslateRomajiToKana";
 
 function KanjisPage(props) {
   const [kanjis, setKanjis] = useState(kanjiStore.getKanjis());
@@ -50,9 +51,15 @@ function KanjisPage(props) {
 
   // fonction for criteria form
   function handleChange(event) {
+    let newValue = event.target.value;
+    if (event.target.name === "pronunciationCriteria") {
+      newValue = translateRomajiToKana(newValue);
+      let input = document.getElementById("pronunciationCriteria");
+      input.value = newValue;
+    }
     setKanjiCriteria({
       ...kanjiCriteria,
-      [event.target.name]: event.target.value,
+      [event.target.name]: newValue,
     });
   }
 
@@ -106,6 +113,33 @@ function KanjisPage(props) {
     }
   }
 
+  function handleClickKana(event) {
+    let input = document.getElementById("pronunciationCriteria");
+    input.value = input.value + event.target.innerText;
+    setKanjiCriteria({
+      ...kanjiCriteria,
+      pronunciationCriteria:
+        kanjiCriteria.pronunciationCriteria + event.target.innerText,
+    });
+  }
+
+  function handleReset(event) {
+    // ne marche pas
+    Array.from(document.querySelectorAll("input")).forEach(
+      (input) => (input.value = "")
+    );
+    setKanjiCriteria({
+      kanjiCriteria: "",
+      pronunciationCriteria: "",
+      meaningCriteria: "",
+      strokeNumberCriteria: null,
+      minStrokeNumber: null,
+      maxStrokeNumber: null,
+      radicalsCriteria: "",
+      numberOfUse: null,
+    });
+  }
+
   return (
     <div className="kanjisPage">
       <h2>Kanjis</h2>
@@ -114,7 +148,9 @@ function KanjisPage(props) {
         errors={errors}
         onChange={handleChange}
         onClick={handleClick}
+        onClickKana={handleClickKana}
         onSubmit={handleSubmit}
+        onReset={handleReset}
       />
       <Link className="btn btn-primary" to="/kanji">
         Add Kanji

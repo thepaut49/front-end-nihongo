@@ -1,3 +1,5 @@
+export const specialKanas = ["ん", "ぢ", "づ", "ヅ", "ヂ", "ン"];
+
 export function translateRomajiToKana(sentence) {
   if (!sentence || sentence.length === 0) return "";
   let newString = sentence;

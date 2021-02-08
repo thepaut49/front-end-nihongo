@@ -3,9 +3,11 @@ import HomePage from "./HomePage";
 import AboutPage from "./AboutPage";
 import Header from "./common/Header";
 import KanjisPage from "./kanji/KanjisPage";
+import VerbsPage from "./verb/VerbsPage";
 import { Route, Switch, Redirect } from "react-router-dom";
 import NotFoundPage from "./common/NotFoundPage";
 import ManageKanjiPage from "./kanji/ManageKanjiPage";
+import ManageVerbPage from "./verb/ManageVerbPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
@@ -21,6 +23,9 @@ function App() {
           <Route path="/kanjis" component={KanjisPage} />
           <Route path="/kanji/:kanji" component={ManageKanjiPage} />
           <Route path="/kanji" component={ManageKanjiPage} />
+          <Route path="/verbs" component={VerbsPage} />
+          <Route path="/verb/:neutralForm" component={ManageVerbPage} />
+          <Route path="/verb" component={ManageVerbPage} />
           <Route path="/about" component={AboutPage} />
           <Redirect from="/about-page" to="/about" />
           <Route component={NotFoundPage} />

@@ -14,6 +14,10 @@ function Header() {
         Kanjis
       </NavLink>
       {" | "}
+      <NavLink activeStyle={activeStyle} to="/verbs">
+        Verbs
+      </NavLink>
+      {" | "}
       <NavLink activeStyle={activeStyle} to="/about">
         About
       </NavLink>

@@ -1,0 +1,25 @@
+.grid-container-form-criteria-verb {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: min-content;
+  gap: 1em 1em;
+  grid-template-areas: "divneutralFormCriteria divpronunciationCriteria divmeaningCriteria divgroupeCriteria";
+}
+#divneutralFormCriteria {
+  grid-area: divneutralFormCriteria;
+}
+#divpronunciationCriteria {
+  grid-area: divpronunciationCriteria;
+}
+#divmeaningCriteria {
+  grid-area: divmeaningCriteria;
+}
+#divgroupeCriteria {
+  grid-area: divgroupeCriteria;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: min-content min-content;
+  gap: 1em 1em;
+}

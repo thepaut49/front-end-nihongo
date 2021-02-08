@@ -1,6 +1,7 @@
 import { GridList, GridListTile } from "@material-ui/core";
-import { radicals } from "../common/Radicals";
+import { radicals, nbrOfStrokesString } from "../common/Radicals";
 import CustomInput from "../common/CustomInput";
+import CustomInputPronunciation from "../common/CustomInputPronunciation";
 import CustomIntegerInput from "../common/CustomIntegerInput";
 import PropTypes from "prop-types";
 import "./kanjiCriteriaForm.css";
@@ -9,6 +10,12 @@ import React from "react";
 
 function KanjiCriteriaForm(props) {
   const gridListStyle = { width: "100%" };
+  const numberStyle = {
+    "background-color": "blue",
+    color: "white",
+    "font-weight": "bold",
+    "text-align": "center",
+  };
 
   return (
     <div>
@@ -24,12 +31,13 @@ function KanjiCriteriaForm(props) {
             maxLength="1"
           />
 
-          <CustomInput
+          <CustomInputPronunciation
             id="pronunciationCriteria"
             label="PronunciationCriteria"
             onChange={props.onChange}
             name="pronunciationCriteria"
             value={props.kanjiCriteria.pronunciation}
+            onClick={props.onClickKana}
           />
 
           <CustomInput
@@ -82,14 +90,23 @@ function KanjiCriteriaForm(props) {
           {radicals.map((radical) => {
             return (
               <GridListTile key={radical} cols={1}>
-                <button onClick={props.onClick}>{radical}</button>
+                {nbrOfStrokesString.includes(radical) ? (
+                  <button style={numberStyle}>{radical}</button>
+                ) : (
+                  <button onClick={props.onClick}>{radical}</button>
+                )}
               </GridListTile>
             );
           })}
         </GridList>
         <br />
         <br />
-        <input type="submit" value="Search" className="btn btn-primary" />
+        <div className="buttons">
+          <input type="submit" value="Search" className="btn btn-primary" />
+          <button onClick={props.onReset} className="btn btn-primary">
+            Clear
+          </button>
+        </div>
       </form>
     </div>
   );
