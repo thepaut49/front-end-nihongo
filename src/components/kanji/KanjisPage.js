@@ -27,7 +27,6 @@ function KanjisPage(props) {
 
   useEffect(() => {
     kanjiStore.addChangeListener(onChange);
-    debugger;
     if (
       kanjiStore.getKanjis().length === 0 &&
       !kanjiCriteria.kanjiCriteria &&
