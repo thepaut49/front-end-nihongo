@@ -51,6 +51,7 @@ Dispatcher.register((action) => {
     case actionTypes.FILTER_KANJIS:
       _kanjis = action.kanjis;
       store.emitChange();
+      break;
     default:
     // nothing to do here
   }

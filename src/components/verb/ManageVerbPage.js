@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import verbStore from "../../stores/verbStore";
 import { Prompt } from "react-router-dom";
 import * as verbActions from "../../actions/verbActions";
+import VerbConjugationTable from "./VerbConjugationTable";
 
 const ManageVerbPage = (props) => {
   const [modified, setModified] = useState(false);
@@ -83,6 +84,8 @@ const ManageVerbPage = (props) => {
     });
   }
 
+  const displayConjugationTable = verb.id && verb.neutralForm.length >= 2;
+
   return (
     <>
       <h2>Manage Verb</h2>
@@ -93,6 +96,7 @@ const ManageVerbPage = (props) => {
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
+      {displayConjugationTable && <VerbConjugationTable verb={verb} />}
     </>
   );
 };
