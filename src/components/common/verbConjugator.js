@@ -2,7 +2,6 @@ const ICHIDAN_GROUPE = "Ichidan";
 const GODAN_GROUPE = "Godan";
 const PLAIN_FORM = "Plain";
 const POLITE_FORM = "Polite";
-const NEGATIVE_SIGN = "Negative";
 const POSITIVE_SIGN = "Positive";
 
 export function presentIndicative(verb, form, sign) {

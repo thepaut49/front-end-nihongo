@@ -12,6 +12,10 @@ function Tense(props) {
   const tense = props.tense;
   const tenseFunction = props.tenseFunction;
 
+  function isSuru(verb) {
+    return verb.neutralForm === "する" ? true : false;
+  }
+
   return (
     <div className="tenseGrid">
       <div className="tense">{tense}</div>
@@ -21,25 +25,25 @@ function Tense(props) {
       <div className="plain">Plain</div>
       <div className="polite">Polite</div>
       <div className="plainpositive">
-        <span className="stem">{stem}</span>
+        <span className="stem">{isSuru(verb.neutralForm) || stem}</span>
         <span className="ending">
           {tenseFunction(verb, PLAIN_FORM, POSITIVE_SIGN)}
         </span>
       </div>
       <div className="plainnegative">
-        <span className="stem">{stem}</span>
+        <span className="stem">{isSuru(verb.neutralForm) || stem}</span>
         <span className="ending">
           {tenseFunction(verb, PLAIN_FORM, NEGATIVE_SIGN)}
         </span>
       </div>
       <div className="politepositive">
-        <span className="stem">{stem}</span>
+        <span className="stem">{isSuru(verb.neutralForm) || stem}</span>
         <span className="ending">
           {tenseFunction(verb, POLITE_FORM, POSITIVE_SIGN)}
         </span>
       </div>
       <div className="politenegative">
-        <span className="stem">{stem}</span>
+        <span className="stem">{isSuru(verb.neutralForm) || stem}</span>
         <span className="ending">
           {tenseFunction(verb, POLITE_FORM, NEGATIVE_SIGN)}
         </span>
