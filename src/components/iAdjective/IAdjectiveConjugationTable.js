@@ -12,6 +12,11 @@ const POSITIVE_SIGN = "Positive";
 
 function IAdjectiveConjugationTable(props) {
   const iAdjective = props.iAdjective;
+  const stem = iAdjective.kanjis.substring(0, iAdjective.kanjis.length - 1);
+
+  function isII(adjective) {
+    return adjective.kanjis === "いい" ? true : false;
+  }
 
   return (
     <>
@@ -31,45 +36,61 @@ function IAdjectiveConjugationTable(props) {
           <tr>
             <td>Present</td>
             <td>
-              {iAdjective.kanjis +
-                presentIndicative(iAdjective, PLAIN_FORM, POSITIVE_SIGN)}
+              <span className="stem">{isII(iAdjective) || stem}</span>
+              <span className="ending">
+                {presentIndicative(iAdjective, PLAIN_FORM, POSITIVE_SIGN)}
+              </span>
             </td>
             <td>
-              {iAdjective.kanjis +
-                presentIndicative(iAdjective, POLITE_FORM, POSITIVE_SIGN)}
+              <span className="stem">{isII(iAdjective) || stem}</span>
+              <span className="ending">
+                {presentIndicative(iAdjective, POLITE_FORM, POSITIVE_SIGN)}
+              </span>
             </td>
           </tr>
           <tr>
             <td>Past</td>
             <td>
-              {iAdjective.kanjis +
-                pastIndicative(iAdjective, PLAIN_FORM, POSITIVE_SIGN)}
+              <span className="stem">{isII(iAdjective) || stem}</span>
+              <span className="ending">
+                {pastIndicative(iAdjective, PLAIN_FORM, POSITIVE_SIGN)}
+              </span>
             </td>
             <td>
-              {iAdjective.kanjis +
-                pastIndicative(iAdjective, POLITE_FORM, POSITIVE_SIGN)}
+              <span className="stem">{isII(iAdjective) || stem}</span>
+              <span className="ending">
+                {pastIndicative(iAdjective, POLITE_FORM, POSITIVE_SIGN)}
+              </span>
             </td>
           </tr>
           <tr>
             <td>Present negative</td>
             <td>
-              {iAdjective.kanjis +
-                presentIndicative(iAdjective, PLAIN_FORM, NEGATIVE_SIGN)}
+              <span className="stem">{isII(iAdjective) || stem}</span>
+              <span className="ending">
+                {presentIndicative(iAdjective, PLAIN_FORM, NEGATIVE_SIGN)}
+              </span>
             </td>
             <td>
-              {iAdjective.kanjis +
-                presentIndicative(iAdjective, POLITE_FORM, NEGATIVE_SIGN)}
+              <span className="stem">{isII(iAdjective) || stem}</span>
+              <span className="ending">
+                {presentIndicative(iAdjective, POLITE_FORM, NEGATIVE_SIGN)}
+              </span>
             </td>
           </tr>
           <tr>
             <td>Past negative</td>
             <td>
-              {iAdjective.kanjis +
-                pastIndicative(iAdjective, PLAIN_FORM, NEGATIVE_SIGN)}
+              <span className="stem">{isII(iAdjective) || stem}</span>
+              <span className="ending">
+                {pastIndicative(iAdjective, PLAIN_FORM, NEGATIVE_SIGN)}
+              </span>
             </td>
             <td>
-              {iAdjective.kanjis +
-                pastIndicative(iAdjective, POLITE_FORM, NEGATIVE_SIGN)}
+              <span className="stem">{isII(iAdjective) || stem}</span>
+              <span className="ending">
+                {pastIndicative(iAdjective, POLITE_FORM, NEGATIVE_SIGN)}
+              </span>
             </td>
           </tr>
         </tbody>

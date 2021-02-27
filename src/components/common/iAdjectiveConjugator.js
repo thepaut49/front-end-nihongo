@@ -5,15 +5,23 @@ const POSITIVE_SIGN = "Positive";
 export function presentIndicative(adjective, form, sign) {
   if (form === PLAIN_FORM) {
     if (sign === POSITIVE_SIGN) {
-      return "だ";
+      return "";
     } else {
-      return "じゃない";
+      if (adjective.kanjis === "いい") {
+        return "よくない";
+      } else {
+        return "くない";
+      }
     }
   } else if (form === POLITE_FORM) {
     if (sign === POSITIVE_SIGN) {
       return "です";
     } else {
-      return "じゃないです/ではないです";
+      if (adjective.kanjis === "いい") {
+        return "よくないです";
+      } else {
+        return "くないです";
+      }
     }
   }
 }
@@ -21,15 +29,31 @@ export function presentIndicative(adjective, form, sign) {
 export function pastIndicative(adjective, form, sign) {
   if (form === PLAIN_FORM) {
     if (sign === POSITIVE_SIGN) {
-      return "だった";
+      if (adjective.kanjis === "いい") {
+        return "よかった";
+      } else {
+        return "かった";
+      }
     } else {
-      return "じゃなかった";
+      if (adjective.kanjis === "いい") {
+        return "よくなかった";
+      } else {
+        return "くなかった";
+      }
     }
   } else if (form === POLITE_FORM) {
     if (sign === POSITIVE_SIGN) {
-      return "でした";
+      if (adjective.kanjis === "いい") {
+        return "よかったです";
+      } else {
+        return "かったです";
+      }
     } else {
-      return "じゃなかったです/ではなかったです";
+      if (adjective.kanjis === "いい") {
+        return "よくなかったです";
+      } else {
+        return "くなかったです";
+      }
     }
   }
 }
