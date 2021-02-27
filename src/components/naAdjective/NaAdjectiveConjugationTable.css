@@ -1,0 +1,15 @@
+.naConjugationTable table,
+.naConjugationTable td,
+.naConjugationTable th {
+  border: solid;
+  border-color: black;
+}
+
+.naConjugationTable th {
+  background-color: #fc3903;
+  font-weight: bold;
+}
+
+.naConjugationTable td {
+  background-color: #ebe8e8;
+}

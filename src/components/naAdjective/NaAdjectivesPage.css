@@ -1,0 +1,38 @@
+.naAdjectivesPage {
+  display: grid;
+  grid-template-rows: min-content min-content min-content auto;
+  gap: 1em 1em;
+}
+
+.grid-container-naAdjective {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1em 1em;
+  grid-template-areas:
+    "naAdjective pronunciation pronunciation pronunciation"
+    "naAdjective meaning meaning meaning";
+}
+.naAdjective {
+  grid-area: naAdjective;
+  text-align: left;
+  font-weight: bold;
+  font-size: xxx-large;
+}
+.pronunciation {
+  grid-area: pronunciation;
+  font-weight: bold;
+}
+
+.meaning {
+  grid-area: meaning;
+  font-weight: bold;
+}
+.meaning span {
+  margin: 0.5em;
+}
+
+.onemeaning {
+  border: solid;
+  border-radius: 0.5em;
+}

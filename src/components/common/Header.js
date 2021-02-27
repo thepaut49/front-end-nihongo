@@ -18,6 +18,10 @@ function Header() {
         Verbs
       </NavLink>
       {" | "}
+      <NavLink activeStyle={activeStyle} to="/naAdjectives">
+        Na adjectives
+      </NavLink>
+      {" | "}
       <NavLink activeStyle={activeStyle} to="/about">
         About
       </NavLink>

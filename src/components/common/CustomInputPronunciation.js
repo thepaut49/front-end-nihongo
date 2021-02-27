@@ -27,9 +27,13 @@ function CustomInputPronunciation(props) {
           maxLength={props.maxLength}
         />
         <div style={styleButtons}>
-          {specialKanas.map((kana) => {
+          {specialKanas.map((kana, index) => {
             return (
-              <button className="btn btn-primary" onClick={props.onClick}>
+              <button
+                key={index}
+                className="btn btn-primary"
+                onClick={props.onClick}
+              >
                 {kana}
               </button>
             );
