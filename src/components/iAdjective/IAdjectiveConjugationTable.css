@@ -1,0 +1,15 @@
+.iConjugationTable table,
+.iConjugationTable td,
+.iConjugationTable th {
+  border: solid;
+  border-color: black;
+}
+
+.iConjugationTable th {
+  background-color: #fc3903;
+  font-weight: bold;
+}
+
+.iConjugationTable td {
+  background-color: #ebe8e8;
+}

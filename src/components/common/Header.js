@@ -22,6 +22,10 @@ function Header() {
         Na adjectives
       </NavLink>
       {" | "}
+      <NavLink activeStyle={activeStyle} to="/iAdjectives">
+        I adjectives
+      </NavLink>
+      {" | "}
       <NavLink activeStyle={activeStyle} to="/about">
         About
       </NavLink>
