@@ -1,22 +1,22 @@
 import CustomInput from "../common/CustomInput";
 import CustomInputPronunciation from "../common/CustomInputPronunciation";
 import PropTypes from "prop-types";
-import "./IAdjectiveCriteriaForm.css";
+import "./NameCriteriaForm.css";
 
 import React from "react";
 
-function IAdjectiveCriteriaForm(props) {
+function NameCriteriaForm(props) {
   return (
     <div>
       <h3>Filters</h3>
       <form onSubmit={props.onSubmit}>
-        <div className="grid-container-form-criteria-i-adjective">
+        <div className="grid-container-form-criteria-name">
           <CustomInput
             id="kanjisCriteria"
             label="Kanjis"
             onChange={props.onChange}
             name="kanjisCriteria"
-            value={props.iAdjectiveCriteria.kanjis}
+            value={props.nameCriteria.kanjis}
           />
 
           <CustomInputPronunciation
@@ -24,7 +24,7 @@ function IAdjectiveCriteriaForm(props) {
             label="PronunciationCriteria"
             onChange={props.onChange}
             name="pronunciationCriteria"
-            value={props.iAdjectiveCriteria.pronunciation}
+            value={props.nameCriteria.pronunciation}
             onClick={props.onClick}
           />
 
@@ -33,7 +33,7 @@ function IAdjectiveCriteriaForm(props) {
             label="MeaningCriteria"
             onChange={props.onChange}
             name="meaningCriteria"
-            value={props.iAdjectiveCriteria.meaning}
+            value={props.nameCriteria.meaning}
           />
         </div>
         <div className="buttons">
@@ -47,11 +47,11 @@ function IAdjectiveCriteriaForm(props) {
   );
 }
 
-IAdjectiveCriteriaForm.propTypes = {
-  iAdjectiveCriteria: PropTypes.object,
+NameCriteriaForm.propTypes = {
+  nameCriteria: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onReset: PropTypes.func.isRequired,
 };
 
-export default IAdjectiveCriteriaForm;
+export default NameCriteriaForm;

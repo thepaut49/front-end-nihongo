@@ -26,6 +26,14 @@ function Header() {
         I adjectives
       </NavLink>
       {" | "}
+      <NavLink activeStyle={activeStyle} to="/names">
+        Names
+      </NavLink>
+      {" | "}
+      <NavLink activeStyle={activeStyle} to="/words">
+        Words
+      </NavLink>
+      {" | "}
       <NavLink activeStyle={activeStyle} to="/about">
         About
       </NavLink>

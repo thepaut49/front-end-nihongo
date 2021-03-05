@@ -12,6 +12,10 @@ import ManageNaAdjectivePage from "./naAdjective/ManageNaAdjectivePage";
 import NaAdjectivesPage from "./naAdjective/NaAdjectivesPage";
 import ManageIAdjectivePage from "./iAdjective/ManageIAdjectivePage";
 import IAdjectivesPage from "./iAdjective/IAdjectivesPage";
+import ManageNamePage from "./name/ManageNamePage";
+import NamesPage from "./name/NamesPage";
+import ManageWordPage from "./word/ManageWordPage";
+import WordsPage from "./word/WordsPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
@@ -39,6 +43,12 @@ function App() {
           <Route path="/iAdjectives" component={IAdjectivesPage} />
           <Route path="/iAdjective/:kanjis" component={ManageIAdjectivePage} />
           <Route path="/iAdjective" component={ManageIAdjectivePage} />
+          <Route path="/names" component={NamesPage} />
+          <Route path="/name/:kanjis" component={ManageNamePage} />
+          <Route path="/name" component={ManageNamePage} />
+          <Route path="/words" component={WordsPage} />
+          <Route path="/word/:kanjis" component={ManageWordPage} />
+          <Route path="/word" component={ManageWordPage} />
           <Route path="/about" component={AboutPage} />
           <Redirect from="/about-page" to="/about" />
           <Route component={NotFoundPage} />
