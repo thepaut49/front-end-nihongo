@@ -7,21 +7,29 @@ export function getKanjis() {
     .catch(handleError);
 }
 
+export function getMostUsedKanjis(quantity) {
+  return fetch(baseUrl + "findMostUsedKanji/" + quantity)
+    .then((response) => {
+      if (response.ok) {
+        const result = response.json();
+        if (result) return result;
+        else return [];
+      }
+      if (response.status === 400) {
+        // So, a server-side validation error occurred.
+        // Server side validation returns a string error message, so parse as text instead of json.
+        const error = response.text();
+        throw new Error(error);
+      }
+      throw new Error("Network response was not ok.");
+    })
+    .catch(handleError);
+}
+
 export function getKanjiByCharacter(character) {
   return fetch(baseUrl + "findByKanji/" + character)
     .then(handleResponse)
     .catch(handleError);
-  /*.then((response) => {
-      if (!response.ok) throw new Error("Network response was not ok.");
-      debugger;
-      return response.json().then((kanjis) => {
-        console.log(kanjis);
-        if (kanjis.length !== 1)
-          throw new Error("Kanji not found: " + character);
-        return kanjis[0]; // should only find one course for a given slug, so return it.
-      });
-    })
-    .catch(handleError);*/
 }
 
 export function saveKanji(kanji) {
@@ -133,5 +141,13 @@ export function filterKanjis(kanjiCriteria) {
       }
       throw new Error("Network response was not ok.");
     })
+    .catch(handleError);
+}
+
+export function updateNumberOfUse(id) {
+  return fetch(baseUrl + id, {
+    method: "PATCH",
+  })
+    .then(handleResponse)
     .catch(handleError);
 }

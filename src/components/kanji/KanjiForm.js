@@ -9,10 +9,10 @@ import React from "react";
 function KanjiForm(props) {
   const gridListStyle = { width: "60%" };
   const numberStyle = {
-    "background-color": "blue",
+    backgroundColor: "blue",
     color: "white",
-    "font-weight": "bold",
-    "text-align": "center",
+    fontWeight: "bold",
+    textAlign: "center",
   };
 
   return (

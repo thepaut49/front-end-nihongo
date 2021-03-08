@@ -43,7 +43,6 @@ const ManageWordPage = (props) => {
   }, [props.match.params.kanjis]);
 
   function handleChange(event) {
-    debugger;
     setWord({ ...word, [event.target.name]: event.target.value });
     setModified(true);
   }
