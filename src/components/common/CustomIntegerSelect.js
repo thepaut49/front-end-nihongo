@@ -1,13 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { specialKanas } from "./TranslateRomajiToKana";
 
-function CustomInputPronunciation(props) {
-  const styleButtons = {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr",
-    gap: "1em 1em",
-  };
+function CustomIntegerSelect(props) {
   let wrapperClass = "form-group";
   if (props.error.length > 0) {
     wrapperClass += "has-error";
@@ -17,47 +11,41 @@ function CustomInputPronunciation(props) {
     <div id={"div" + props.id} className={wrapperClass}>
       <label htmlFor={props.id}>{props.label}</label>
       <div className="field">
-        <input
+        <select
           id={props.id}
           type="text"
           onChange={props.onChange}
           name={props.name}
           className="form-control"
           value={props.value}
-          maxLength={props.maxLength}
-        />
-        <div style={styleButtons}>
-          {specialKanas.map((kana, index) => {
+        >
+          <option value="" />
+          {props.listOfValues.map((item) => {
             return (
-              <button
-                key={index}
-                className="btn btn-primary"
-                onClick={props.onClick}
-              >
-                {kana}
-              </button>
+              <option key={item} value={item}>
+                {item}
+              </option>
             );
           })}
-        </div>
+        </select>
       </div>
       {props.error && <div className="alert alert-danger">{props.error}</div>}
     </div>
   );
 }
 
-CustomInputPronunciation.defaultProps = {
+CustomIntegerSelect.defaultProps = {
   error: "",
-  maxLength: "",
 };
 
-CustomInputPronunciation.propTypes = {
+CustomIntegerSelect.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.number,
   error: PropTypes.string,
-  maxLength: PropTypes.string,
+  listOfValues: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
-export default CustomInputPronunciation;
+export default CustomIntegerSelect;

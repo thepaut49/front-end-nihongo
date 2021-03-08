@@ -1,5 +1,10 @@
+html,
+body {
+  background-color: #000000;
+  color: #ffffff;
+}
 .app-container {
   display: grid;
-  grid-template-rows: min-content auto;
+  grid-template-rows: min-content max-content;
   gap: 1em 1em;
 }

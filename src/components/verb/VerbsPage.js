@@ -52,7 +52,6 @@ function VerbsPage(props) {
   }
 
   function handleReset(event) {
-    // ne marche pas
     Array.from(document.querySelectorAll("input")).forEach(
       (input) => (input.value = "")
     );

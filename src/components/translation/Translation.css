@@ -1,0 +1,32 @@
+#translation {
+  display: grid;
+  grid: 4fr 8fr / repeat(12, 1fr);
+  gap: 1em;
+  height: 100%;
+  width: 100%;
+  margin: 1em;
+}
+
+#translationArea,
+#ListOfParts {
+  grid-column-start: 5;
+  grid-column-end: 13;
+  border: black;
+  border-style: solid;
+}
+
+#ListOfObjects {
+  background-color: blue;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  border: black;
+  border-style: solid;
+}
+
+#select-group {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: min-content max-content;
+}

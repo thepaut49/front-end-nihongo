@@ -11,10 +11,10 @@ import React from "react";
 function KanjiCriteriaForm(props) {
   const gridListStyle = { width: "100%" };
   const numberStyle = {
-    "background-color": "blue",
+    backgroundColor: "blue",
     color: "white",
-    "font-weight": "bold",
-    "text-align": "center",
+    fontWeight: "bold",
+    textAlign: "center",
   };
 
   return (

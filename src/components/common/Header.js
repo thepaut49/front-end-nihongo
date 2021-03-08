@@ -34,6 +34,10 @@ function Header() {
         Words
       </NavLink>
       {" | "}
+      <NavLink activeStyle={activeStyle} to="/Translation">
+        Translation
+      </NavLink>
+      {" | "}
       <NavLink activeStyle={activeStyle} to="/about">
         About
       </NavLink>

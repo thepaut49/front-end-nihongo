@@ -7,6 +7,25 @@ export function getIAdjectives() {
     .catch(handleError);
 }
 
+export function getMostUsedIAdjectives(quantity) {
+  return fetch(baseUrl + "findMostUsedIAdjectives/" + quantity)
+    .then((response) => {
+      if (response.ok) {
+        const result = response.json();
+        if (result) return result;
+        else return {};
+      }
+      if (response.status === 400) {
+        // So, a server-side validation error occurred.
+        // Server side validation returns a string error message, so parse as text instead of json.
+        const error = response.text();
+        throw new Error(error);
+      }
+      throw new Error("Network response was not ok.");
+    })
+    .catch(handleError);
+}
+
 export function getIAdjectiveByKanjis(kanjis) {
   return fetch(baseUrl + "findByKanjis/" + kanjis)
     .then(handleResponse)
@@ -81,5 +100,13 @@ export function filterIAdjectives(iAdjectiveCriteria) {
       }
       throw new Error("Network response was not ok.");
     })
+    .catch(handleError);
+}
+
+export function updateNumberOfUse(id) {
+  return fetch(baseUrl + id, {
+    method: "PATCH",
+  })
+    .then(handleResponse)
     .catch(handleError);
 }
