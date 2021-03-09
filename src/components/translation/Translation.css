@@ -1,18 +1,14 @@
 #translation {
   display: grid;
-  grid: 4fr 8fr / repeat(12, 1fr);
+  grid: 1fr 2fr / repeat(12, 1fr);
   gap: 1em;
-  height: 100%;
   width: 100%;
-  margin: 1em;
 }
 
 #translationArea,
 #ListOfParts {
   grid-column-start: 5;
   grid-column-end: 13;
-  border: black;
-  border-style: solid;
 }
 
 #ListOfObjects {

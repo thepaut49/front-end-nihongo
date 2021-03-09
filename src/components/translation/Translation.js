@@ -28,15 +28,22 @@ const Translation = () => {
 
   const handleListClick = (event) => {
     setSentence(sentence + event.target.innerText);
+    translationApi.updateNumberOfUse(typeSelect, event.target.id);
   };
 
   const handleSelectChange = (event) => {
+    let _typeSelect = "";
+    let _quantity = 0;
     if (event.target.name === "typeSelect") {
       setTypeSelect(event.target.value);
+      _typeSelect = event.target.value;
+      _quantity = quantity;
     } else {
       setQuantity(event.target.value);
+      _typeSelect = typeSelect;
+      _quantity = event.target.value;
     }
-    setListObjects(translationApi.getMostUsedObject(typeSelect, quantity));
+    setListObjects(translationApi.getMostUsedObject(_typeSelect, _quantity));
   };
 
   const handleTranslateClick = (event) => {

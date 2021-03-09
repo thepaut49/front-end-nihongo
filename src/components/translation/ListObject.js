@@ -30,6 +30,7 @@ function ListObject(props) {
         objectList.map((object) => {
           return (
             <button
+              id={object.id}
               key={object.id}
               className="btn btn-primary"
               onClick={props.onClick}

@@ -2,8 +2,8 @@ import CustomTextArea from "../common/CustomTextArea";
 
 const TranslationArea = (props) => {
   const styleTranslationArea = {
-    backgroundColor: "red",
     width: "100%",
+    padding: "0.4em",
   };
 
   const buttonGroupStyle = {

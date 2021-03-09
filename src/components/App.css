@@ -16,7 +16,7 @@ h3 {
 .app-container {
   display: grid;
   grid-template-rows: min-content max-content;
-  gap: 1em 1em;
+  margin: 1em;
 }
 
 nav {
