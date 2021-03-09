@@ -89,7 +89,7 @@ function IAdjectivesPage(props) {
 
   return (
     <div className="iAdjectivesPage">
-      <h2>Na Adjectives</h2>
+      <h2>I-Adjectives</h2>
       <IAdjectiveCriteriaForm
         iAdjectiveCriteria={iAdjectiveCriteria}
         onChange={handleChange}

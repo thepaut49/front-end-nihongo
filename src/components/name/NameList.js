@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function NameList(props) {
   return (
-    <table className="table">
+    <table>
       <tbody>
         {props.names.map((name) => {
           return (

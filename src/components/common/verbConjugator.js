@@ -1,38 +1,34 @@
-const ICHIDAN_GROUPE = "Ichidan";
-const GODAN_GROUPE = "Godan";
-const PLAIN_FORM = "Plain";
-const POLITE_FORM = "Polite";
-const POSITIVE_SIGN = "Positive";
+import verbContants from "./verbConstants";
 
 export function presentIndicative(verb, form, sign) {
   const lastKana = verb.neutralForm.charAt(verb.neutralForm.length - 1);
   switch (verb.groupe) {
-    case ICHIDAN_GROUPE:
-      if (form === PLAIN_FORM) {
-        if (sign === POSITIVE_SIGN) {
+    case verbContants.verbGroupList.ICHIDAN_GROUPE:
+      if (form === verbContants.PLAIN_FORM) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return lastKana;
         } else {
           return "ない";
         }
-      } else if (form === POLITE_FORM) {
-        if (sign === POSITIVE_SIGN) {
+      } else if (form === verbContants.POLITE_FORM) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "ます";
         } else {
           return "ません";
         }
       }
       break;
-    case GODAN_GROUPE:
+    case verbContants.verbGroupList.GODAN_GROUPE:
       switch (lastKana) {
         case "く":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return lastKana;
             } else {
               return "かない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "きます";
             } else {
               return "きません";
@@ -40,14 +36,14 @@ export function presentIndicative(verb, form, sign) {
           }
           break;
         case "ぐ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return lastKana;
             } else {
               return "がない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ぎます";
             } else {
               return "ぎません";
@@ -55,14 +51,14 @@ export function presentIndicative(verb, form, sign) {
           }
           break;
         case "す":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return lastKana;
             } else {
               return "さない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "します";
             } else {
               return "しません";
@@ -70,14 +66,14 @@ export function presentIndicative(verb, form, sign) {
           }
           break;
         case "む":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return lastKana;
             } else {
               return "まない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "みます";
             } else {
               return "みません";
@@ -85,14 +81,14 @@ export function presentIndicative(verb, form, sign) {
           }
           break;
         case "ぬ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return lastKana;
             } else {
               return "なない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "にます";
             } else {
               return "にません";
@@ -100,14 +96,14 @@ export function presentIndicative(verb, form, sign) {
           }
           break;
         case "ぶ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return lastKana;
             } else {
               return "ばない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "びます";
             } else {
               return "びません";
@@ -115,14 +111,14 @@ export function presentIndicative(verb, form, sign) {
           }
           break;
         case "つ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return lastKana;
             } else {
               return "たない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ちます";
             } else {
               return "ちません";
@@ -130,14 +126,14 @@ export function presentIndicative(verb, form, sign) {
           }
           break;
         case "う":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return lastKana;
             } else {
               return "わない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "います";
             } else {
               return "いません";
@@ -146,14 +142,14 @@ export function presentIndicative(verb, form, sign) {
           break;
         default:
           // case る
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return lastKana;
             } else {
               return "らない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ります";
             } else {
               return "りません";
@@ -163,28 +159,28 @@ export function presentIndicative(verb, form, sign) {
       break;
     default:
       if (verb.neutralForm === "する" || verb.neutralForm === "為る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return lastKana;
           } else {
             return "しない";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "します";
           } else {
             return "しません";
           }
         }
       } else if (verb.neutralForm === "来る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return lastKana;
           } else {
             return "こない";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "きます";
           } else {
             return "きません";
@@ -197,33 +193,33 @@ export function presentIndicative(verb, form, sign) {
 export function presumptiveVolitional(verb, form, sign) {
   const lastKana = verb.neutralForm.charAt(verb.neutralForm.length - 1);
   switch (verb.groupe) {
-    case ICHIDAN_GROUPE:
-      if (form === PLAIN_FORM) {
-        if (sign === POSITIVE_SIGN) {
+    case verbContants.verbGroupList.ICHIDAN_GROUPE:
+      if (form === verbContants.PLAIN_FORM) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "よう/るだろう";
         } else {
           return "ないだろう";
         }
       }
-      //form === POLITE_FORM
+      //form === verbContants.POLITE_FORM
       else {
-        if (sign === POSITIVE_SIGN) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "ましょう/るでしょう";
         } else {
           return "ないでしょう";
         }
       }
-    case GODAN_GROUPE:
+    case verbContants.verbGroupList.GODAN_GROUPE:
       switch (lastKana) {
         case "く":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "こう/くだろう";
             } else {
               return "かないだろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "きましょう/くでしょう";
             } else {
               return "かないでしょう";
@@ -231,14 +227,14 @@ export function presumptiveVolitional(verb, form, sign) {
           }
           break;
         case "ぐ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ごう/ぐだろう";
             } else {
               return "がないだろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ぎましょう/ぐでしょう";
             } else {
               return "がないでしょう";
@@ -246,14 +242,14 @@ export function presumptiveVolitional(verb, form, sign) {
           }
           break;
         case "す":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "そう/すだろう";
             } else {
               return "さないだろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "しましょう/すでしょう";
             } else {
               return "さないでしょう";
@@ -261,14 +257,14 @@ export function presumptiveVolitional(verb, form, sign) {
           }
           break;
         case "む":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "もう/むだろう";
             } else {
               return "まないだろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "みましょう/むでしょう";
             } else {
               return "まないでしょう";
@@ -276,14 +272,14 @@ export function presumptiveVolitional(verb, form, sign) {
           }
           break;
         case "ぬ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "のう/ぬだろう";
             } else {
               return "なないだろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "にましょう/ぬでしょう";
             } else {
               return "なないでしょう";
@@ -291,14 +287,14 @@ export function presumptiveVolitional(verb, form, sign) {
           }
           break;
         case "ぶ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ぼう/ぶだろう";
             } else {
               return "ばないだろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "びましょう/でしょう";
             } else {
               return "ばないでしょう";
@@ -306,14 +302,14 @@ export function presumptiveVolitional(verb, form, sign) {
           }
           break;
         case "つ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "とう/つだろう";
             } else {
               return "たないだろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ちましょう/つでしょう";
             } else {
               return "たないでしょう";
@@ -321,14 +317,14 @@ export function presumptiveVolitional(verb, form, sign) {
           }
           break;
         case "う":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "おう/うだろう";
             } else {
               return "ないだろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "いましょう/うでしょう";
             } else {
               return "わないでしょう";
@@ -337,14 +333,14 @@ export function presumptiveVolitional(verb, form, sign) {
           break;
         default:
           // case る
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ろう/るだろう";
             } else {
               return "らないだろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "りましょう/るでしょう";
             } else {
               return "らないでしょう";
@@ -354,28 +350,28 @@ export function presumptiveVolitional(verb, form, sign) {
       break;
     default:
       if (verb.neutralForm === "する" || verb.neutralForm === "為る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "しよう/するだろう";
           } else {
             return "しないだろう";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "しましょう/するでしょう";
           } else {
             return "しないでしょう";
           }
         }
       } else if (verb.neutralForm === "来る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "よう/るだろう";
           } else {
             return "ないだろう";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "ましょう/るでしょう";
           } else {
             return "ないでしょう";
@@ -389,33 +385,33 @@ export function presumptiveVolitional(verb, form, sign) {
 export function imperative(verb, form, sign) {
   const lastKana = verb.neutralForm.charAt(verb.neutralForm.length - 1);
   switch (verb.groupe) {
-    case ICHIDAN_GROUPE:
-      if (form === PLAIN_FORM) {
-        if (sign === POSITIVE_SIGN) {
+    case verbContants.verbGroupList.ICHIDAN_GROUPE:
+      if (form === verbContants.PLAIN_FORM) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "ろ";
         } else {
           return "るな";
         }
       }
-      //form === POLITE_FORM
+      //form === verbContants.POLITE_FORM
       else {
-        if (sign === POSITIVE_SIGN) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "てください";
         } else {
           return "ないでください";
         }
       }
-    case GODAN_GROUPE:
+    case verbContants.verbGroupList.GODAN_GROUPE:
       switch (lastKana) {
         case "く":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "け";
             } else {
               return "くな";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               if (verb.neutralForm === "行く") {
                 return "ってください";
               } else {
@@ -427,14 +423,14 @@ export function imperative(verb, form, sign) {
           }
           break;
         case "ぐ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "げ";
             } else {
               return "ぐな";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "いでください";
             } else {
               return "がないでください";
@@ -442,14 +438,14 @@ export function imperative(verb, form, sign) {
           }
           break;
         case "す":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "せ";
             } else {
               return "すな";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "してください";
             } else {
               return "さないでください";
@@ -457,14 +453,14 @@ export function imperative(verb, form, sign) {
           }
           break;
         case "む":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "め";
             } else {
               return "むな";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んでください";
             } else {
               return "まないでください";
@@ -472,14 +468,14 @@ export function imperative(verb, form, sign) {
           }
           break;
         case "ぬ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ね";
             } else {
               return "ぬな";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んでください";
             } else {
               return "なないでください";
@@ -487,14 +483,14 @@ export function imperative(verb, form, sign) {
           }
           break;
         case "ぶ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "べ";
             } else {
               return "ぶな";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んでください";
             } else {
               return "ばないでください";
@@ -502,14 +498,14 @@ export function imperative(verb, form, sign) {
           }
           break;
         case "つ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "て";
             } else {
               return "つな";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ってください";
             } else {
               return "たないでください";
@@ -517,14 +513,14 @@ export function imperative(verb, form, sign) {
           }
           break;
         case "う":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "え";
             } else {
               return "うな";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ってください";
             } else {
               return "わないでください";
@@ -533,14 +529,14 @@ export function imperative(verb, form, sign) {
           break;
         default:
           // case る
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "れ";
             } else {
               return "るな";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ってください";
             } else {
               return "らないでください";
@@ -550,28 +546,28 @@ export function imperative(verb, form, sign) {
       break;
     default:
       if (verb.neutralForm === "する" || verb.neutralForm === "為る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "しろ";
           } else {
             return "するな";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "してください";
           } else {
             return "しないでください";
           }
         }
       } else if (verb.neutralForm === "来る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "来い";
           } else {
             return "来るな";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "来てください";
           } else {
             return "来ないでください";
@@ -584,27 +580,27 @@ export function imperative(verb, form, sign) {
 export function pastIndicative(verb, form, sign) {
   const lastKana = verb.neutralForm.charAt(verb.neutralForm.length - 1);
   switch (verb.groupe) {
-    case ICHIDAN_GROUPE:
-      if (form === PLAIN_FORM) {
-        if (sign === POSITIVE_SIGN) {
+    case verbContants.verbGroupList.ICHIDAN_GROUPE:
+      if (form === verbContants.PLAIN_FORM) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "た";
         } else {
           return "なかった";
         }
       }
-      //form === POLITE_FORM
+      //form === verbContants.POLITE_FORM
       else {
-        if (sign === POSITIVE_SIGN) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "ました";
         } else {
           return "ませんでした";
         }
       }
-    case GODAN_GROUPE:
+    case verbContants.verbGroupList.GODAN_GROUPE:
       switch (lastKana) {
         case "く":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               if (verb.neutralForm === "行く") {
                 return "った";
               } else {
@@ -613,8 +609,8 @@ export function pastIndicative(verb, form, sign) {
             } else {
               return "かなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "きました";
             } else {
               return "きませんでした";
@@ -622,14 +618,14 @@ export function pastIndicative(verb, form, sign) {
           }
           break;
         case "ぐ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "いだ";
             } else {
               return "ぐがなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ぎました";
             } else {
               return "ぎませんでした";
@@ -637,14 +633,14 @@ export function pastIndicative(verb, form, sign) {
           }
           break;
         case "す":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "した";
             } else {
               return "さなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "しました";
             } else {
               return "しませんでした";
@@ -652,14 +648,14 @@ export function pastIndicative(verb, form, sign) {
           }
           break;
         case "む":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んだ";
             } else {
               return "まなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "みました";
             } else {
               return "みませんでした";
@@ -667,14 +663,14 @@ export function pastIndicative(verb, form, sign) {
           }
           break;
         case "ぬ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んだ";
             } else {
               return "ななかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "にました";
             } else {
               return "にませんでした";
@@ -682,14 +678,14 @@ export function pastIndicative(verb, form, sign) {
           }
           break;
         case "ぶ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んだ";
             } else {
               return "ばなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "びました";
             } else {
               return "びませんでした";
@@ -697,14 +693,14 @@ export function pastIndicative(verb, form, sign) {
           }
           break;
         case "つ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "った";
             } else {
               return "たなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ちました";
             } else {
               return "ちませんでした";
@@ -712,14 +708,14 @@ export function pastIndicative(verb, form, sign) {
           }
           break;
         case "う":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "った";
             } else {
               return "わなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "いました";
             } else {
               return "いませんでした";
@@ -728,14 +724,14 @@ export function pastIndicative(verb, form, sign) {
           break;
         default:
           // case る
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "った";
             } else {
               return "らなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "りました";
             } else {
               return "りませんでした";
@@ -745,28 +741,28 @@ export function pastIndicative(verb, form, sign) {
       break;
     default:
       if (verb.neutralForm === "する" || verb.neutralForm === "為る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "した";
           } else {
             return "しなかった";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "しました";
           } else {
             return "しませんでした";
           }
         }
       } else if (verb.neutralForm === "来る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "た";
           } else {
             return "なかった";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "ました";
           } else {
             return "ませんでした";
@@ -779,27 +775,27 @@ export function pastIndicative(verb, form, sign) {
 export function pastPresumptive(verb, form, sign) {
   const lastKana = verb.neutralForm.charAt(verb.neutralForm.length - 1);
   switch (verb.groupe) {
-    case ICHIDAN_GROUPE:
-      if (form === PLAIN_FORM) {
-        if (sign === POSITIVE_SIGN) {
+    case verbContants.verbGroupList.ICHIDAN_GROUPE:
+      if (form === verbContants.PLAIN_FORM) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "たろう";
         } else {
           return "なかっただろう";
         }
       }
-      //form === POLITE_FORM
+      //form === verbContants.POLITE_FORM
       else {
-        if (sign === POSITIVE_SIGN) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "たでしょう";
         } else {
           return "なかったでしょう";
         }
       }
-    case GODAN_GROUPE:
+    case verbContants.verbGroupList.GODAN_GROUPE:
       switch (lastKana) {
         case "く":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               if (verb.neutralForm === "行く") {
                 return "ったろう/っただろう";
               } else {
@@ -808,8 +804,8 @@ export function pastPresumptive(verb, form, sign) {
             } else {
               return "かなかっただろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               if (verb.neutralForm === "行く") {
                 return "ったでしょう";
               } else {
@@ -821,14 +817,14 @@ export function pastPresumptive(verb, form, sign) {
           }
           break;
         case "ぐ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "いだろう/いだだろう";
             } else {
               return "がなかっただろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "いだでしょう";
             } else {
               return "がなかったでしょう";
@@ -836,14 +832,14 @@ export function pastPresumptive(verb, form, sign) {
           }
           break;
         case "す":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "したろう/しただろう";
             } else {
               return "さなかっただろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "したでしょう";
             } else {
               return "さなかったでしょう";
@@ -851,14 +847,14 @@ export function pastPresumptive(verb, form, sign) {
           }
           break;
         case "む":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んだろう/んだだろう";
             } else {
               return "まなかっただろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んだでしょう";
             } else {
               return "まなかったでしょう";
@@ -866,14 +862,14 @@ export function pastPresumptive(verb, form, sign) {
           }
           break;
         case "ぬ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んだろう/んだだろう";
             } else {
               return "ななかっただろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んだでしょう";
             } else {
               return "ななかったでしょう";
@@ -881,14 +877,14 @@ export function pastPresumptive(verb, form, sign) {
           }
           break;
         case "ぶ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んだろう/んだだろう";
             } else {
               return "ばなかっただろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んだでしょう";
             } else {
               return "ばなかったでしょう";
@@ -896,14 +892,14 @@ export function pastPresumptive(verb, form, sign) {
           }
           break;
         case "つ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ったろう/っただろう";
             } else {
               return "たなかっただろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ったでしょう";
             } else {
               return "たなかったでしょう";
@@ -911,14 +907,14 @@ export function pastPresumptive(verb, form, sign) {
           }
           break;
         case "う":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ったろう/っただろう";
             } else {
               return "わなかっただろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ったでしょう";
             } else {
               return "わなかったでしょう";
@@ -927,14 +923,14 @@ export function pastPresumptive(verb, form, sign) {
           break;
         default:
           // case る
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ったろう/っただろう";
             } else {
               return "らなかっただろう";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ったでしょう";
             } else {
               return "らなかったでしょう";
@@ -944,28 +940,28 @@ export function pastPresumptive(verb, form, sign) {
       break;
     default:
       if (verb.neutralForm === "する" || verb.neutralForm === "為る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "したろう/しただろう";
           } else {
             return "しなかっただろう";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "しましたろう";
           } else {
             return "しなかたでしょう";
           }
         }
       } else if (verb.neutralForm === "来る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "たろう/ただろう";
           } else {
             return "なかっただろう";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "たでしょう";
           } else {
             return "なかったでしょう";
@@ -978,27 +974,27 @@ export function pastPresumptive(verb, form, sign) {
 export function presentProgressive(verb, form, sign) {
   const lastKana = verb.neutralForm.charAt(verb.neutralForm.length - 1);
   switch (verb.groupe) {
-    case ICHIDAN_GROUPE:
-      if (form === PLAIN_FORM) {
-        if (sign === POSITIVE_SIGN) {
+    case verbContants.verbGroupList.ICHIDAN_GROUPE:
+      if (form === verbContants.PLAIN_FORM) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "ている";
         } else {
           return "ていない";
         }
       }
-      //form === POLITE_FORM
+      //form === verbContants.POLITE_FORM
       else {
-        if (sign === POSITIVE_SIGN) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "ています";
         } else {
           return "ていません";
         }
       }
-    case GODAN_GROUPE:
+    case verbContants.verbGroupList.GODAN_GROUPE:
       switch (lastKana) {
         case "く":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               if (verb.neutralForm === "行く") {
                 return "っている";
               } else {
@@ -1011,8 +1007,8 @@ export function presentProgressive(verb, form, sign) {
                 return "いていない";
               }
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               if (verb.neutralForm === "行く") {
                 return "っています";
               } else {
@@ -1028,14 +1024,14 @@ export function presentProgressive(verb, form, sign) {
           }
           break;
         case "ぐ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "いでいる";
             } else {
               return "いでいない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "いでいます";
             } else {
               return "いでいません";
@@ -1043,14 +1039,14 @@ export function presentProgressive(verb, form, sign) {
           }
           break;
         case "す":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "している";
             } else {
               return "していない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "しています";
             } else {
               return "していません";
@@ -1058,14 +1054,14 @@ export function presentProgressive(verb, form, sign) {
           }
           break;
         case "む":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んでいる";
             } else {
               return "んでいない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んでいます";
             } else {
               return "んでいません";
@@ -1073,14 +1069,14 @@ export function presentProgressive(verb, form, sign) {
           }
           break;
         case "ぬ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んでいる";
             } else {
               return "んでいない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んでいます";
             } else {
               return "んでいません";
@@ -1088,14 +1084,14 @@ export function presentProgressive(verb, form, sign) {
           }
           break;
         case "ぶ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んでいる";
             } else {
               return "んでいない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んでいます";
             } else {
               return "んでいません";
@@ -1103,14 +1099,14 @@ export function presentProgressive(verb, form, sign) {
           }
           break;
         case "つ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "っている";
             } else {
               return "っていない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "っています";
             } else {
               return "っていません";
@@ -1118,14 +1114,14 @@ export function presentProgressive(verb, form, sign) {
           }
           break;
         case "う":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "っている";
             } else {
               return "っていない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "っています";
             } else {
               return "っていません";
@@ -1134,14 +1130,14 @@ export function presentProgressive(verb, form, sign) {
           break;
         default:
           // case る
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "っている";
             } else {
               return "っていない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "っています";
             } else {
               return "っていません";
@@ -1151,28 +1147,28 @@ export function presentProgressive(verb, form, sign) {
       break;
     default:
       if (verb.neutralForm === "する" || verb.neutralForm === "為る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "している";
           } else {
             return "していない";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "しています";
           } else {
             return "していません";
           }
         }
       } else if (verb.neutralForm === "来る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "";
           } else {
             return "";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "";
           } else {
             return "";
@@ -1185,27 +1181,27 @@ export function presentProgressive(verb, form, sign) {
 export function pastProgressive(verb, form, sign) {
   const lastKana = verb.neutralForm.charAt(verb.neutralForm.length - 1);
   switch (verb.groupe) {
-    case ICHIDAN_GROUPE:
-      if (form === PLAIN_FORM) {
-        if (sign === POSITIVE_SIGN) {
+    case verbContants.verbGroupList.ICHIDAN_GROUPE:
+      if (form === verbContants.PLAIN_FORM) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "ていた";
         } else {
           return "ていなかった";
         }
       }
-      //form === POLITE_FORM
+      //form === verbContants.POLITE_FORM
       else {
-        if (sign === POSITIVE_SIGN) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "ていました";
         } else {
           return "ていませんでした";
         }
       }
-    case GODAN_GROUPE:
+    case verbContants.verbGroupList.GODAN_GROUPE:
       switch (lastKana) {
         case "く":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               if (verb.neutralForm === "行く") {
                 return "っていた";
               } else {
@@ -1218,8 +1214,8 @@ export function pastProgressive(verb, form, sign) {
                 return "いていなかった";
               }
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               if (verb.neutralForm === "行く") {
                 return "っていました";
               } else {
@@ -1235,14 +1231,14 @@ export function pastProgressive(verb, form, sign) {
           }
           break;
         case "ぐ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "いでいた";
             } else {
               return "いでいなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "いでいました";
             } else {
               return "いでいませんでした";
@@ -1250,14 +1246,14 @@ export function pastProgressive(verb, form, sign) {
           }
           break;
         case "す":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "していた";
             } else {
               return "していなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "していました";
             } else {
               return "していませんでした";
@@ -1265,14 +1261,14 @@ export function pastProgressive(verb, form, sign) {
           }
           break;
         case "む":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んでいた";
             } else {
               return "んでいなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んでいました";
             } else {
               return "んでいませんでした";
@@ -1280,14 +1276,14 @@ export function pastProgressive(verb, form, sign) {
           }
           break;
         case "ぬ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んでいた";
             } else {
               return "んでいなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んでいました";
             } else {
               return "んでいませんでした";
@@ -1295,14 +1291,14 @@ export function pastProgressive(verb, form, sign) {
           }
           break;
         case "ぶ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んでいた";
             } else {
               return "んでいなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んでいました";
             } else {
               return "んでいませんでした";
@@ -1310,14 +1306,14 @@ export function pastProgressive(verb, form, sign) {
           }
           break;
         case "つ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "っていた";
             } else {
               return "っていなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "っていました";
             } else {
               return "っていませんでした";
@@ -1325,14 +1321,14 @@ export function pastProgressive(verb, form, sign) {
           }
           break;
         case "う":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "っていた";
             } else {
               return "っていなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "っていました";
             } else {
               return "っていませんでした";
@@ -1341,14 +1337,14 @@ export function pastProgressive(verb, form, sign) {
           break;
         default:
           // case る
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "っていた";
             } else {
               return "っていなかった";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "っていました";
             } else {
               return "っていませんでした";
@@ -1358,28 +1354,28 @@ export function pastProgressive(verb, form, sign) {
       break;
     default:
       if (verb.neutralForm === "する" || verb.neutralForm === "為る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "していた";
           } else {
             return "していない";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "していました";
           } else {
             return "していませんでした";
           }
         }
       } else if (verb.neutralForm === "来る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "";
           } else {
             return "";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "";
           } else {
             return "";
@@ -1392,33 +1388,33 @@ export function pastProgressive(verb, form, sign) {
 export function provisionalConditionalEba(verb, form, sign) {
   const lastKana = verb.neutralForm.charAt(verb.neutralForm.length - 1);
   switch (verb.groupe) {
-    case ICHIDAN_GROUPE:
-      if (form === PLAIN_FORM) {
-        if (sign === POSITIVE_SIGN) {
+    case verbContants.verbGroupList.ICHIDAN_GROUPE:
+      if (form === verbContants.PLAIN_FORM) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "れば";
         } else {
           return "なければ";
         }
       }
-      //form === POLITE_FORM
+      //form === verbContants.POLITE_FORM
       else {
-        if (sign === POSITIVE_SIGN) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "n/a";
         } else {
           return "n/a";
         }
       }
-    case GODAN_GROUPE:
+    case verbContants.verbGroupList.GODAN_GROUPE:
       switch (lastKana) {
         case "く":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "けば";
             } else {
               return "かなければ";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "n/a";
             } else {
               return "n/a";
@@ -1426,14 +1422,14 @@ export function provisionalConditionalEba(verb, form, sign) {
           }
           break;
         case "ぐ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "げば";
             } else {
               return "がなければ";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "n/a";
             } else {
               return "n/a";
@@ -1441,14 +1437,14 @@ export function provisionalConditionalEba(verb, form, sign) {
           }
           break;
         case "す":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "せば";
             } else {
               return "さなければ";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "n/a";
             } else {
               return "n/a";
@@ -1456,14 +1452,14 @@ export function provisionalConditionalEba(verb, form, sign) {
           }
           break;
         case "む":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "めば";
             } else {
               return "まなければ";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "n/a";
             } else {
               return "n/a";
@@ -1471,14 +1467,14 @@ export function provisionalConditionalEba(verb, form, sign) {
           }
           break;
         case "ぬ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ねば";
             } else {
               return "ななければ";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "n/a";
             } else {
               return "n/a";
@@ -1486,14 +1482,14 @@ export function provisionalConditionalEba(verb, form, sign) {
           }
           break;
         case "ぶ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "べば";
             } else {
               return "ばなければ";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "n/a";
             } else {
               return "n/a";
@@ -1501,14 +1497,14 @@ export function provisionalConditionalEba(verb, form, sign) {
           }
           break;
         case "つ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "てば";
             } else {
               return "たなければ";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "n/a";
             } else {
               return "n/a";
@@ -1516,14 +1512,14 @@ export function provisionalConditionalEba(verb, form, sign) {
           }
           break;
         case "う":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "えば";
             } else {
               return "わなければ";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "n/a";
             } else {
               return "n/a";
@@ -1532,14 +1528,14 @@ export function provisionalConditionalEba(verb, form, sign) {
           break;
         default:
           // case る
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "れば";
             } else {
               return "らなければ";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "n/a";
             } else {
               return "n/a";
@@ -1549,28 +1545,28 @@ export function provisionalConditionalEba(verb, form, sign) {
       break;
     default:
       if (verb.neutralForm === "する" || verb.neutralForm === "為る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "すれば";
           } else {
             return "しなければ";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "しませば/しますれば";
           } else {
             return "しませんなら";
           }
         }
       } else if (verb.neutralForm === "来る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "れば";
           } else {
             return "なければ";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "ませば/ますれば";
           } else {
             return "ませんなら";
@@ -1583,33 +1579,33 @@ export function provisionalConditionalEba(verb, form, sign) {
 export function potential(verb, form, sign) {
   const lastKana = verb.neutralForm.charAt(verb.neutralForm.length - 1);
   switch (verb.groupe) {
-    case ICHIDAN_GROUPE:
-      if (form === PLAIN_FORM) {
-        if (sign === POSITIVE_SIGN) {
+    case verbContants.verbGroupList.ICHIDAN_GROUPE:
+      if (form === verbContants.PLAIN_FORM) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "られる";
         } else {
           return "られない";
         }
       }
-      //form === POLITE_FORM
+      //form === verbContants.POLITE_FORM
       else {
-        if (sign === POSITIVE_SIGN) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "られます";
         } else {
           return "られません";
         }
       }
-    case GODAN_GROUPE:
+    case verbContants.verbGroupList.GODAN_GROUPE:
       switch (lastKana) {
         case "く":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ける";
             } else {
               return "けない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "けます";
             } else {
               return "けません";
@@ -1617,14 +1613,14 @@ export function potential(verb, form, sign) {
           }
           break;
         case "ぐ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "げる";
             } else {
               return "げない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "げます";
             } else {
               return "げません";
@@ -1632,14 +1628,14 @@ export function potential(verb, form, sign) {
           }
           break;
         case "す":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "せる";
             } else {
               return "せない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "せます";
             } else {
               return "せません";
@@ -1647,14 +1643,14 @@ export function potential(verb, form, sign) {
           }
           break;
         case "む":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "める";
             } else {
               return "めない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "めます";
             } else {
               return "めません";
@@ -1662,14 +1658,14 @@ export function potential(verb, form, sign) {
           }
           break;
         case "ぬ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ねる";
             } else {
               return "ねない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ねます";
             } else {
               return "ねません";
@@ -1677,14 +1673,14 @@ export function potential(verb, form, sign) {
           }
           break;
         case "ぶ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "べる";
             } else {
               return "べない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "べます";
             } else {
               return "べません";
@@ -1692,14 +1688,14 @@ export function potential(verb, form, sign) {
           }
           break;
         case "つ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "てる";
             } else {
               return "てない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "てます";
             } else {
               return "てません";
@@ -1707,14 +1703,14 @@ export function potential(verb, form, sign) {
           }
           break;
         case "う":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "える";
             } else {
               return "えない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "えます";
             } else {
               return "えません";
@@ -1723,14 +1719,14 @@ export function potential(verb, form, sign) {
           break;
         default:
           // case る
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "れる";
             } else {
               return "れない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "れます";
             } else {
               return "れません";
@@ -1740,28 +1736,28 @@ export function potential(verb, form, sign) {
       break;
     default:
       if (verb.neutralForm === "する" || verb.neutralForm === "為る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "できる";
           } else {
             return "できない";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "できます";
           } else {
             return "できません";
           }
         }
       } else if (verb.neutralForm === "来る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "られる";
           } else {
             return "られない";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "られます";
           } else {
             return "られません";
@@ -1774,27 +1770,27 @@ export function potential(verb, form, sign) {
 export function conditionalTara(verb, form, sign) {
   const lastKana = verb.neutralForm.charAt(verb.neutralForm.length - 1);
   switch (verb.groupe) {
-    case ICHIDAN_GROUPE:
-      if (form === PLAIN_FORM) {
-        if (sign === POSITIVE_SIGN) {
+    case verbContants.verbGroupList.ICHIDAN_GROUPE:
+      if (form === verbContants.PLAIN_FORM) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "たら";
         } else {
           return "なかったら";
         }
       }
-      //form === POLITE_FORM
+      //form === verbContants.POLITE_FORM
       else {
-        if (sign === POSITIVE_SIGN) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "ましたら";
         } else {
           return "ませんでしたら";
         }
       }
-    case GODAN_GROUPE:
+    case verbContants.verbGroupList.GODAN_GROUPE:
       switch (lastKana) {
         case "く":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               if (verb.neutralForm === "行く") {
                 return "ったら";
               } else {
@@ -1803,8 +1799,8 @@ export function conditionalTara(verb, form, sign) {
             } else {
               return "かなかったら";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "きましたら";
             } else {
               return "きませんでしたら";
@@ -1812,14 +1808,14 @@ export function conditionalTara(verb, form, sign) {
           }
           break;
         case "ぐ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "いだら";
             } else {
               return "がなかったら";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ぎましたら";
             } else {
               return "ぎませんでしたら";
@@ -1827,14 +1823,14 @@ export function conditionalTara(verb, form, sign) {
           }
           break;
         case "す":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "したら";
             } else {
               return "さなかったら";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "しましたら";
             } else {
               return "しませんでしたら";
@@ -1842,14 +1838,14 @@ export function conditionalTara(verb, form, sign) {
           }
           break;
         case "む":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んだら";
             } else {
               return "まなかったら";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "みましたら";
             } else {
               return "みませんでしたら";
@@ -1857,14 +1853,14 @@ export function conditionalTara(verb, form, sign) {
           }
           break;
         case "ぬ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んだら";
             } else {
               return "ななかったら";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "にましたら";
             } else {
               return "にませんでしたら";
@@ -1872,14 +1868,14 @@ export function conditionalTara(verb, form, sign) {
           }
           break;
         case "ぶ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "んだら";
             } else {
               return "ばなかったら";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "びましたら";
             } else {
               return "びませんでしたら";
@@ -1887,14 +1883,14 @@ export function conditionalTara(verb, form, sign) {
           }
           break;
         case "つ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ったら";
             } else {
               return "たなかったら";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ちましたら";
             } else {
               return "ちませんでしたら";
@@ -1902,14 +1898,14 @@ export function conditionalTara(verb, form, sign) {
           }
           break;
         case "う":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ったら";
             } else {
               return "わなかったら";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "いましたら";
             } else {
               return "いませんでしたら";
@@ -1918,14 +1914,14 @@ export function conditionalTara(verb, form, sign) {
           break;
         default:
           // case る
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ったら";
             } else {
               return "らなかったら";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "りましたら";
             } else {
               return "りませんでしたら";
@@ -1935,28 +1931,28 @@ export function conditionalTara(verb, form, sign) {
       break;
     default:
       if (verb.neutralForm === "する" || verb.neutralForm === "為る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "したら";
           } else {
             return "しなかったら";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "しましたら";
           } else {
             return "しませんでしたら";
           }
         }
       } else if (verb.neutralForm === "来る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "たら";
           } else {
             return "なかったら";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "ましたら";
           } else {
             return "ませんでしたら";
@@ -1969,33 +1965,33 @@ export function conditionalTara(verb, form, sign) {
 export function causative(verb, form, sign) {
   const lastKana = verb.neutralForm.charAt(verb.neutralForm.length - 1);
   switch (verb.groupe) {
-    case ICHIDAN_GROUPE:
-      if (form === PLAIN_FORM) {
-        if (sign === POSITIVE_SIGN) {
+    case verbContants.verbGroupList.ICHIDAN_GROUPE:
+      if (form === verbContants.PLAIN_FORM) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "させる";
         } else {
           return "させない";
         }
       }
-      //form === POLITE_FORM
+      //form === verbContants.POLITE_FORM
       else {
-        if (sign === POSITIVE_SIGN) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "させます";
         } else {
           return "させません";
         }
       }
-    case GODAN_GROUPE:
+    case verbContants.verbGroupList.GODAN_GROUPE:
       switch (lastKana) {
         case "く":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "かせる";
             } else {
               return "かせない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "かせます";
             } else {
               return "かせません";
@@ -2003,14 +1999,14 @@ export function causative(verb, form, sign) {
           }
           break;
         case "ぐ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "がせる";
             } else {
               return "がない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "がせます";
             } else {
               return "がせません";
@@ -2018,14 +2014,14 @@ export function causative(verb, form, sign) {
           }
           break;
         case "す":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "させる";
             } else {
               return "さない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "させます";
             } else {
               return "させません";
@@ -2033,14 +2029,14 @@ export function causative(verb, form, sign) {
           }
           break;
         case "む":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ませる";
             } else {
               return "ませない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ませます";
             } else {
               return "ませません";
@@ -2048,14 +2044,14 @@ export function causative(verb, form, sign) {
           }
           break;
         case "ぬ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "なせる";
             } else {
               return "なせない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "なせます";
             } else {
               return "なせません";
@@ -2063,14 +2059,14 @@ export function causative(verb, form, sign) {
           }
           break;
         case "ぶ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ばせる";
             } else {
               return "ばない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ばせます";
             } else {
               return "ばせません";
@@ -2078,14 +2074,14 @@ export function causative(verb, form, sign) {
           }
           break;
         case "つ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "たせる";
             } else {
               return "たせない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "たせます";
             } else {
               return "たせません";
@@ -2093,14 +2089,14 @@ export function causative(verb, form, sign) {
           }
           break;
         case "う":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "わせる";
             } else {
               return "わせない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "わせます";
             } else {
               return "わせません";
@@ -2109,14 +2105,14 @@ export function causative(verb, form, sign) {
           break;
         default:
           // case る
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "らせる";
             } else {
               return "らせない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "らせます";
             } else {
               return "らせません";
@@ -2126,28 +2122,28 @@ export function causative(verb, form, sign) {
       break;
     default:
       if (verb.neutralForm === "する" || verb.neutralForm === "為る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "させる";
           } else {
             return "させない";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "させます";
           } else {
             return "させません";
           }
         }
       } else if (verb.neutralForm === "来る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "させる";
           } else {
             return "させない";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "させます";
           } else {
             return "させません";
@@ -2160,33 +2156,33 @@ export function causative(verb, form, sign) {
 export function passive(verb, form, sign) {
   const lastKana = verb.neutralForm.charAt(verb.neutralForm.length - 1);
   switch (verb.groupe) {
-    case ICHIDAN_GROUPE:
-      if (form === PLAIN_FORM) {
-        if (sign === POSITIVE_SIGN) {
+    case verbContants.verbGroupList.ICHIDAN_GROUPE:
+      if (form === verbContants.PLAIN_FORM) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "られる";
         } else {
           return "られない";
         }
       }
-      //form === POLITE_FORM
+      //form === verbContants.POLITE_FORM
       else {
-        if (sign === POSITIVE_SIGN) {
+        if (sign === verbContants.POSITIVE_SIGN) {
           return "られます";
         } else {
           return "られません";
         }
       }
-    case GODAN_GROUPE:
+    case verbContants.verbGroupList.GODAN_GROUPE:
       switch (lastKana) {
         case "く":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "かれる";
             } else {
               return "かれない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "かれます";
             } else {
               return "かれません";
@@ -2194,14 +2190,14 @@ export function passive(verb, form, sign) {
           }
           break;
         case "ぐ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "がれる";
             } else {
               return "がれない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "がれます";
             } else {
               return "がれません";
@@ -2209,14 +2205,14 @@ export function passive(verb, form, sign) {
           }
           break;
         case "す":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "される";
             } else {
               return "されない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "されます";
             } else {
               return "されません";
@@ -2224,14 +2220,14 @@ export function passive(verb, form, sign) {
           }
           break;
         case "む":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "まれる";
             } else {
               return "まれない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "まれます";
             } else {
               return "まれません";
@@ -2239,14 +2235,14 @@ export function passive(verb, form, sign) {
           }
           break;
         case "ぬ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "なれる";
             } else {
               return "なれない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "なれます";
             } else {
               return "なれません";
@@ -2254,14 +2250,14 @@ export function passive(verb, form, sign) {
           }
           break;
         case "ぶ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ばれる";
             } else {
               return "ばれない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "ばれます";
             } else {
               return "ばれません";
@@ -2269,14 +2265,14 @@ export function passive(verb, form, sign) {
           }
           break;
         case "つ":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "たれる";
             } else {
               return "たれない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "たれます";
             } else {
               return "たれません";
@@ -2284,14 +2280,14 @@ export function passive(verb, form, sign) {
           }
           break;
         case "う":
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "われる";
             } else {
               return "われない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "われます";
             } else {
               return "われません";
@@ -2300,14 +2296,14 @@ export function passive(verb, form, sign) {
           break;
         default:
           // case る
-          if (form === PLAIN_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          if (form === verbContants.PLAIN_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "られる";
             } else {
               return "られない";
             }
-          } else if (form === POLITE_FORM) {
-            if (sign === POSITIVE_SIGN) {
+          } else if (form === verbContants.POLITE_FORM) {
+            if (sign === verbContants.POSITIVE_SIGN) {
               return "られます";
             } else {
               return "られません";
@@ -2317,28 +2313,28 @@ export function passive(verb, form, sign) {
       break;
     default:
       if (verb.neutralForm === "する" || verb.neutralForm === "為る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "される";
           } else {
             return "されない";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "されます";
           } else {
             return "されません";
           }
         }
       } else if (verb.neutralForm === "来る") {
-        if (form === PLAIN_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        if (form === verbContants.PLAIN_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "られる";
           } else {
             return "られない";
           }
-        } else if (form === POLITE_FORM) {
-          if (sign === POSITIVE_SIGN) {
+        } else if (form === verbContants.POLITE_FORM) {
+          if (sign === verbContants.POSITIVE_SIGN) {
             return "られます";
           } else {
             return "られません";

@@ -13,7 +13,7 @@ export function getMostUsedVerbs(quantity) {
       if (response.ok) {
         const result = response.json();
         if (result) return result;
-        else return {};
+        else return [];
       }
       if (response.status === 400) {
         // So, a server-side validation error occurred.

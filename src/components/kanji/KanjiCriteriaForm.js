@@ -17,10 +17,43 @@ function KanjiCriteriaForm(props) {
     textAlign: "center",
   };
 
+  const filterStyle = {
+    backgroundColor: "#4682B4",
+    borderRadius: "10px",
+    padding: "0.4em",
+  };
+
+  const buttonFiltersStyle = {
+    margin: "0.4em",
+  };
+
+  const buttonSearchClearStyle = {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+  };
+
+  const hideFilters = (event) => {
+    event.preventDefault();
+    let formFiltersKanji = document.getElementById("formFiltersKanji");
+    if (getComputedStyle(formFiltersKanji).display !== "none") {
+      formFiltersKanji.style.display = "none";
+    } else {
+      formFiltersKanji.style.display = "block";
+    }
+  };
+
   return (
-    <div>
-      <h3>Filters</h3>
-      <form onSubmit={props.onSubmit}>
+    <div style={filterStyle}>
+      <button
+        id="buttonFiltersKanji"
+        onClick={hideFilters}
+        className="btn btn-success"
+        style={buttonFiltersStyle}
+      >
+        Filters
+      </button>
+
+      <form onSubmit={props.onSubmit} id="formFiltersKanji">
         <div className="grid-container-form-criteria">
           <CustomInput
             id="kanjiCriteria"
@@ -101,7 +134,7 @@ function KanjiCriteriaForm(props) {
         </GridList>
         <br />
         <br />
-        <div className="buttons">
+        <div className="buttons" style={buttonSearchClearStyle}>
           <input type="submit" value="Search" className="btn btn-primary" />
           <button onClick={props.onReset} className="btn btn-primary">
             Clear

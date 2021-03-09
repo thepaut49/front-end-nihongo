@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function IAdjectiveList(props) {
   return (
-    <table className="table">
+    <table>
       <tbody>
         {props.iAdjectives.map((iAdjective) => {
           return (

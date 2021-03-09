@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function WordList(props) {
   return (
-    <table className="table">
+    <table>
       <tbody>
         {props.words.map((word) => {
           return (

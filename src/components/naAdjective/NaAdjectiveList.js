@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function NaAdjectiveList(props) {
   return (
-    <table className="table">
+    <table>
       <tbody>
         {props.naAdjectives.map((naAdjective) => {
           return (

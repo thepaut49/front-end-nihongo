@@ -15,10 +15,9 @@ const TranslationArea = (props) => {
   return (
     <>
       <form id="translationArea" style={styleTranslationArea}>
-        <h2>Sentence to translate</h2>
         <CustomTextArea
           id="textToTranslate"
-          label="Sentence to translate"
+          label="Sentence to Translate :"
           name="textToTranslate"
           cols={35}
           rows={5}

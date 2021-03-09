@@ -5,11 +5,46 @@ import "./NaAdjectiveCriteriaForm.css";
 
 import React from "react";
 
+const filterStyle = {
+  backgroundColor: "#4682B4",
+  borderRadius: "10px",
+  padding: "0.3em",
+};
+
+const buttonFiltersStyle = {
+  margin: "0.4em",
+};
+
+const buttonSearchClearStyle = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "1em",
+};
+
+const hideFilters = (event) => {
+  event.preventDefault();
+  let formFiltersNaAdjective = document.getElementById(
+    "formFiltersNaAdjective"
+  );
+  if (getComputedStyle(formFiltersNaAdjective).display !== "none") {
+    formFiltersNaAdjective.style.display = "none";
+  } else {
+    formFiltersNaAdjective.style.display = "block";
+  }
+};
+
 function NaAdjectiveCriteriaForm(props) {
   return (
-    <div>
-      <h3>Filters</h3>
-      <form onSubmit={props.onSubmit}>
+    <div style={filterStyle}>
+      <button
+        id="buttonFiltersNaAdjective"
+        onClick={hideFilters}
+        className="btn btn-success"
+        style={buttonFiltersStyle}
+      >
+        Filters
+      </button>
+      <form onSubmit={props.onSubmit} id="formFiltersNaAdjective">
         <div className="grid-container-form-criteria-na-adjective">
           <CustomInput
             id="kanjisCriteria"
@@ -36,7 +71,7 @@ function NaAdjectiveCriteriaForm(props) {
             value={props.naAdjectiveCriteria.meaning}
           />
         </div>
-        <div className="buttons">
+        <div style={buttonSearchClearStyle}>
           <input type="submit" value="Search" className="btn btn-primary" />
           <button onClick={props.onReset} className="btn btn-primary">
             Clear

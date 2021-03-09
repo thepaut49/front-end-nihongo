@@ -1,6 +1,6 @@
 import CustomInput from "../common/CustomInput";
 import CustomSelect from "../common/CustomSelect";
-import { verbGroupList } from "../common/verbConstants";
+import verbConstants from "../common/verbConstants";
 import PropTypes from "prop-types";
 
 import React from "react";
@@ -42,7 +42,7 @@ function VerbForm(props) {
         step="1"
         name="groupe"
         value={props.verb.groupe}
-        listOfValues={verbGroupList}
+        listOfValues={verbConstants.verbGroupList}
       />
 
       <input type="submit" value="Save" className="btn btn-primary" />

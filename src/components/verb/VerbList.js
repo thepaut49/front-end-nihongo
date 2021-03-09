@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function VerbList(props) {
   return (
-    <table className="table">
+    <table>
       <tbody>
         {props.verbs.map((verb) => {
           return (

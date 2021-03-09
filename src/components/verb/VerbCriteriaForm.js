@@ -1,17 +1,49 @@
 import CustomInput from "../common/CustomInput";
 import CustomInputPronunciation from "../common/CustomInputPronunciation";
 import CustomSelect from "../common/CustomSelect";
-import { verbGroupList } from "../common/verbConstants";
+import verbConstants from "../common/verbConstants";
 import PropTypes from "prop-types";
 import "./verbCriteriaForm.css";
 
 import React from "react";
 
+const filterStyle = {
+  backgroundColor: "#4682B4",
+  borderRadius: "10px",
+  padding: "0.3em",
+};
+
+const buttonFiltersStyle = {
+  margin: "0.4em",
+};
+
+const buttonSearchClearStyle = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "1em",
+};
+
+const hideFilters = (event) => {
+  event.preventDefault();
+  let formFiltersVerb = document.getElementById("formFiltersVerb");
+  if (getComputedStyle(formFiltersVerb).display !== "none") {
+    formFiltersVerb.style.display = "none";
+  } else {
+    formFiltersVerb.style.display = "block";
+  }
+};
+
 function VerbCriteriaForm(props) {
   return (
-    <div>
-      <h3>Filters</h3>
-      <form onSubmit={props.onSubmit}>
+    <div style={filterStyle}>
+      <button
+        onClick={hideFilters}
+        className="btn btn-success"
+        style={buttonFiltersStyle}
+      >
+        Filters
+      </button>
+      <form onSubmit={props.onSubmit} id="formFiltersVerb">
         <div className="grid-container-form-criteria-verb">
           <CustomInput
             id="neutralFormCriteria"
@@ -44,10 +76,10 @@ function VerbCriteriaForm(props) {
             onChange={props.onChange}
             name="groupeCriteria"
             value={props.verbCriteria.groupe}
-            listOfValues={verbGroupList}
+            listOfValues={verbConstants.verbGroupList}
           />
         </div>
-        <div className="buttons">
+        <div style={buttonSearchClearStyle}>
           <input type="submit" value="Search" className="btn btn-primary" />
           <button onClick={props.onReset} className="btn btn-primary">
             Clear

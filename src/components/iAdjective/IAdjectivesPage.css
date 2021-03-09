@@ -13,6 +13,7 @@
     "iAdjective pronunciation pronunciation pronunciation"
     "iAdjective meaning meaning meaning";
 }
+
 .iAdjective {
   grid-area: iAdjective;
   text-align: left;
@@ -22,17 +23,4 @@
 .pronunciation {
   grid-area: pronunciation;
   font-weight: bold;
-}
-
-.meaning {
-  grid-area: meaning;
-  font-weight: bold;
-}
-.meaning span {
-  margin: 0.5em;
-}
-
-.onemeaning {
-  border: solid;
-  border-radius: 0.5em;
 }

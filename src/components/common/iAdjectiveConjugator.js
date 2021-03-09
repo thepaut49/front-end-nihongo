@@ -1,10 +1,8 @@
-const PLAIN_FORM = "Plain";
-const POLITE_FORM = "Polite";
-const POSITIVE_SIGN = "Positive";
+import verbConstants from "./verbConstants";
 
 export function presentIndicative(adjective, form, sign) {
-  if (form === PLAIN_FORM) {
-    if (sign === POSITIVE_SIGN) {
+  if (form === verbConstants.PLAIN_FORM) {
+    if (sign === verbConstants.POSITIVE_SIGN) {
       return "";
     } else {
       if (adjective.kanjis === "いい") {
@@ -13,8 +11,8 @@ export function presentIndicative(adjective, form, sign) {
         return "くない";
       }
     }
-  } else if (form === POLITE_FORM) {
-    if (sign === POSITIVE_SIGN) {
+  } else if (form === verbConstants.POLITE_FORM) {
+    if (sign === verbConstants.POSITIVE_SIGN) {
       return "です";
     } else {
       if (adjective.kanjis === "いい") {
@@ -27,8 +25,8 @@ export function presentIndicative(adjective, form, sign) {
 }
 
 export function pastIndicative(adjective, form, sign) {
-  if (form === PLAIN_FORM) {
-    if (sign === POSITIVE_SIGN) {
+  if (form === verbConstants.PLAIN_FORM) {
+    if (sign === verbConstants.POSITIVE_SIGN) {
       if (adjective.kanjis === "いい") {
         return "よかった";
       } else {
@@ -41,8 +39,8 @@ export function pastIndicative(adjective, form, sign) {
         return "くなかった";
       }
     }
-  } else if (form === POLITE_FORM) {
-    if (sign === POSITIVE_SIGN) {
+  } else if (form === verbConstants.POLITE_FORM) {
+    if (sign === verbConstants.POSITIVE_SIGN) {
       if (adjective.kanjis === "いい") {
         return "よかったです";
       } else {

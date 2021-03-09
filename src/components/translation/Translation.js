@@ -7,24 +7,20 @@ import CustomSelect from "../common/CustomSelect";
 import CustomIntegerSelect from "../common/CustomIntegerSelect";
 import TranslationArea from "./TranslationArea";
 import { translateRomajiToKana } from "../common/TranslateRomajiToKana";
+import translationConstants from "../common/translationConstants";
 
-const typeSelectListOfValue = [
-  "Kanjis",
-  "Verbs",
-  "Na-Adjectives",
-  "I-Adjectives",
-  "Names",
-  "Words",
-];
+const typeSelectListOfValue = translationConstants.typeSelectListOfValue;
 
-const quantityListOfValue = [50, 100, 200, 500];
+const quantityListOfValue = translationConstants.quantityListOfValue;
 
 const Translation = () => {
   const [sentence, setSentence] = useState("");
   const [quantity, setQuantity] = useState(50);
-  const [typeSelect, setTypeSelect] = useState("Kanjis");
+  const [typeSelect, setTypeSelect] = useState(
+    translationConstants.DEFAULT_TYPE
+  );
   let typeSelectField = document.querySelectorAll("typeSelect");
-  typeSelectField.value = "Kanji";
+  typeSelectField.value = translationConstants.DEFAULT_TYPE;
   const [listObjects, setListObjects] = useState(
     translationApi.getMostUsedObject(typeSelect, quantity)
   );
@@ -40,7 +36,6 @@ const Translation = () => {
     } else {
       setQuantity(event.target.value);
     }
-
     setListObjects(translationApi.getMostUsedObject(typeSelect, quantity));
   };
 

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function KanjiList(props) {
   return (
-    <table className="table">
+    <table>
       <tbody>
         {props.kanjis.map((kanji) => {
           return (
@@ -35,7 +35,7 @@ function KanjiList(props) {
                   </div>
                   <div className="strokes">
                     <span>
-                      <label>Strokes :</label>
+                      <label>Strokes : </label>
                       {kanji.strokeNumber}
                     </span>
                     <span>

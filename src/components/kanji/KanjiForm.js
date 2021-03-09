@@ -15,8 +15,15 @@ function KanjiForm(props) {
     textAlign: "center",
   };
 
+  const formStyle = {
+    backgroundColor: "#4682B4",
+    margin: "1em",
+    padding: "0.5em",
+    borderRadius: "10px",
+  };
+
   return (
-    <form onSubmit={props.onSubmit}>
+    <form onSubmit={props.onSubmit} style={formStyle}>
       <CustomInput
         id="kanji"
         label="Kanji"

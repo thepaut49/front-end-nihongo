@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from "react";
+import translationConstants from "../common/translationConstants";
 
 function ListObject(props) {
   const typeSelect = props.typeSelect;
   const [objectList, setObjectList] = useState([]);
 
-  let buttonStyle = {};
-  if (typeSelect === "Kanji") {
-    buttonStyle = {
-      width: "10px",
-      height: "10px",
+  let objectListStyle = {};
+  if (!typeSelect || typeSelect === translationConstants.TYPE_KANJI) {
+    objectListStyle = {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit,3em)",
+    };
+  } else {
+    objectListStyle = {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit,10em)",
     };
   }
 
-  const objectListStyle = {
-    display: "grid",
-    gridTemplateColumn: "repeat(auto-fill,min-content())",
-  };
-
   useEffect(() => {
     props.list
-      .then((objectList) => setObjectList(objectList))
-      .catch((error) => this.setState({ error }));
-  });
+      .then((_objectList) => setObjectList(_objectList))
+      .catch((error) => console.log(error));
+  }, [props.list]);
 
   return (
     <div id="objectList" style={objectListStyle}>
@@ -32,7 +33,6 @@ function ListObject(props) {
               key={object.id}
               className="btn btn-primary"
               onClick={props.onClick}
-              style={buttonStyle}
             >
               {object.value}
             </button>

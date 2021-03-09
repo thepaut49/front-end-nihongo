@@ -4,20 +4,21 @@ import * as naAdjectiveApi from "./naAdjectiveApi";
 import * as iAdjectiveApi from "./iAdjectiveApi";
 import * as nameApi from "./nameApi";
 import * as wordApi from "./wordApi";
+import translationConstants from "../components/common/translationConstants";
 
 export function getMostUsedObject(typeSelect, quantity) {
   switch (typeSelect) {
-    case "Kanji":
+    case translationConstants.TYPE_KANJI:
       return kanjiApi.getMostUsedKanjis(quantity);
-    case "Verb":
+    case translationConstants.TYPE_VERB:
       return verbApi.getMostUsedVerbs(quantity);
-    case "Na-Adjective":
+    case translationConstants.TYPE_NA_ADJECTIVE:
       return naAdjectiveApi.getMostUsedNaAdjectives(quantity);
-    case "I-Adjective":
+    case translationConstants.TYPE_I_ADJECTIVE:
       return iAdjectiveApi.getMostUsedIAdjectives(quantity);
-    case "Name":
+    case translationConstants.TYPE_NAME:
       return nameApi.getMostUsedNames(quantity);
-    case "Word":
+    case translationConstants.TYPE_WORD:
       return wordApi.getMostUsedWords(quantity);
     default:
       return kanjiApi.getMostUsedKanjis(quantity);
@@ -26,22 +27,22 @@ export function getMostUsedObject(typeSelect, quantity) {
 
 export function updateNumberOfUse(typeSelect, id) {
   switch (typeSelect) {
-    case "Kanji":
+    case translationConstants.TYPE_KANJI:
       kanjiApi.updateNumberOfUse(id);
       break;
-    case "Verb":
+    case translationConstants.TYPE_VERB:
       verbApi.updateNumberOfUse(id);
       break;
-    case "Na-Adjective":
+    case translationConstants.TYPE_NA_ADJECTIVE:
       naAdjectiveApi.updateNumberOfUse(id);
       break;
-    case "I-Adjective":
+    case translationConstants.TYPE_I_ADJECTIVE:
       iAdjectiveApi.updateNumberOfUse(id);
       break;
-    case "Name":
+    case translationConstants.TYPE_NAME:
       nameApi.updateNumberOfUse(id);
       break;
-    case "Word":
+    case translationConstants.TYPE_WORD:
       wordApi.updateNumberOfUse(id);
       break;
     default:

@@ -89,7 +89,7 @@ function NaAdjectivesPage(props) {
 
   return (
     <div className="naAdjectivesPage">
-      <h2>Na Adjectives</h2>
+      <h2>Na-Adjectives</h2>
       <NaAdjectiveCriteriaForm
         naAdjectiveCriteria={naAdjectiveCriteria}
         onChange={handleChange}

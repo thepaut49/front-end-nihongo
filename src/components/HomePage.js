@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const styleHomePage = {
   height: "100%",
   width: "100%",
-  backgroundColor: "#808080",
+  backgroundColor: "rgba(38, 113, 22, 0.48)",
   borderRadius: "30px",
   padding: "1em",
 };
