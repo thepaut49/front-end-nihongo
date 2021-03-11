@@ -15,6 +15,7 @@ const translationConstants = {
   TYPE_NAME: "Names",
   TYPE_WORD: "Words",
   DEFAULT_TYPE: "Kanjis",
+  TYPE_UNKNOWN: "Unknown",
 };
 
 export default translationConstants;

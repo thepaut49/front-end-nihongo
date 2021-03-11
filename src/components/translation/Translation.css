@@ -1,14 +1,22 @@
 #translation {
   display: grid;
-  grid: 1fr 2fr / repeat(12, 1fr);
+  grid: 20em 20em 1fr / repeat(12, 1fr);
   gap: 1em;
   width: 100%;
 }
 
-#translationArea,
+#translationArea {
+  grid-column-start: 5;
+  grid-column-end: 13;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
 #ListOfParts {
   grid-column-start: 5;
   grid-column-end: 13;
+  grid-row-start: 2;
+  grid-row-end: 4;
 }
 
 #ListOfObjects {

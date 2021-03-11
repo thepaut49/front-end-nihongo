@@ -1,19 +1,44 @@
 import "./Translation.css";
 import ListObject from "./ListObject";
 import ListOfParts from "./ListOfParts";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as translationApi from "../../api/translationApi";
 import CustomSelect from "../common/CustomSelect";
 import CustomIntegerSelect from "../common/CustomIntegerSelect";
 import TranslationArea from "./TranslationArea";
 import { translateRomajiToKana } from "../common/TranslateRomajiToKana";
 import translationConstants from "../common/translationConstants";
+import kanjiStore from "../../stores/kanjiStore";
+import verbStore from "../../stores/verbStore";
+import naAdjectiveStore from "../../stores/naAdjectiveStore";
+import iAdjectiveStore from "../../stores/iAdjectiveStore";
+import nameStore from "../../stores/nameStore";
+import wordStore from "../../stores/wordStore";
+import { loadKanjis } from "../../actions/kanjiActions";
+import { loadVerbs } from "../../actions/verbActions";
+import { loadNaAdjectives } from "../../actions/naAdjectiveActions";
+import { loadIAdjectives } from "../../actions/iAdjectiveActions";
+import { loadNames } from "../../actions/nameActions";
+import { loadWords } from "../../actions/wordActions";
+import { extractListOfKanji, extractParts } from "./translationAction";
 
 const typeSelectListOfValue = translationConstants.typeSelectListOfValue;
 
 const quantityListOfValue = translationConstants.quantityListOfValue;
 
 const Translation = () => {
+  // récupération des listes de chaques type de mots
+  const [kanjis, setKanjis] = useState(kanjiStore.getKanjis());
+  const [verbs, setVerbs] = useState(verbStore.getVerbs());
+  const [naAdjectives, setNaAdjectives] = useState(
+    naAdjectiveStore.getNaAdjectives()
+  );
+  const [iAdjectives, setIAdjectives] = useState(
+    iAdjectiveStore.getIAdjectives()
+  );
+  const [names, setNames] = useState(nameStore.getNames());
+  const [words, setWords] = useState(wordStore.getWords());
+  // variables locales
   const [sentence, setSentence] = useState("");
   const [quantity, setQuantity] = useState(50);
   const [typeSelect, setTypeSelect] = useState(
@@ -25,6 +50,63 @@ const Translation = () => {
     translationApi.getMostUsedObject(typeSelect, quantity)
   );
   const [listParts, setListParts] = useState([]);
+  const [listOfKanjis, setListOfKanjis] = useState([]);
+
+  useEffect(() => {
+    kanjiStore.addChangeListener(onChangeKanjis);
+    verbStore.addChangeListener(onChangeVerbs);
+    naAdjectiveStore.addChangeListener(onChangeNaAdjectives);
+    iAdjectiveStore.addChangeListener(onChangeIAdjectives);
+    nameStore.addChangeListener(onChangeNames);
+    wordStore.addChangeListener(onChangeWords);
+
+    if (kanjiStore.getKanjis().length === 0) loadKanjis();
+    if (verbStore.getVerbs().length === 0) loadVerbs();
+    if (naAdjectiveStore.getNaAdjectives().length === 0) loadNaAdjectives();
+    if (iAdjectiveStore.getIAdjectives().length === 0) loadIAdjectives();
+    if (nameStore.getNames().length === 0) loadNames();
+    if (wordStore.getWords().length === 0) loadWords();
+
+    return function () {
+      kanjiStore.removeChangeListener(onChangeKanjis); //cleanup on unmount
+      verbStore.removeChangeListener(onChangeVerbs);
+      naAdjectiveStore.removeChangeListener(onChangeNaAdjectives);
+      iAdjectiveStore.removeChangeListener(onChangeIAdjectives);
+      nameStore.removeChangeListener(onChangeNames);
+      wordStore.removeChangeListener(onChangeWords);
+    };
+  }, [
+    kanjis.length,
+    verbs.length,
+    naAdjectives.length,
+    iAdjectives.length,
+    names.length,
+    words.length,
+  ]);
+
+  function onChangeKanjis() {
+    setKanjis(kanjiStore.getKanjis());
+  }
+
+  function onChangeVerbs() {
+    setVerbs(verbStore.getVerbs());
+  }
+
+  function onChangeNaAdjectives() {
+    setNaAdjectives(naAdjectiveStore.getNaAdjectives());
+  }
+
+  function onChangeIAdjectives() {
+    setIAdjectives(iAdjectiveStore.getIAdjectives());
+  }
+
+  function onChangeNames() {
+    setNames(nameStore.getNames());
+  }
+
+  function onChangeWords() {
+    setWords(wordStore.getWords());
+  }
 
   const handleListClick = (event) => {
     setSentence(sentence + event.target.innerText);
@@ -48,6 +130,10 @@ const Translation = () => {
 
   const handleTranslateClick = (event) => {
     event.preventDefault();
+    setListOfKanjis(extractListOfKanji(sentence, kanjis));
+    setListParts(
+      extractParts(sentence, verbs, naAdjectives, iAdjectives, names, words)
+    );
   };
 
   const handleClearClick = (event) => {
@@ -57,6 +143,7 @@ const Translation = () => {
       (textarea) => (textarea.value = "")
     );
     setListParts([]);
+    setListOfKanjis([]);
   };
 
   const handleSentenceChange = (event) => {
@@ -107,7 +194,7 @@ const Translation = () => {
           onClearClick={handleClearClick}
           onKanaClick={handleKanaClick}
         />
-        <ListOfParts list={listParts} />
+        <ListOfParts list={listParts} listOfKanjis={listOfKanjis} />
       </div>
     </>
   );

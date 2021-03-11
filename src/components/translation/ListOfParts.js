@@ -1,3 +1,6 @@
+import Part from "./Part";
+import Kanji from "./Kanji";
+
 const listOfPartsStyle = {
   height: "100%",
 };
@@ -7,7 +10,7 @@ const showListOfParts = (event) => {
   let listOfPartsToHide = document.getElementById("ListOfPartsToHide");
   let listOfKanjisToHide = document.getElementById("ListOfKanjisToHide");
   listOfKanjisToHide.style.display = "none";
-  listOfPartsToHide.style.display = "block";
+  listOfPartsToHide.style.display = "grid";
 };
 
 const showListOfKanjis = (event) => {
@@ -25,9 +28,10 @@ const listOfKanjisToHideStyle = {
 };
 
 const listOfPartsToHideStyle = {
-  display: "block",
+  display: "grid",
   padding: "0.4em",
   margin: "0.4em",
+  gridTemplateColumns: "repeat(auto-fill,15em)",
 };
 
 const showbuttonGroupStyle = {
@@ -37,6 +41,8 @@ const showbuttonGroupStyle = {
 };
 
 const ListOfParts = (props) => {
+  const listOfParts = props.list;
+  const listOfKanjis = props.listOfKanjis;
   return (
     <div id="ListOfParts" style={listOfPartsStyle}>
       <div style={showbuttonGroupStyle}>
@@ -58,11 +64,17 @@ const ListOfParts = (props) => {
       </div>
 
       <div id="ListOfPartsToHide" style={listOfPartsToHideStyle}>
-        <h2>List Of Parts</h2>
+        {listOfParts &&
+          listOfParts.map((part) => {
+            return <Part part={part} key={part.id + part.type} />;
+          })}
       </div>
 
       <div id="ListOfKanjisToHide" style={listOfKanjisToHideStyle}>
-        <h2>List Of Kanjis</h2>
+        {listOfKanjis &&
+          listOfKanjis.map((kanji) => {
+            return <Kanji kanji={kanji} key={kanji.id} />;
+          })}
       </div>
     </div>
   );
