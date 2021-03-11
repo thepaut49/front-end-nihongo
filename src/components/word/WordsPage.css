@@ -6,12 +6,16 @@
 
 .grid-container-word {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 1em 1em;
   grid-template-areas:
-    "word pronunciation pronunciation pronunciation"
-    "word meaning meaning meaning";
+    "word word pronunciation pronunciation pronunciation"
+    "word word meaning meaning meaning";
+  border-radius: 10px;
+  background-color: rgba(38, 113, 22, 0.48);
+  margin: 0.5em;
+  padding: 0.5em;
 }
 .word {
   grid-area: word;

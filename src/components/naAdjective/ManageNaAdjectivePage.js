@@ -24,6 +24,12 @@ const ManageNaAdjectivePage = (props) => {
     if (kanjis) {
       // on récupère le naAdjective du store et on le transforme pour qu'il corresponde au formulaire
       let tempNaAdjective = naAdjectiveStore.getNaAdjectiveByKanjis(kanjis);
+      let newPronunciation = tempNaAdjective.pronunciation[0];
+      for (let i = 1; i < tempNaAdjective.pronunciation.length; i++) {
+        newPronunciation =
+          newPronunciation + "・" + tempNaAdjective.pronunciation[i];
+      }
+
       let newMeaning = tempNaAdjective.meaning[0];
       for (let i = 1; i < tempNaAdjective.meaning.length; i++) {
         newMeaning = newMeaning + ";" + tempNaAdjective.meaning[i];
@@ -31,7 +37,7 @@ const ManageNaAdjectivePage = (props) => {
       const naAdjectiveForm = {
         id: tempNaAdjective.id,
         kanjis: tempNaAdjective.kanjis,
-        pronunciation: tempNaAdjective.pronunciation,
+        pronunciation: newPronunciation,
         meaning: newMeaning,
         numberOfUse: tempNaAdjective.numberOfUse,
         version: tempNaAdjective.version,
@@ -63,6 +69,10 @@ const ManageNaAdjectivePage = (props) => {
     if (!formIsValid()) return;
     setModified(false);
     // on transforme les chaine de caractères en liste de chaines
+    let newPronunciation = naAdjective.pronunciation.split("・");
+    for (let i = 0; i < newPronunciation.length; i++) {
+      newPronunciation[i] = newPronunciation[i].replace("・", "");
+    }
     let newMeaning = naAdjective.meaning.split(";");
     for (let j = 0; j < newMeaning.length; j++) {
       newMeaning[j] = newMeaning[j].replace(";", "");
@@ -70,7 +80,7 @@ const ManageNaAdjectivePage = (props) => {
     const savedNaAdjective = {
       id: naAdjective.id,
       kanjis: naAdjective.kanjis,
-      pronunciation: naAdjective.pronunciation,
+      pronunciation: newPronunciation,
       meaning: newMeaning,
       numberOfUse: naAdjective.numberOfUse,
       version: naAdjective.version,

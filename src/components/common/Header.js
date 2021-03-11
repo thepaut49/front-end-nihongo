@@ -19,11 +19,11 @@ function Header() {
       </NavLink>
       {" | "}
       <NavLink activeStyle={activeStyle} to="/naAdjectives">
-        Na adjectives
+        Na-Adjectives
       </NavLink>
       {" | "}
       <NavLink activeStyle={activeStyle} to="/iAdjectives">
-        I adjectives
+        I-Adjectives
       </NavLink>
       {" | "}
       <NavLink activeStyle={activeStyle} to="/names">
@@ -32,6 +32,10 @@ function Header() {
       {" | "}
       <NavLink activeStyle={activeStyle} to="/words">
         Words
+      </NavLink>
+      {" | "}
+      <NavLink activeStyle={activeStyle} to="/particules">
+        Particules
       </NavLink>
       {" | "}
       <NavLink activeStyle={activeStyle} to="/Translation">

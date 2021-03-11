@@ -18,7 +18,13 @@ function NaAdjectiveList(props) {
                     </Link>
                   </div>
                   <div className="pronunciation">
-                    {naAdjective.pronunciation}
+                    {naAdjective.pronunciation.map((pro, index) => {
+                      return (
+                        <span key={index} className="onemeaning">
+                          {pro}
+                        </span>
+                      );
+                    })}
                   </div>
                   <div className="meaning">
                     {naAdjective.meaning.map((mean, index) => {
@@ -55,7 +61,7 @@ NaAdjectiveList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       kanjis: PropTypes.string.isRequired,
-      pronunciation: PropTypes.string.isRequired,
+      pronunciation: PropTypes.arrayOf.isRequired,
       meaning: PropTypes.arrayOf.isRequired,
       numberOfUse: PropTypes.number,
       version: PropTypes.number,

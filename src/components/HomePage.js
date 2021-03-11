@@ -13,10 +13,18 @@ function HomePage() {
   return (
     <div style={styleHomePage}>
       <h1>Nihongo tools</h1>
-      <p>
-        Dictionnaires de kanji, mot de vocabulaire, verbes, règles de
-        grammaires, adjectifs, ...
-      </p>
+      <ul>
+        <li>List of Kanjis with search criteria</li>
+        <li>List of Verbs + their conjugation</li>
+        <li>List of Na-Adjectives + their conjugation</li>
+        <li>List of I-Adjectives + their conjugation</li>
+        <li>Grammar rules</li>
+        <li>List of Particules</li>
+        <li>List of Names</li>
+        <li>List of words</li>
+        <li>Translation area</li>
+      </ul>
+
       <Link to="about" className="btn btn-primary">
         About
       </Link>

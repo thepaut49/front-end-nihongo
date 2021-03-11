@@ -22,7 +22,14 @@ import { loadNames } from "../../actions/nameActions";
 import { loadWords } from "../../actions/wordActions";
 import { extractListOfKanji, extractParts } from "./translationAction";
 
-const typeSelectListOfValue = translationConstants.typeSelectListOfValue;
+const typeSelectListOfValue = [
+  translationConstants.TYPE_KANJI,
+  translationConstants.TYPE_VERB,
+  translationConstants.TYPE_NA_ADJECTIVE,
+  translationConstants.TYPE_I_ADJECTIVE,
+  translationConstants.TYPE_NAME,
+  translationConstants.TYPE_WORD,
+];
 
 const quantityListOfValue = translationConstants.quantityListOfValue;
 

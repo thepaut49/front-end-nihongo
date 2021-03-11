@@ -3,9 +3,16 @@ import PropTypes from "prop-types";
 
 import React from "react";
 
+const formStyle = {
+  backgroundColor: "#4682B4",
+  margin: "1em",
+  padding: "0.5em",
+  borderRadius: "10px",
+};
+
 function IAdjectiveForm(props) {
   return (
-    <form onSubmit={props.onSubmit}>
+    <form onSubmit={props.onSubmit} style={formStyle}>
       <CustomInput
         id="kanjis"
         label="Kanjis"

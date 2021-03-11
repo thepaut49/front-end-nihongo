@@ -28,19 +28,22 @@ function CustomTextArea(props) {
           rows={props.rows}
         />
       </div>
-      <div style={styleButtons}>
-        {specialKanas.map((kana, index) => {
-          return (
-            <button
-              key={index}
-              className="btn btn-primary"
-              onClick={props.onKanaClick}
-            >
-              {kana}
-            </button>
-          );
-        })}
-      </div>
+      {props.onKanaClick && (
+        <div style={styleButtons}>
+          {specialKanas.map((kana, index) => {
+            return (
+              <button
+                key={index}
+                className="btn btn-primary"
+                onClick={props.onKanaClick}
+              >
+                {kana}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       {props.error && <div className="alert alert-danger">{props.error}</div>}
     </div>
   );
@@ -56,6 +59,7 @@ CustomTextArea.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  onKanaClick: PropTypes.func,
   value: PropTypes.string,
   error: PropTypes.string,
   cols: PropTypes.number,

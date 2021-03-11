@@ -1,4 +1,5 @@
 import CustomInput from "../common/CustomInput";
+import CustomTextArea from "../common/CustomTextArea";
 import PropTypes from "prop-types";
 
 import React from "react";
@@ -10,7 +11,7 @@ const formStyle = {
   borderRadius: "10px",
 };
 
-function NaAdjectiveForm(props) {
+function ParticuleForm(props) {
   return (
     <form onSubmit={props.onSubmit} style={formStyle}>
       <CustomInput
@@ -18,37 +19,31 @@ function NaAdjectiveForm(props) {
         label="Kanjis"
         onChange={props.onChange}
         name="kanjis"
-        value={props.naAdjective.kanjis}
+        value={props.particule.kanjis}
         error={props.errors.kanjis}
       />
 
-      <CustomInput
-        id="pronunciation"
-        label="Pronunciation"
+      <CustomTextArea
+        id="htmlDescription"
+        label="Html description : "
+        name="htmlDescription"
+        cols={70}
+        rows={50}
+        value={props.particule.htmlDescription}
         onChange={props.onChange}
-        name="pronunciation"
-        value={props.naAdjective.pronunciation}
-        error={props.errors.pronunciation}
+        error={props.errors.htmlDescription}
       />
 
-      <CustomInput
-        id="meaning"
-        label="Meaning"
-        onChange={props.onChange}
-        name="meaning"
-        value={props.naAdjective.meaning}
-        error={props.errors.meaning}
-      />
       <input type="submit" value="Save" className="btn btn-primary" />
     </form>
   );
 }
 
-NaAdjectiveForm.propTypes = {
-  naAdjective: PropTypes.object.isRequired,
+ParticuleForm.propTypes = {
+  particule: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
 };
 
-export default NaAdjectiveForm;
+export default ParticuleForm;

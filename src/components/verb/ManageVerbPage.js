@@ -24,6 +24,11 @@ const ManageVerbPage = (props) => {
     if (neutralForm) {
       // on récupère le verb du store et on le transforme pour qu'il corresponde au formulaire
       let tempVerb = verbStore.getVerbByNeutralForm(neutralForm);
+      let newPronunciation = tempVerb.pronunciation[0];
+      for (let i = 1; i < tempVerb.pronunciation.length; i++) {
+        newPronunciation = newPronunciation + "・" + tempVerb.pronunciation[i];
+      }
+
       let newMeaning = tempVerb.meaning[0];
       for (let i = 1; i < tempVerb.meaning.length; i++) {
         newMeaning = newMeaning + ";" + tempVerb.meaning[i];
@@ -31,7 +36,7 @@ const ManageVerbPage = (props) => {
       const verbForm = {
         id: tempVerb.id,
         neutralForm: tempVerb.neutralForm,
-        pronunciation: tempVerb.pronunciation,
+        pronunciation: newPronunciation,
         meaning: newMeaning,
         groupe: tempVerb.groupe,
         numberOfUse: tempVerb.numberOfUse,
@@ -65,6 +70,11 @@ const ManageVerbPage = (props) => {
     if (!formIsValid()) return;
     setModified(false);
     // on transforme les chaine de caractères en liste de chaines
+    let newPronunciation = verb.pronunciation.split("・");
+    for (let i = 0; i < newPronunciation.length; i++) {
+      newPronunciation[i] = newPronunciation[i].replace("・", "");
+    }
+
     let newMeaning = verb.meaning.split(";");
     for (let j = 0; j < newMeaning.length; j++) {
       newMeaning[j] = newMeaning[j].replace(";", "");
@@ -72,7 +82,7 @@ const ManageVerbPage = (props) => {
     const savedVerb = {
       id: verb.id,
       neutralForm: verb.neutralForm,
-      pronunciation: verb.pronunciation,
+      pronunciation: newPronunciation,
       meaning: newMeaning,
       groupe: verb.groupe,
       numberOfUse: verb.numberOfUse,

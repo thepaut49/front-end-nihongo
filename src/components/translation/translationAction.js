@@ -59,6 +59,7 @@ export const extractParts = (
       let part = null;
       if (indiceCourant + j <= sentence.length) {
         let sentencePart = sentence.substr(indiceCourant, j);
+        //console.log("sentancePart = " + sentencePart);
 
         part = partIsAVerb(sentencePart, indiceCourant, verbs);
 
@@ -81,7 +82,8 @@ export const extractParts = (
         // on a trouvé une partie, on l'ajoute à la liste des parties
         if (part) {
           listOfParts.push(part);
-          indiceCourant = indiceCourant + j + 1;
+          indiceCourant = indiceCourant + j;
+          break;
         }
       }
 
@@ -150,7 +152,7 @@ const addOfUnknownParts = (sentence, listOfParts) => {
                 unknown: true,
                 length:
                   sentence.length -
-                  currentPart.currentIndex +
+                  currentPart.currentIndex -
                   currentPart.length,
                 currentIndex: currentPart.currentIndex + currentPart.length,
                 listOfValues: [],
@@ -166,7 +168,7 @@ const addOfUnknownParts = (sentence, listOfParts) => {
               kanjis: sentence.substr(
                 currentPart.currentIndex + currentPart.length,
                 nextPart.currentIndex -
-                  currentPart.currentIndex +
+                  currentPart.currentIndex -
                   currentPart.length
               ),
               pronunciations: ["?"],
@@ -174,7 +176,7 @@ const addOfUnknownParts = (sentence, listOfParts) => {
               unknown: true,
               length:
                 nextPart.currentIndex -
-                currentPart.currentIndex +
+                currentPart.currentIndex -
                 currentPart.length,
               currentIndex: currentPart.currentIndex + currentPart.length,
               listOfValues: [],
@@ -197,7 +199,7 @@ const addOfUnknownParts = (sentence, listOfParts) => {
               meanings: ["?"],
               unknown: true,
               length:
-                sentence.length - currentPart.currentIndex + currentPart.length,
+                sentence.length - currentPart.currentIndex - currentPart.length,
               currentIndex: currentPart.currentIndex + currentPart.length,
               listOfValues: [],
             };
@@ -212,7 +214,7 @@ const addOfUnknownParts = (sentence, listOfParts) => {
             kanjis: sentence.substr(
               currentPart.currentIndex + currentPart.length,
               nextPart.currentIndex -
-                currentPart.currentIndex +
+                currentPart.currentIndex -
                 currentPart.length
             ),
             pronunciations: ["?"],
@@ -220,7 +222,7 @@ const addOfUnknownParts = (sentence, listOfParts) => {
             unknown: true,
             length:
               nextPart.currentIndex -
-              currentPart.currentIndex +
+              currentPart.currentIndex -
               currentPart.length,
             currentIndex: currentPart.currentIndex + currentPart.length,
             listOfValues: [],
@@ -267,8 +269,8 @@ const partIsAVerb = (sentencePart, currentIndex, verbs) => {
             part = {
               type: translationConstants.TYPE_VERB,
               kanjis: sentencePart,
-              pronunciations: [verb.pronunciations],
-              meanings: [verb.meanings],
+              pronunciations: [verb.pronunciation],
+              meanings: [verb.meaning],
               unknown: false,
               length: sentencePart.length,
               currentIndex: currentIndex,
@@ -307,8 +309,8 @@ const partIsANaAdjective = (sentencePart, currentIndex, naAdjectives) => {
             part = {
               type: translationConstants.TYPE_NA_ADJECTIVE,
               kanjis: sentencePart,
-              pronunciations: [naAdj.pronunciations],
-              meanings: [naAdj.meanings],
+              pronunciations: [naAdj.pronunciation],
+              meanings: [naAdj.meaning],
               unknown: false,
               length: sentencePart.length,
               currentIndex: currentIndex,
@@ -346,8 +348,8 @@ const partIsAIAdjective = (sentencePart, currentIndex, iAdjectives) => {
             part = {
               type: translationConstants.TYPE_I_ADJECTIVE,
               kanjis: sentencePart,
-              pronunciations: [iAdj.pronunciations],
-              meanings: [iAdj.meanings],
+              pronunciations: [iAdj.pronunciation],
+              meanings: [iAdj.meaning],
               unknown: false,
               length: sentencePart.length,
               currentIndex: currentIndex,
@@ -369,8 +371,8 @@ const partIsAName = (sentencePart, currentIndex, names) => {
       part = {
         type: translationConstants.TYPE_NAME,
         kanjis: sentencePart,
-        pronunciations: [name.pronunciations],
-        meanings: [name.meanings],
+        pronunciations: [name.pronunciation],
+        meanings: [name.meaning],
         unknown: false,
         length: sentencePart.length,
         currentIndex: currentIndex,
@@ -389,8 +391,8 @@ const partIsAWord = (sentencePart, currentIndex, words) => {
       part = {
         type: translationConstants.TYPE_WORD,
         kanjis: sentencePart,
-        pronunciations: [word.pronunciations],
-        meanings: [word.meanings],
+        pronunciations: word.pronunciation,
+        meanings: word.meaning,
         unknown: false,
         length: sentencePart.length,
         currentIndex: currentIndex,

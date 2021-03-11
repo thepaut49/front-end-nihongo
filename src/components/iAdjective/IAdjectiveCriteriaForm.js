@@ -18,6 +18,7 @@ const buttonFiltersStyle = {
 const buttonSearchClearStyle = {
   display: "grid",
   gridTemplateColumns: "1fr 1fr",
+  gap: "1em",
 };
 
 const hideFilters = (event) => {

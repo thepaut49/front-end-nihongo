@@ -2,7 +2,7 @@ import CustomSelect from "../common/CustomSelect";
 
 const partStyle = {
   display: "grid",
-  gridTemplateRows: "repeat(6,1fr)",
+  gridTemplateRows: "repeat(6,max-content)",
   borderRadius: "10px",
   backgroundColor: "rgba(38, 113, 22, 0.48)",
   padding: "0.5em",
@@ -14,11 +14,15 @@ const partStyleUnknown = {
   backgroundColor: "#0e5805",
 };
 
+const kanjiStyle = {
+  fontWeight: "bold",
+};
+
 const Part = (props) => {
   const part = props.part;
   return (
     <div style={part.unknown ? partStyleUnknown : partStyle} key={props.key}>
-      <div id="kanjis">{part.kanjis}</div>
+      <div style={kanjiStyle}>{part.kanjis}</div>
       <CustomSelect
         id="pronunciations"
         name="pronunciations"

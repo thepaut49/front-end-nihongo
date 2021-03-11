@@ -65,15 +65,15 @@ const ListOfParts = (props) => {
 
       <div id="ListOfPartsToHide" style={listOfPartsToHideStyle}>
         {listOfParts &&
-          listOfParts.map((part) => {
-            return <Part part={part} key={part.id + part.type} />;
+          listOfParts.map((part, index) => {
+            return <Part part={part} key={index} />;
           })}
       </div>
 
       <div id="ListOfKanjisToHide" style={listOfKanjisToHideStyle}>
         {listOfKanjis &&
-          listOfKanjis.map((kanji) => {
-            return <Kanji kanji={kanji} key={kanji.id} />;
+          listOfKanjis.map((kanji, index) => {
+            return <Kanji kanji={kanji} key={index} />;
           })}
       </div>
     </div>

@@ -24,6 +24,10 @@ const ManageIAdjectivePage = (props) => {
     if (kanjis) {
       // on récupère le iAdjective du store et on le transforme pour qu'il corresponde au formulaire
       let tempIAdjective = iAdjectiveStore.getIAdjectiveByKanjis(kanjis);
+      let newPronunciation = tempIAdjective.pronunciation.split("・");
+      for (let i = 0; i < newPronunciation.length; i++) {
+        newPronunciation[i] = newPronunciation[i].replace("・", "");
+      }
       let newMeaning = tempIAdjective.meaning[0];
       for (let i = 1; i < tempIAdjective.meaning.length; i++) {
         newMeaning = newMeaning + ";" + tempIAdjective.meaning[i];
@@ -31,7 +35,7 @@ const ManageIAdjectivePage = (props) => {
       const iAdjectiveForm = {
         id: tempIAdjective.id,
         kanjis: tempIAdjective.kanjis,
-        pronunciation: tempIAdjective.pronunciation,
+        pronunciation: newPronunciation,
         meaning: newMeaning,
         numberOfUse: tempIAdjective.numberOfUse,
         version: tempIAdjective.version,
@@ -63,6 +67,10 @@ const ManageIAdjectivePage = (props) => {
     if (!formIsValid()) return;
     setModified(false);
     // on transforme les chaine de caractères en liste de chaines
+    let newPronunciation = iAdjective.pronunciation.split("・");
+    for (let i = 0; i < newPronunciation.length; i++) {
+      newPronunciation[i] = newPronunciation[i].replace("・", "");
+    }
     let newMeaning = iAdjective.meaning.split(";");
     for (let j = 0; j < newMeaning.length; j++) {
       newMeaning[j] = newMeaning[j].replace(";", "");
