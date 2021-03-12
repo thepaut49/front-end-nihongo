@@ -9,39 +9,39 @@ function Header() {
       <NavLink activeStyle={activeStyle} to="/" exact>
         Home
       </NavLink>
-      {" | "}
+
       <NavLink activeStyle={activeStyle} to="/kanjis">
         Kanjis
       </NavLink>
-      {" | "}
+
       <NavLink activeStyle={activeStyle} to="/verbs">
         Verbs
       </NavLink>
-      {" | "}
+
       <NavLink activeStyle={activeStyle} to="/naAdjectives">
         Na-Adjectives
       </NavLink>
-      {" | "}
+
       <NavLink activeStyle={activeStyle} to="/iAdjectives">
         I-Adjectives
       </NavLink>
-      {" | "}
+
       <NavLink activeStyle={activeStyle} to="/names">
         Names
       </NavLink>
-      {" | "}
+
       <NavLink activeStyle={activeStyle} to="/words">
         Words
       </NavLink>
-      {" | "}
+
       <NavLink activeStyle={activeStyle} to="/particules">
         Particules
       </NavLink>
-      {" | "}
+
       <NavLink activeStyle={activeStyle} to="/Translation">
         Translation
       </NavLink>
-      {" | "}
+
       <NavLink activeStyle={activeStyle} to="/about">
         About
       </NavLink>

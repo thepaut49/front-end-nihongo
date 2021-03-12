@@ -7,6 +7,7 @@ function CustomSelect(props) {
     wrapperClass += "has-error";
   }
 
+  const listOfValues = props.listOfValues;
   return (
     <div id={"div" + props.id} className={wrapperClass}>
       <label htmlFor={props.id}>{props.label}</label>
@@ -20,13 +21,14 @@ function CustomSelect(props) {
           value={props.value}
         >
           <option value="" />
-          {props.listOfValues.map((item) => {
-            return (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            );
-          })}
+          {listOfValues &&
+            listOfValues.map((item) => {
+              return (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              );
+            })}
         </select>
       </div>
       {props.error && <div className="alert alert-danger">{props.error}</div>}

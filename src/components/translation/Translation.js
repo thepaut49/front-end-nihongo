@@ -56,6 +56,10 @@ const Translation = () => {
   const [listObjects, setListObjects] = useState(
     translationApi.getMostUsedObject(typeSelect, quantity)
   );
+  const [listObjectsStyle, setListObjectsStyle] = useState({
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit,3em)",
+  });
   const [listParts, setListParts] = useState([]);
   const [listOfKanjis, setListOfKanjis] = useState([]);
 
@@ -132,6 +136,17 @@ const Translation = () => {
       _typeSelect = typeSelect;
       _quantity = event.target.value;
     }
+    if (!_typeSelect || _typeSelect === translationConstants.TYPE_KANJI) {
+      setListObjectsStyle({
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit,3em)",
+      });
+    } else {
+      setListObjectsStyle({
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit,10em)",
+      });
+    }
     setListObjects(translationApi.getMostUsedObject(_typeSelect, _quantity));
   };
 
@@ -192,7 +207,11 @@ const Translation = () => {
               listOfValues={quantityListOfValue}
             />
           </div>
-          <ListObject list={listObjects} onClick={handleListClick} />
+          <ListObject
+            list={listObjects}
+            onClick={handleListClick}
+            style={listObjectsStyle}
+          />
         </div>
         <TranslationArea
           sentence={sentence}

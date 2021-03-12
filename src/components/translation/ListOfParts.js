@@ -43,6 +43,7 @@ const showbuttonGroupStyle = {
 const ListOfParts = (props) => {
   const listOfParts = props.list;
   const listOfKanjis = props.listOfKanjis;
+
   return (
     <div id="ListOfParts" style={listOfPartsStyle}>
       <div style={showbuttonGroupStyle}>

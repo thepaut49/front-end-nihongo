@@ -106,6 +106,8 @@ const addOfUnknownParts = (sentence, listOfParts) => {
     let unknownPart = {
       type: translationConstants.TYPE_UNKNOWN,
       kanjis: sentence.substr(0, sentence.length),
+      selectedPronunciation: "?",
+      selectedMeaning: "?",
       pronunciations: ["?"],
       meanings: ["?"],
       unknown: true,
@@ -123,6 +125,8 @@ const addOfUnknownParts = (sentence, listOfParts) => {
           let unknownPart = {
             type: translationConstants.TYPE_UNKNOWN,
             kanjis: sentence.substr(0, currentPart.currentIndex),
+            selectedPronunciation: "?",
+            selectedMeaning: "?",
             pronunciations: ["?"],
             meanings: ["?"],
             unknown: true,
@@ -147,6 +151,8 @@ const addOfUnknownParts = (sentence, listOfParts) => {
                 kanjis: sentence.substr(
                   currentPart.currentIndex + currentPart.length
                 ),
+                selectedPronunciation: "?",
+                selectedMeaning: "?",
                 pronunciations: ["?"],
                 meanings: ["?"],
                 unknown: true,
@@ -171,6 +177,8 @@ const addOfUnknownParts = (sentence, listOfParts) => {
                   currentPart.currentIndex -
                   currentPart.length
               ),
+              selectedPronunciation: "?",
+              selectedMeaning: "?",
               pronunciations: ["?"],
               meanings: ["?"],
               unknown: true,
@@ -195,6 +203,8 @@ const addOfUnknownParts = (sentence, listOfParts) => {
               kanjis: sentence.substr(
                 currentPart.currentIndex + currentPart.length
               ),
+              selectedPronunciation: "?",
+              selectedMeaning: "?",
               pronunciations: ["?"],
               meanings: ["?"],
               unknown: true,
@@ -217,6 +227,8 @@ const addOfUnknownParts = (sentence, listOfParts) => {
                 currentPart.currentIndex -
                 currentPart.length
             ),
+            selectedPronunciation: "?",
+            selectedMeaning: "?",
             pronunciations: ["?"],
             meanings: ["?"],
             unknown: true,
@@ -269,8 +281,10 @@ const partIsAVerb = (sentencePart, currentIndex, verbs) => {
             part = {
               type: translationConstants.TYPE_VERB,
               kanjis: sentencePart,
-              pronunciations: [verb.pronunciation],
-              meanings: [verb.meaning],
+              selectedPronunciation: verb.pronunciation[0],
+              selectedMeaning: verb.meaning[0],
+              pronunciations: verb.pronunciation,
+              meanings: verb.meaning,
               unknown: false,
               length: sentencePart.length,
               currentIndex: currentIndex,
@@ -309,8 +323,10 @@ const partIsANaAdjective = (sentencePart, currentIndex, naAdjectives) => {
             part = {
               type: translationConstants.TYPE_NA_ADJECTIVE,
               kanjis: sentencePart,
-              pronunciations: [naAdj.pronunciation],
-              meanings: [naAdj.meaning],
+              selectedPronunciation: naAdj.pronunciation[0],
+              selectedMeaning: naAdj.meaning[0],
+              pronunciations: naAdj.pronunciation,
+              meanings: naAdj.meaning,
               unknown: false,
               length: sentencePart.length,
               currentIndex: currentIndex,
@@ -348,8 +364,10 @@ const partIsAIAdjective = (sentencePart, currentIndex, iAdjectives) => {
             part = {
               type: translationConstants.TYPE_I_ADJECTIVE,
               kanjis: sentencePart,
-              pronunciations: [iAdj.pronunciation],
-              meanings: [iAdj.meaning],
+              selectedPronunciation: iAdj.pronunciation[0],
+              selectedMeaning: iAdj.meaning[0],
+              pronunciations: iAdj.pronunciation,
+              meanings: iAdj.meaning,
               unknown: false,
               length: sentencePart.length,
               currentIndex: currentIndex,
@@ -371,8 +389,10 @@ const partIsAName = (sentencePart, currentIndex, names) => {
       part = {
         type: translationConstants.TYPE_NAME,
         kanjis: sentencePart,
-        pronunciations: [name.pronunciation],
-        meanings: [name.meaning],
+        selectedPronunciation: name.pronunciation[0],
+        selectedMeaning: name.meaning[0],
+        pronunciations: name.pronunciation,
+        meanings: name.meaning,
         unknown: false,
         length: sentencePart.length,
         currentIndex: currentIndex,
@@ -391,6 +411,8 @@ const partIsAWord = (sentencePart, currentIndex, words) => {
       part = {
         type: translationConstants.TYPE_WORD,
         kanjis: sentencePart,
+        selectedPronunciation: word.pronunciation[0],
+        selectedMeaning: word.meaning[0],
         pronunciations: word.pronunciation,
         meanings: word.meaning,
         unknown: false,

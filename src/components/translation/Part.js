@@ -1,4 +1,5 @@
 import CustomSelect from "../common/CustomSelect";
+import { useState } from "react";
 
 const partStyle = {
   display: "grid",
@@ -19,21 +20,34 @@ const kanjiStyle = {
 };
 
 const Part = (props) => {
-  const part = props.part;
+  const [part, setPart] = useState(props.part);
+
+  function handleChange(event) {
+    let newValue = event.target.value;
+    setPart({
+      ...part,
+      [event.target.name]: newValue,
+    });
+  }
+
   return (
     <div style={part.unknown ? partStyleUnknown : partStyle} key={props.key}>
       <div style={kanjiStyle}>{part.kanjis}</div>
       <CustomSelect
-        id="pronunciations"
-        name="pronunciations"
+        id="selectedPronunciation"
+        name="selectedPronunciation"
         label="Pronunciation"
+        value={part.selectedPronunciation}
         listOfValues={part.pronunciations}
+        onChange={handleChange}
       />
       <CustomSelect
-        id="meanings"
-        name="meanings"
+        id="selectedMeaning"
+        name="selectedMeaning"
         label="Meaning"
+        value={part.selectedMeaning}
         listOfValues={part.meanings}
+        onChange={handleChange}
       />
       <div>
         <label>Type : </label>
