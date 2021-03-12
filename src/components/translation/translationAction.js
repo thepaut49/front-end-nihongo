@@ -49,7 +49,8 @@ export const extractParts = (
   naAdjectives,
   iAdjectives,
   names,
-  words
+  words,
+  particules
 ) => {
   let listOfParts = [];
 
@@ -94,27 +95,16 @@ export const extractParts = (
     }
   }
 
-  listOfParts = addOfUnknownParts(sentence, listOfParts);
+  listOfParts = addOfUnknownParts(sentence, listOfParts, particules);
 
   return listOfParts;
 };
 
-const addOfUnknownParts = (sentence, listOfParts) => {
+const addOfUnknownParts = (sentence, listOfParts, particules) => {
   // add of unknown parts
   let listOfPartsWithUnknownParts = [];
   if (listOfParts.length === 0) {
-    let unknownPart = {
-      type: translationConstants.TYPE_UNKNOWN,
-      kanjis: sentence.substr(0, sentence.length),
-      selectedPronunciation: "?",
-      selectedMeaning: "?",
-      pronunciations: ["?"],
-      meanings: ["?"],
-      unknown: true,
-      length: sentence.length,
-      currentIndex: 0,
-      listOfValues: [],
-    };
+    let unknownPart = partIsAParticule(sentence, 0, particules);
     listOfPartsWithUnknownParts.push(unknownPart);
   } else {
     for (let index = 0; index < listOfParts.length; index++) {
@@ -122,18 +112,15 @@ const addOfUnknownParts = (sentence, listOfParts) => {
       // Cas particulier du premier élément
       if (index === 0) {
         if (currentPart.currentIndex > 0) {
-          let unknownPart = {
-            type: translationConstants.TYPE_UNKNOWN,
-            kanjis: sentence.substr(0, currentPart.currentIndex),
-            selectedPronunciation: "?",
-            selectedMeaning: "?",
-            pronunciations: ["?"],
-            meanings: ["?"],
-            unknown: true,
-            length: currentPart.currentIndex,
-            currentIndex: 0,
-            listOfValues: [],
-          };
+          let sentenceUnknownPart = sentence.substr(
+            0,
+            currentPart.currentIndex
+          );
+          let unknownPart = partIsAParticule(
+            sentenceUnknownPart,
+            0,
+            particules
+          );
           listOfPartsWithUnknownParts.push(unknownPart);
           listOfPartsWithUnknownParts.push(currentPart);
         }
@@ -146,49 +133,31 @@ const addOfUnknownParts = (sentence, listOfParts) => {
               currentPart.currentIndex + currentPart.length <
               sentence.length
             ) {
-              let unknownPart = {
-                type: translationConstants.TYPE_UNKNOWN,
-                kanjis: sentence.substr(
-                  currentPart.currentIndex + currentPart.length
-                ),
-                selectedPronunciation: "?",
-                selectedMeaning: "?",
-                pronunciations: ["?"],
-                meanings: ["?"],
-                unknown: true,
-                length:
-                  sentence.length -
-                  currentPart.currentIndex -
-                  currentPart.length,
-                currentIndex: currentPart.currentIndex + currentPart.length,
-                listOfValues: [],
-              };
+              let sentenceUnknownPart = sentence.substr(
+                currentPart.currentIndex + currentPart.length
+              );
+              let unknownPart = partIsAParticule(
+                sentenceUnknownPart,
+                currentPart.currentIndex + currentPart.length,
+                particules
+              );
               listOfPartsWithUnknownParts.push(unknownPart);
             }
             //si on est au bout on fait rien
           } else {
             // on regarde la partie suivante
             let nextPart = listOfParts[index + 1];
-            let unknownPart = {
-              type: translationConstants.TYPE_UNKNOWN,
-              kanjis: sentence.substr(
-                currentPart.currentIndex + currentPart.length,
-                nextPart.currentIndex -
-                  currentPart.currentIndex -
-                  currentPart.length
-              ),
-              selectedPronunciation: "?",
-              selectedMeaning: "?",
-              pronunciations: ["?"],
-              meanings: ["?"],
-              unknown: true,
-              length:
-                nextPart.currentIndex -
+            let sentenceUnknownPart = sentence.substr(
+              currentPart.currentIndex + currentPart.length,
+              nextPart.currentIndex -
                 currentPart.currentIndex -
-                currentPart.length,
-              currentIndex: currentPart.currentIndex + currentPart.length,
-              listOfValues: [],
-            };
+                currentPart.length
+            );
+            let unknownPart = partIsAParticule(
+              sentenceUnknownPart,
+              currentPart.currentIndex + currentPart.length,
+              particules
+            );
             listOfPartsWithUnknownParts.push(unknownPart);
           }
         }
@@ -198,47 +167,31 @@ const addOfUnknownParts = (sentence, listOfParts) => {
         if (index === listOfParts.length - 1) {
           // on est rendu au dernier élément on regarde si il reste une partie inconnu
           if (currentPart.currentIndex + currentPart.length < sentence.length) {
-            let unknownPart = {
-              type: translationConstants.TYPE_UNKNOWN,
-              kanjis: sentence.substr(
-                currentPart.currentIndex + currentPart.length
-              ),
-              selectedPronunciation: "?",
-              selectedMeaning: "?",
-              pronunciations: ["?"],
-              meanings: ["?"],
-              unknown: true,
-              length:
-                sentence.length - currentPart.currentIndex - currentPart.length,
-              currentIndex: currentPart.currentIndex + currentPart.length,
-              listOfValues: [],
-            };
+            let sentenceUnknownPart = sentence.substr(
+              currentPart.currentIndex + currentPart.length
+            );
+            let unknownPart = partIsAParticule(
+              sentenceUnknownPart,
+              currentPart.currentIndex + currentPart.length,
+              particules
+            );
             listOfPartsWithUnknownParts.push(unknownPart);
           }
           //si on est au bout on fait rien
         } else {
           // on regarde la partie suivante
           let nextPart = listOfParts[index + 1];
-          let unknownPart = {
-            type: translationConstants.TYPE_UNKNOWN,
-            kanjis: sentence.substr(
-              currentPart.currentIndex + currentPart.length,
-              nextPart.currentIndex -
-                currentPart.currentIndex -
-                currentPart.length
-            ),
-            selectedPronunciation: "?",
-            selectedMeaning: "?",
-            pronunciations: ["?"],
-            meanings: ["?"],
-            unknown: true,
-            length:
-              nextPart.currentIndex -
+          let sentenceUnknownPart = sentence.substr(
+            currentPart.currentIndex + currentPart.length,
+            nextPart.currentIndex -
               currentPart.currentIndex -
-              currentPart.length,
-            currentIndex: currentPart.currentIndex + currentPart.length,
-            listOfValues: [],
-          };
+              currentPart.length
+          );
+          let unknownPart = partIsAParticule(
+            sentenceUnknownPart,
+            currentPart.currentIndex + currentPart.length,
+            particules
+          );
           listOfPartsWithUnknownParts.push(unknownPart);
         }
       }
@@ -423,4 +376,40 @@ const partIsAWord = (sentencePart, currentIndex, words) => {
       return part;
     }
   }
+};
+
+const partIsAParticule = (sentencePart, currentIndex, particules) => {
+  let part = null;
+  for (let index = 0; index < particules.length; index++) {
+    let particule = particules[index];
+    if (particule.kanjis === sentencePart) {
+      part = {
+        type: translationConstants.TYPE_PARTICULE,
+        kanjis: sentencePart,
+        selectedPronunciation: sentencePart,
+        selectedMeaning: "",
+        pronunciations: [sentencePart],
+        meanings: [],
+        unknown: false,
+        length: sentencePart.length,
+        currentIndex: currentIndex,
+        listOfValues: [],
+      };
+      return part;
+    }
+  }
+  // the unknown part is not a particule so it is unknown
+  part = {
+    type: translationConstants.TYPE_UNKNOWN,
+    kanjis: sentencePart,
+    selectedPronunciation: "?",
+    selectedMeaning: "?",
+    pronunciations: ["?"],
+    meanings: ["?"],
+    unknown: true,
+    length: sentencePart.length,
+    currentIndex: currentIndex,
+    listOfValues: [],
+  };
+  return part;
 };

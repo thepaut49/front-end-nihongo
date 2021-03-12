@@ -8,6 +8,7 @@ const translationConstants = {
   TYPE_WORD: "Word",
   DEFAULT_TYPE: "Kanji",
   TYPE_UNKNOWN: "Unknown",
+  TYPE_PARTICULE: "Particule",
 };
 
 export default translationConstants;

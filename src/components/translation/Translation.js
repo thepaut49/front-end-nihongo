@@ -14,12 +14,14 @@ import naAdjectiveStore from "../../stores/naAdjectiveStore";
 import iAdjectiveStore from "../../stores/iAdjectiveStore";
 import nameStore from "../../stores/nameStore";
 import wordStore from "../../stores/wordStore";
+import particuleStore from "../../stores/particuleStore";
 import { loadKanjis } from "../../actions/kanjiActions";
 import { loadVerbs } from "../../actions/verbActions";
 import { loadNaAdjectives } from "../../actions/naAdjectiveActions";
 import { loadIAdjectives } from "../../actions/iAdjectiveActions";
 import { loadNames } from "../../actions/nameActions";
 import { loadWords } from "../../actions/wordActions";
+import { loadParticules } from "../../actions/particuleActions";
 import { extractListOfKanji, extractParts } from "./translationAction";
 
 const typeSelectListOfValue = [
@@ -45,6 +47,7 @@ const Translation = () => {
   );
   const [names, setNames] = useState(nameStore.getNames());
   const [words, setWords] = useState(wordStore.getWords());
+  const [particules, setParticules] = useState(particuleStore.getParticules());
   // variables locales
   const [sentence, setSentence] = useState("");
   const [quantity, setQuantity] = useState(50);
@@ -71,6 +74,7 @@ const Translation = () => {
     iAdjectiveStore.addChangeListener(onChangeIAdjectives);
     nameStore.addChangeListener(onChangeNames);
     wordStore.addChangeListener(onChangeWords);
+    particuleStore.addChangeListener(onChangeParticules);
 
     if (kanjiStore.getKanjis().length === 0) loadKanjis();
     if (verbStore.getVerbs().length === 0) loadVerbs();
@@ -78,6 +82,7 @@ const Translation = () => {
     if (iAdjectiveStore.getIAdjectives().length === 0) loadIAdjectives();
     if (nameStore.getNames().length === 0) loadNames();
     if (wordStore.getWords().length === 0) loadWords();
+    if (particuleStore.getParticules().length === 0) loadParticules();
 
     return function () {
       kanjiStore.removeChangeListener(onChangeKanjis); //cleanup on unmount
@@ -86,6 +91,7 @@ const Translation = () => {
       iAdjectiveStore.removeChangeListener(onChangeIAdjectives);
       nameStore.removeChangeListener(onChangeNames);
       wordStore.removeChangeListener(onChangeWords);
+      particuleStore.removeChangeListener(onChangeParticules);
     };
   }, [
     kanjis.length,
@@ -94,6 +100,7 @@ const Translation = () => {
     iAdjectives.length,
     names.length,
     words.length,
+    particules.length,
   ]);
 
   function onChangeKanjis() {
@@ -118,6 +125,10 @@ const Translation = () => {
 
   function onChangeWords() {
     setWords(wordStore.getWords());
+  }
+
+  function onChangeParticules() {
+    setParticules(particuleStore.getParticules());
   }
 
   const handleListClick = (event) => {
@@ -160,7 +171,8 @@ const Translation = () => {
       naAdjectives,
       iAdjectives,
       names,
-      words
+      words,
+      particules
     );
     setListParts(_listOfParts);
     let _pronunciation = "";
