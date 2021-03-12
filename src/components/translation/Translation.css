@@ -1,6 +1,6 @@
 #translation {
   display: grid;
-  grid: 20em 20em 1fr / repeat(12, 1fr);
+  grid: 23em 23em 1fr / repeat(12, 1fr);
   gap: 1em;
   width: 100%;
 }

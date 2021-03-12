@@ -12,6 +12,11 @@ const TranslationArea = (props) => {
     gap: "1em",
   };
 
+  const pronunciationStyle = {
+    fontWeight: "bold",
+    fontSize: "Large",
+  };
+
   return (
     <>
       <form id="translationArea" style={styleTranslationArea}>
@@ -33,6 +38,8 @@ const TranslationArea = (props) => {
             Clear
           </button>
         </div>
+        <h4>Pronunciation :</h4>
+        <p style={pronunciationStyle}>{props.pronunciation}</p>
       </form>
     </>
   );
