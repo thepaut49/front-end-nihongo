@@ -1,7 +1,8 @@
 import CustomSelect from "../common/CustomSelect";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import translationConstants from "../common/translationConstants";
 import ListOfCandidates from "./ListOfCandidates";
+import SplitPopup from "./SplitPopup";
 
 const partStyle = {
   display: "grid",
@@ -22,7 +23,22 @@ const kanjiStyle = {
 };
 
 const Part = (props) => {
-  const [part, setPart] = useState(props.part);
+  const [part, setPart] = useState({
+    type: translationConstants.TYPE_UNKNOWN,
+    kanjis: "",
+    selectedPronunciation: "",
+    selectedMeaning: "",
+    pronunciations: [],
+    meanings: [],
+    unknown: true,
+    length: 0,
+    currentIndex: 0,
+    listOfValues: [],
+  });
+
+  useEffect(() => {
+    setPart(props.part);
+  }, [props.part]);
 
   function handleChange(event) {
     let newValue = event.target.value;
@@ -75,10 +91,13 @@ const Part = (props) => {
         {part.length}
       </div>
       {translationConstants.TYPE_UNKNOWN === part.type && (
-        <ListOfCandidates
-          candidatesList={part.listOfValues}
-          onCandidateClick={onCandidateClick}
-        />
+        <>
+          <SplitPopup oldPart={part} onSplitPart={props.onSplitPart} />
+          <ListOfCandidates
+            candidatesList={part.listOfValues}
+            onCandidateClick={onCandidateClick}
+          />
+        </>
       )}
     </div>
   );

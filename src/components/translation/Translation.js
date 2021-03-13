@@ -219,6 +219,11 @@ const Translation = () => {
     }
   };
 
+  const handleSplitPart = (newList) => {
+    debugger;
+    setListParts(newList);
+  };
+
   return (
     <>
       <h2>Translation</h2>
@@ -260,6 +265,7 @@ const Translation = () => {
           list={listParts}
           listOfKanjis={listOfKanjis}
           onPronunciationChange={handleChangePronunciation}
+          onSplitPart={handleSplitPart}
         />
       </div>
     </>

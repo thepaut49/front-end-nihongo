@@ -1,6 +1,6 @@
 import Part from "./Part";
 import Kanji from "./Kanji";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const listOfPartsStyle = {
   height: "100%",
@@ -42,19 +42,42 @@ const showbuttonGroupStyle = {
 };
 
 const ListOfParts = (props) => {
-  const _listOfParts = props.list;
-  const [listOfParts, setListOfParts] = useState(_listOfParts);
+  const [listOfParts, setListOfParts] = useState(props.list);
   const listOfKanjis = props.listOfKanjis;
+
+  useEffect(() => {
+    setListOfParts(props.list);
+  }, [props.list]);
+
   const handlePartChange = (part) => {
-    for (let index = 0; index < listOfParts.length; index++) {
-      if (listOfParts[index].currentIndex === part.currentIndex) {
-        listOfParts[index] = part;
-        break;
+    if (part) {
+      for (let index = 0; index < listOfParts.length; index++) {
+        if (listOfParts[index].currentIndex === part.currentIndex) {
+          listOfParts[index] = part;
+          break;
+        }
+      }
+      setListOfParts(listOfParts);
+      if (props.onPronunciationChange) {
+        props.onPronunciationChange(listOfParts);
       }
     }
-    setListOfParts(listOfParts);
-    if (props.onPronunciationChange) {
-      props.onPronunciationChange(listOfParts);
+  };
+
+  const handleSplitPart = (oldPart, firstPart, secondPart) => {
+    if (oldPart) {
+      let newList = [];
+      listOfParts.forEach((part) => {
+        if (part.kanjis === oldPart.kanjis) {
+          newList.push(firstPart);
+          newList.push(secondPart);
+        } else {
+          newList.push(part);
+        }
+      });
+      debugger;
+      setListOfParts(newList);
+      props.onSplitPart(newList);
     }
   };
 
@@ -80,15 +103,22 @@ const ListOfParts = (props) => {
 
       <div id="ListOfPartsToHide" style={listOfPartsToHideStyle}>
         {listOfParts &&
+          listOfParts.length > 0 &&
           listOfParts.map((part, index) => {
             return (
-              <Part part={part} key={index} onPartChange={handlePartChange} />
+              <Part
+                part={part}
+                key={index}
+                onPartChange={handlePartChange}
+                onSplitPart={handleSplitPart}
+              />
             );
           })}
       </div>
 
       <div id="ListOfKanjisToHide" style={listOfKanjisToHideStyle}>
         {listOfKanjis &&
+          listOfKanjis.length > 0 &&
           listOfKanjis.map((kanji, index) => {
             return <Kanji kanji={kanji} key={index} />;
           })}

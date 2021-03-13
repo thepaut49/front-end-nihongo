@@ -24,8 +24,6 @@ const ListOfCandidates = (props) => {
           </div>
 
           <div className="content">
-            {" "}
-            Popup content
             {candidatesList &&
               candidatesList.map((candidate, index) => {
                 return (

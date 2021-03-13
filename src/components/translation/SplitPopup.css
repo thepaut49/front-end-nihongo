@@ -1,0 +1,32 @@
+.splitPopup {
+  background-color: blue;
+  width: 80em;
+  border-radius: 10px;
+}
+.splitPopup > .header {
+  width: 100%;
+  text-align: center;
+  padding: 0.3em;
+}
+
+.splitPopup > .content {
+  display: grid;
+  grid: 1fr 1fr / 1fr 1fr;
+}
+
+.splitPopup > .content > .part {
+  grid-column-start: span 2;
+}
+
+.partButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.splitPopup > .footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin: 0.3em;
+  padding: 0.3em;
+}

@@ -1,7 +1,5 @@
 import CustomSelect from "../common/CustomSelect";
 import { useState } from "react";
-import translationConstants from "../common/translationConstants";
-import ListOfCandidates from "./ListOfCandidates";
 
 const partStyle = {
   display: "grid",
