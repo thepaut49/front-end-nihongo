@@ -1,5 +1,6 @@
 import Part from "./Part";
 import Kanji from "./Kanji";
+import { useState } from "react";
 
 const listOfPartsStyle = {
   height: "100%",
@@ -41,8 +42,21 @@ const showbuttonGroupStyle = {
 };
 
 const ListOfParts = (props) => {
-  const listOfParts = props.list;
+  const _listOfParts = props.list;
+  const [listOfParts, setListOfParts] = useState(_listOfParts);
   const listOfKanjis = props.listOfKanjis;
+  const handlePartChange = (part) => {
+    for (let index = 0; index < listOfParts.length; index++) {
+      if (listOfParts[index].currentIndex === part.currentIndex) {
+        listOfParts[index] = part;
+        break;
+      }
+    }
+    setListOfParts(listOfParts);
+    if (props.onPronunciationChange) {
+      props.onPronunciationChange(listOfParts);
+    }
+  };
 
   return (
     <div id="ListOfParts" style={listOfPartsStyle}>
@@ -67,7 +81,9 @@ const ListOfParts = (props) => {
       <div id="ListOfPartsToHide" style={listOfPartsToHideStyle}>
         {listOfParts &&
           listOfParts.map((part, index) => {
-            return <Part part={part} key={index} />;
+            return (
+              <Part part={part} key={index} onPartChange={handlePartChange} />
+            );
           })}
       </div>
 

@@ -209,6 +209,16 @@ const Translation = () => {
     setSentence(textArea.value);
   };
 
+  const handleChangePronunciation = (listOfParts) => {
+    let newPronunciation = "";
+    if (listOfParts && listOfParts.length > 0) {
+      listOfParts.forEach((part) => {
+        newPronunciation += part.selectedPronunciation;
+      });
+      setPronunciation(newPronunciation);
+    }
+  };
+
   return (
     <>
       <h2>Translation</h2>
@@ -246,7 +256,11 @@ const Translation = () => {
           onKanaClick={handleKanaClick}
           pronunciation={pronunciation}
         />
-        <ListOfParts list={listParts} listOfKanjis={listOfKanjis} />
+        <ListOfParts
+          list={listParts}
+          listOfKanjis={listOfKanjis}
+          onPronunciationChange={handleChangePronunciation}
+        />
       </div>
     </>
   );

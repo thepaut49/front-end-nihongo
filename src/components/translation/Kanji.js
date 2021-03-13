@@ -1,7 +1,7 @@
 const Kanji = (props) => {
   const kanji = props.kanji;
   return (
-    <div className="grid-container" key={props.key}>
+    <div className="grid-container">
       <div className="kanji">{kanji.kanji}</div>
       <div className="pronunciation">
         {kanji.pronunciation.map((pro, index) => {

@@ -62,7 +62,7 @@ export const extractParts = (
         let sentencePart = sentence.substr(indiceCourant, j);
         //console.log("sentancePart = " + sentencePart);
 
-        part = partIsAVerb(sentencePart, indiceCourant, verbs);
+        part = partIsAVerb(sentencePart, indiceCourant, verbs, false);
 
         if (!part) {
           part = partIsANaAdjective(sentencePart, indiceCourant, naAdjectives);
@@ -95,16 +95,43 @@ export const extractParts = (
     }
   }
 
-  listOfParts = addOfUnknownParts(sentence, listOfParts, particules);
+  listOfParts = addOfUnknownParts(
+    sentence,
+    listOfParts,
+    particules,
+    verbs,
+    naAdjectives,
+    iAdjectives,
+    names,
+    words
+  );
 
   return listOfParts;
 };
 
-const addOfUnknownParts = (sentence, listOfParts, particules) => {
+const addOfUnknownParts = (
+  sentence,
+  listOfParts,
+  particules,
+  verbs,
+  naAdjectives,
+  iAdjectives,
+  names,
+  words
+) => {
   // add of unknown parts
   let listOfPartsWithUnknownParts = [];
   if (listOfParts.length === 0) {
-    let unknownPart = partIsAParticule(sentence, 0, particules);
+    let unknownPart = partIsAParticule(
+      sentence,
+      0,
+      particules,
+      verbs,
+      naAdjectives,
+      iAdjectives,
+      names,
+      words
+    );
     listOfPartsWithUnknownParts.push(unknownPart);
   } else {
     for (let index = 0; index < listOfParts.length; index++) {
@@ -119,7 +146,12 @@ const addOfUnknownParts = (sentence, listOfParts, particules) => {
           let unknownPart = partIsAParticule(
             sentenceUnknownPart,
             0,
-            particules
+            particules,
+            verbs,
+            naAdjectives,
+            iAdjectives,
+            names,
+            words
           );
           listOfPartsWithUnknownParts.push(unknownPart);
           listOfPartsWithUnknownParts.push(currentPart);
@@ -139,7 +171,12 @@ const addOfUnknownParts = (sentence, listOfParts, particules) => {
               let unknownPart = partIsAParticule(
                 sentenceUnknownPart,
                 currentPart.currentIndex + currentPart.length,
-                particules
+                particules,
+                verbs,
+                naAdjectives,
+                iAdjectives,
+                names,
+                words
               );
               listOfPartsWithUnknownParts.push(unknownPart);
             }
@@ -156,7 +193,12 @@ const addOfUnknownParts = (sentence, listOfParts, particules) => {
             let unknownPart = partIsAParticule(
               sentenceUnknownPart,
               currentPart.currentIndex + currentPart.length,
-              particules
+              particules,
+              verbs,
+              naAdjectives,
+              iAdjectives,
+              names,
+              words
             );
             listOfPartsWithUnknownParts.push(unknownPart);
           }
@@ -173,7 +215,12 @@ const addOfUnknownParts = (sentence, listOfParts, particules) => {
             let unknownPart = partIsAParticule(
               sentenceUnknownPart,
               currentPart.currentIndex + currentPart.length,
-              particules
+              particules,
+              verbs,
+              naAdjectives,
+              iAdjectives,
+              names,
+              words
             );
             listOfPartsWithUnknownParts.push(unknownPart);
           }
@@ -190,7 +237,12 @@ const addOfUnknownParts = (sentence, listOfParts, particules) => {
           let unknownPart = partIsAParticule(
             sentenceUnknownPart,
             currentPart.currentIndex + currentPart.length,
-            particules
+            particules,
+            verbs,
+            naAdjectives,
+            iAdjectives,
+            names,
+            words
           );
           listOfPartsWithUnknownParts.push(unknownPart);
         }
@@ -199,6 +251,10 @@ const addOfUnknownParts = (sentence, listOfParts, particules) => {
   }
   return listOfPartsWithUnknownParts;
 };
+
+function isSuru(verb) {
+  return verb.neutralForm === "する" ? true : false;
+}
 
 const partIsAVerb = (sentencePart, currentIndex, verbs) => {
   let part = null;
@@ -219,6 +275,12 @@ const partIsAVerb = (sentencePart, currentIndex, verbs) => {
   const formList = [verbConstants.PLAIN_FORM, verbConstants.POLITE_FORM];
   const signList = [verbConstants.POSITIVE_SIGN, verbConstants.NEGATIVE_SIGN];
   for (let indexVerb = 0; indexVerb < verbs.length; indexVerb++) {
+    const verb = verbs[indexVerb];
+    let stem = "";
+    if (!isSuru(verb)) {
+      stem = verb.neutralForm.substr(0, verb.neutralForm.length - 1);
+    }
+
     for (
       let indexTense = 0;
       indexTense < tenseFunctionList.length;
@@ -230,7 +292,7 @@ const partIsAVerb = (sentencePart, currentIndex, verbs) => {
           let form = formList[indexForm];
           let sign = signList[indexSign];
           let verb = verbs[indexVerb];
-          if (tense(verb, form, sign) === sentencePart) {
+          if (stem + tense(verb, form, sign) === sentencePart) {
             part = {
               type: translationConstants.TYPE_VERB,
               kanjis: sentencePart,
@@ -261,6 +323,11 @@ const partIsANaAdjective = (sentencePart, currentIndex, naAdjectives) => {
   const formList = [verbConstants.PLAIN_FORM, verbConstants.POLITE_FORM];
   const signList = [verbConstants.POSITIVE_SIGN, verbConstants.NEGATIVE_SIGN];
   for (let indexNaAdj = 0; indexNaAdj < naAdjectives.length; indexNaAdj++) {
+    const naAdjective = naAdjectives[indexNaAdj];
+    let stem = "";
+
+    stem = naAdjective.kanjis.substr(0, naAdjective.kanjis.length - 1);
+
     for (
       let indexTense = 0;
       indexTense < tenseFunctionList.length;
@@ -272,7 +339,7 @@ const partIsANaAdjective = (sentencePart, currentIndex, naAdjectives) => {
           let form = formList[indexForm];
           let sign = signList[indexSign];
           let naAdj = naAdjectives[indexNaAdj];
-          if (tense(naAdj, form, sign) === sentencePart) {
+          if (stem + tense(naAdj, form, sign) === sentencePart) {
             part = {
               type: translationConstants.TYPE_NA_ADJECTIVE,
               kanjis: sentencePart,
@@ -302,6 +369,10 @@ const partIsAIAdjective = (sentencePart, currentIndex, iAdjectives) => {
   const formList = [verbConstants.PLAIN_FORM, verbConstants.POLITE_FORM];
   const signList = [verbConstants.POSITIVE_SIGN, verbConstants.NEGATIVE_SIGN];
   for (let indexIAdj = 0; indexIAdj < iAdjectives.length; indexIAdj++) {
+    const iAdjective = iAdjectives[indexIAdj];
+    let stem = "";
+
+    stem = iAdjective.kanjis.substr(0, iAdjective.kanjis.length - 1);
     for (
       let indexTense = 0;
       indexTense < tenseFunctionList.length;
@@ -313,7 +384,7 @@ const partIsAIAdjective = (sentencePart, currentIndex, iAdjectives) => {
           let form = formList[indexForm];
           let sign = signList[indexSign];
           let iAdj = iAdjectives[indexIAdj];
-          if (tense(iAdj, form, sign) === sentencePart) {
+          if (stem + tense(iAdj, form, sign) === sentencePart) {
             part = {
               type: translationConstants.TYPE_I_ADJECTIVE,
               kanjis: sentencePart,
@@ -378,7 +449,286 @@ const partIsAWord = (sentencePart, currentIndex, words) => {
   }
 };
 
-const partIsAParticule = (sentencePart, currentIndex, particules) => {
+const verbCandidate = (sentencePart, currentIndex, verbs) => {
+  let part = null;
+  let tenseFunctionList = [
+    presentIndicative,
+    presumptiveVolitional,
+    imperative,
+    pastIndicative,
+    pastPresumptive,
+    presentProgressive,
+    pastProgressive,
+    provisionalConditionalEba,
+    potential,
+    conditionalTara,
+    causative,
+    passive,
+  ];
+  const formList = [verbConstants.PLAIN_FORM, verbConstants.POLITE_FORM];
+  const signList = [verbConstants.POSITIVE_SIGN, verbConstants.NEGATIVE_SIGN];
+  let candidateList = [];
+  if (!verbs) return candidateList;
+  for (let indexVerb = 0; indexVerb < verbs.length; indexVerb++) {
+    const verb = verbs[indexVerb];
+    for (
+      let indexTense = 0;
+      indexTense < tenseFunctionList.length;
+      indexTense++
+    ) {
+      for (let indexForm = 0; indexForm < formList.length; indexForm++) {
+        for (let indexSign = 0; indexSign < signList.length; indexSign++) {
+          let tense = tenseFunctionList[indexTense];
+          let form = formList[indexForm];
+          let sign = signList[indexSign];
+          let listOfVerbConj = [];
+          verb.pronunciation.forEach((pronunciation) => {
+            if (!isSuru(verb)) {
+              listOfVerbConj.push(
+                pronunciation.substr(0, pronunciation.length - 1) +
+                  tense(verb, form, sign)
+              );
+            } else {
+              listOfVerbConj.push(tense(verb, form, sign));
+            }
+          });
+          if (listOfVerbConj.includes(sentencePart)) {
+            part = {
+              type: translationConstants.TYPE_VERB,
+              kanjis: sentencePart,
+              selectedPronunciation: sentencePart,
+              selectedMeaning: verb.meaning[0],
+              pronunciations: [sentencePart],
+              meanings: verb.meaning,
+              unknown: false,
+              length: sentencePart.length,
+              currentIndex: currentIndex,
+              listOfValues: [],
+            };
+            candidateList.push(part);
+          }
+        }
+      }
+    }
+  }
+  return candidateList;
+};
+
+const naAdjectiveCandidate = (sentencePart, currentIndex, naAdjectives) => {
+  let part = null;
+  let tenseFunctionList = [
+    naForm,
+    presentIndicativeNaAdjective,
+    pastIndicativeNaAdjective,
+  ];
+  const formList = [verbConstants.PLAIN_FORM, verbConstants.POLITE_FORM];
+  const signList = [verbConstants.POSITIVE_SIGN, verbConstants.NEGATIVE_SIGN];
+  let candidateList = [];
+  if (!naAdjectives) return candidateList;
+  for (let indexNaAdj = 0; indexNaAdj < naAdjectives.length; indexNaAdj++) {
+    const naAdj = naAdjectives[indexNaAdj];
+    for (
+      let indexTense = 0;
+      indexTense < tenseFunctionList.length;
+      indexTense++
+    ) {
+      for (let indexForm = 0; indexForm < formList.length; indexForm++) {
+        for (let indexSign = 0; indexSign < signList.length; indexSign++) {
+          let tense = tenseFunctionList[indexTense];
+          let form = formList[indexForm];
+          let sign = signList[indexSign];
+          let listOfNaAdjConj = [];
+          naAdj.pronunciation.forEach((pronunciation) => {
+            listOfNaAdjConj.push(
+              pronunciation.substr(0, pronunciation.length - 1) +
+                tense(naAdj, form, sign)
+            );
+          });
+          if (listOfNaAdjConj.includes(sentencePart)) {
+            part = {
+              type: translationConstants.TYPE_NA_ADJECTIVE,
+              kanjis: sentencePart,
+              selectedPronunciation: sentencePart,
+              selectedMeaning: naAdj.meaning[0],
+              pronunciations: [sentencePart],
+              meanings: naAdj.meaning,
+              unknown: false,
+              length: sentencePart.length,
+              currentIndex: currentIndex,
+              listOfValues: [],
+            };
+            candidateList.push(part);
+          }
+        }
+      }
+    }
+  }
+  return candidateList;
+};
+
+const iAdjectiveCandidate = (sentencePart, currentIndex, iAdjectives) => {
+  let part = null;
+  let tenseFunctionList = [
+    presentIndicativeIAdjective,
+    pastIndicativeIAdjective,
+  ];
+  const formList = [verbConstants.PLAIN_FORM, verbConstants.POLITE_FORM];
+  const signList = [verbConstants.POSITIVE_SIGN, verbConstants.NEGATIVE_SIGN];
+  let candidateList = [];
+  if (!iAdjectives) return candidateList;
+  for (let indexIAdj = 0; indexIAdj < iAdjectives.length; indexIAdj++) {
+    const iAdj = iAdjectives[indexIAdj];
+
+    for (
+      let indexTense = 0;
+      indexTense < tenseFunctionList.length;
+      indexTense++
+    ) {
+      for (let indexForm = 0; indexForm < formList.length; indexForm++) {
+        for (let indexSign = 0; indexSign < signList.length; indexSign++) {
+          let tense = tenseFunctionList[indexTense];
+          let form = formList[indexForm];
+          let sign = signList[indexSign];
+          let listOfIAdjConj = [];
+          iAdj.pronunciation.forEach((pronunciation) => {
+            listOfIAdjConj.push(
+              pronunciation.substr(0, pronunciation.length - 1) +
+                tense(iAdj, form, sign)
+            );
+          });
+          if (listOfIAdjConj.includes(sentencePart)) {
+            part = {
+              type: translationConstants.TYPE_I_ADJECTIVE,
+              kanjis: sentencePart,
+              selectedPronunciation: sentencePart,
+              selectedMeaning: iAdj.meaning[0],
+              pronunciations: [sentencePart],
+              meanings: iAdj.meaning,
+              unknown: false,
+              length: sentencePart.length,
+              currentIndex: currentIndex,
+              listOfValues: [],
+            };
+            candidateList.push(part);
+          }
+        }
+      }
+    }
+  }
+  return candidateList;
+};
+
+const nameCandidate = (sentencePart, currentIndex, names) => {
+  let part = null;
+  let candidateList = [];
+  if (!names) return candidateList;
+  for (let index = 0; index < names.length; index++) {
+    let name = names[index];
+    let listOfNamePro = [];
+    name.pronunciation.forEach((pronunciation) => {
+      listOfNamePro.push(pronunciation.substr(0, pronunciation.length));
+    });
+    if (listOfNamePro.includes(sentencePart)) {
+      part = {
+        type: translationConstants.TYPE_NAME,
+        kanjis: sentencePart,
+        selectedPronunciation: sentencePart,
+        selectedMeaning: name.meaning[0],
+        pronunciations: [sentencePart],
+        meanings: name.meaning,
+        unknown: false,
+        length: sentencePart.length,
+        currentIndex: currentIndex,
+        listOfValues: [],
+      };
+      candidateList.push(part);
+    }
+  }
+  return candidateList;
+};
+
+const wordCandidate = (sentencePart, currentIndex, words) => {
+  let part = null;
+  let candidateList = [];
+  if (!words) return candidateList;
+  for (let index = 0; index < words.length; index++) {
+    let word = words[index];
+    let listOfWordPro = [];
+    word.pronunciation.forEach((pronunciation) => {
+      listOfWordPro.push(pronunciation.substr(0, pronunciation.length));
+    });
+    if (listOfWordPro.includes(sentencePart)) {
+      part = {
+        type: translationConstants.TYPE_WORD,
+        kanjis: sentencePart,
+        selectedPronunciation: sentencePart,
+        selectedMeaning: word.meaning[0],
+        pronunciations: [sentencePart],
+        meanings: word.meaning,
+        unknown: false,
+        length: sentencePart.length,
+        currentIndex: currentIndex,
+        listOfValues: [],
+      };
+      candidateList.push(part);
+    }
+  }
+  return candidateList;
+};
+
+const findListOfCandidates = (
+  sentencePart,
+  currentIndex,
+  verbs,
+  naAdjectives,
+  iAdjectives,
+  names,
+  words
+) => {
+  let listOfCandidates = [];
+  let listOfVerbCandidates = verbCandidate(sentencePart, currentIndex, verbs);
+  let listOfNaAdjCandidates = naAdjectiveCandidate(
+    sentencePart,
+    currentIndex,
+    naAdjectives
+  );
+  let listOfIAdjCandidates = iAdjectiveCandidate(
+    sentencePart,
+    currentIndex,
+    iAdjectives
+  );
+  let listOfNameCandidates = nameCandidate(sentencePart, currentIndex, names);
+  let listOfWordCandidates = wordCandidate(sentencePart, currentIndex, words);
+
+  if (listOfVerbCandidates.length > 0) {
+    listOfCandidates = listOfCandidates.concat(listOfVerbCandidates);
+  }
+  if (listOfNaAdjCandidates.length > 0) {
+    listOfCandidates = listOfCandidates.concat(listOfNaAdjCandidates);
+  }
+  if (listOfIAdjCandidates.length > 0) {
+    listOfCandidates = listOfCandidates.concat(listOfIAdjCandidates);
+  }
+  if (listOfNameCandidates.length > 0) {
+    listOfCandidates = listOfCandidates.concat(listOfNameCandidates);
+  }
+  if (listOfWordCandidates.length > 0) {
+    listOfCandidates = listOfCandidates.concat(listOfWordCandidates);
+  }
+
+  return listOfCandidates;
+};
+
+const partIsAParticule = (
+  sentencePart,
+  currentIndex,
+  particules,
+  verbs,
+  naAdjectives,
+  iAdjectives,
+  names,
+  words
+) => {
   let part = null;
   for (let index = 0; index < particules.length; index++) {
     let particule = particules[index];
@@ -399,6 +749,15 @@ const partIsAParticule = (sentencePart, currentIndex, particules) => {
     }
   }
   // the unknown part is not a particule so it is unknown
+  let listOfCandidates = findListOfCandidates(
+    sentencePart,
+    currentIndex,
+    verbs,
+    naAdjectives,
+    iAdjectives,
+    names,
+    words
+  );
   part = {
     type: translationConstants.TYPE_UNKNOWN,
     kanjis: sentencePart,
@@ -409,7 +768,7 @@ const partIsAParticule = (sentencePart, currentIndex, particules) => {
     unknown: true,
     length: sentencePart.length,
     currentIndex: currentIndex,
-    listOfValues: [],
+    listOfValues: listOfCandidates,
   };
   return part;
 };

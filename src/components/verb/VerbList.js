@@ -17,7 +17,15 @@ function VerbList(props) {
                       {verb.neutralForm}
                     </Link>
                   </div>
-                  <div className="pronunciation">{verb.pronunciation}</div>
+                  <div className="pronunciation">
+                    {verb.pronunciation.map((pronunciation, index) => {
+                      return (
+                        <span key={index} className="onemeaning">
+                          {pronunciation}
+                        </span>
+                      );
+                    })}
+                  </div>
                   <div className="meaning">
                     {verb.meaning.map((mean, index) => {
                       return (

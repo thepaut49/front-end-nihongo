@@ -5,24 +5,24 @@ import ListOfCandidates from "./ListOfCandidates";
 
 const partStyle = {
   display: "grid",
-  gridTemplateRows: "repeat(6,max-content)",
+  gridTemplateRows: "repeat(5,max-content)",
   borderRadius: "10px",
   backgroundColor: "rgba(38, 113, 22, 0.48)",
   padding: "0.5em",
   height: "min-content",
 };
 
-const partStyleUnknown = {
-  ...partStyle,
-  backgroundColor: "#0e5805",
-};
-
 const kanjiStyle = {
   fontWeight: "bold",
 };
 
-const Part = (props) => {
+const Candidate = (props) => {
   const [part, setPart] = useState(props.part);
+
+  const handleSelectCandidate = (event) => {
+    props.onCandidateClick(part);
+    event.preventDefault();
+  };
 
   function handleChange(event) {
     let newValue = event.target.value;
@@ -36,15 +36,8 @@ const Part = (props) => {
     }
   }
 
-  const onCandidateClick = (candidate) => {
-    setPart(candidate);
-    if (props.onPartChange) {
-      props.onPartChange(candidate);
-    }
-  };
-
   return (
-    <div style={part.unknown ? partStyleUnknown : partStyle}>
+    <div style={partStyle}>
       <div style={kanjiStyle}>{part.kanjis}</div>
       <CustomSelect
         id="selectedPronunciation"
@@ -66,22 +59,12 @@ const Part = (props) => {
         <label>Type : </label>
         {part.type}
       </div>
-      <div>
-        <label>Current Index : </label>
-        {part.currentIndex}
-      </div>
-      <div>
-        <label>Length : </label>
-        {part.length}
-      </div>
-      {translationConstants.TYPE_UNKNOWN === part.type && (
-        <ListOfCandidates
-          candidatesList={part.listOfValues}
-          onCandidateClick={onCandidateClick}
-        />
-      )}
+
+      <button className="btn btn-primary" onClick={handleSelectCandidate}>
+        Select
+      </button>
     </div>
   );
 };
 
-export default Part;
+export default Candidate;

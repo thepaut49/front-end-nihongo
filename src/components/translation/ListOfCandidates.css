@@ -1,0 +1,15 @@
+.popupCandidate {
+  background-color: blue;
+  width: 80em;
+  border-radius: 10px;
+}
+.popupCandidate > .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  text-align: center;
+  padding: 5px;
+}
+.popupCandidate > .content {
+  width: 100%;
+  padding: 10px 5px;
+}
