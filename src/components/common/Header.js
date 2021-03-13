@@ -42,6 +42,14 @@ function Header() {
         Translation
       </NavLink>
 
+      <NavLink activeStyle={activeStyle} to="/hiraganas">
+        Hiraganas
+      </NavLink>
+
+      <NavLink activeStyle={activeStyle} to="/katakanas">
+        Katakanas
+      </NavLink>
+
       <NavLink activeStyle={activeStyle} to="/about">
         About
       </NavLink>

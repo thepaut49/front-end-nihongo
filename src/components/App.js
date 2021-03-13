@@ -18,6 +18,8 @@ import ManageWordPage from "./word/ManageWordPage";
 import WordsPage from "./word/WordsPage";
 import ManageParticulePage from "./particule/ManageParticulePage";
 import ParticulesPage from "./particule/ParticulesPage";
+import HiraganasPage from "./hiragana/HiraganasPage";
+import KatakanasPage from "./katakana/KatakanasPage";
 import Translation from "./translation/Translation";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -56,6 +58,8 @@ function App() {
           <Route path="/particule/:kanjis" component={ManageParticulePage} />
           <Route path="/particule" component={ManageParticulePage} />
           <Route path="/translation" component={Translation} />
+          <Route path="/hiraganas" component={HiraganasPage} />
+          <Route path="/katakanas" component={KatakanasPage} />
           <Route path="/about" component={AboutPage} />
           <Redirect from="/about-page" to="/about" />
           <Route component={NotFoundPage} />
