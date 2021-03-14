@@ -15,22 +15,53 @@ function ParticuleForm(props) {
     <form onSubmit={props.onSubmit} style={formStyle}>
       <CustomInput
         id="kanjis"
-        label="Kanjis"
+        label="Particle"
         onChange={props.onChange}
         name="kanjis"
         value={props.particule.kanjis}
         error={props.errors.kanjis}
       />
 
-      <CustomTextArea
-        id="htmlDescription"
-        label="Html description : "
-        name="htmlDescription"
-        cols={70}
-        rows={50}
-        value={props.particule.htmlDescription}
+      <CustomInput
+        id="summary"
+        label="Summary"
         onChange={props.onChange}
-        error={props.errors.htmlDescription}
+        name="summary"
+        value={props.particule.summary}
+        error={props.errors.summary}
+      />
+
+      <CustomTextArea
+        id="function"
+        label="Function of the particle"
+        name="function"
+        cols={70}
+        rows={5}
+        value={props.particule.function}
+        onChange={props.onChange}
+        error={props.errors.function}
+      />
+
+      <CustomTextArea
+        id="howToUse"
+        label="How to use the particle"
+        name="howToUse"
+        cols={70}
+        rows={5}
+        value={props.particule.howToUse}
+        onChange={props.onChange}
+        error={props.errors.howToUse}
+      />
+
+      <CustomTextArea
+        id="examples"
+        label="Examples sentence for the particle "
+        name="examples"
+        cols={70}
+        rows={20}
+        value={props.particule.examples}
+        onChange={props.onChange}
+        error={props.errors.examples}
       />
 
       <input type="submit" value="Save" className="btn btn-primary" />

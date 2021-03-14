@@ -9,10 +9,13 @@ const ManageParticulePage = (props) => {
   const [modified, setModified] = useState(false);
   const [errors, setErrors] = useState({});
   const [particule, setParticule] = useState({
-    id: null,
+    id: 0,
     kanjis: "",
-    htmlDescription: "",
-    version: null,
+    summary: "",
+    function: "",
+    howToUse: "",
+    examples: "",
+    version: 0,
   });
 
   useEffect(() => {
@@ -31,8 +34,8 @@ const ManageParticulePage = (props) => {
     const _errors = {};
     if (!particule.kanjis)
       _errors.kanjis = "Kanjis of the particule is required";
-    if (!particule.htmlDescription)
-      _errors.htmlDescription = "Html description is required";
+    if (!particule.summary)
+      _errors.summary = "Summary of the particule is required";
 
     setErrors(_errors);
     // form is valid if the erros object has no properties
@@ -51,7 +54,7 @@ const ManageParticulePage = (props) => {
 
   return (
     <>
-      <h2>Manage Particule</h2>
+      <h2>Manage Particle</h2>
       <Prompt when={modified} message="Are you sure you want to leave ?" />
       <ParticuleForm
         errors={errors}

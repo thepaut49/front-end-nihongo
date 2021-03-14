@@ -2,9 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const htmlDescriptionStyle = {
+const particuleListStyle = {
   borderRadius: "10px",
-  with: "100%",
+  backgroundColor: "rgba(38, 113, 22, 0.48)",
+  margin: "0.5em",
+  padding: "0.5em",
+};
+
+const particuleTitleStyle = {
+  fontWeight: "bold",
+  fontSize: "xxx-large",
+};
+
+const exampleStyle = {
+  backgroundColor: "rgba(38, 113, 22, 0.48)",
+  color: "white",
+  margin: "0.1em",
+  padding: "0.1em",
 };
 
 function ParticuleList(props) {
@@ -12,19 +26,34 @@ function ParticuleList(props) {
     <div>
       {props.particules.map((particule) => {
         return (
-          <div className="grid-container-particule" key={particule.id}>
-            <div className="particule">
+          <div key={particule.id} style={particuleListStyle}>
+            <div style={particuleTitleStyle}>
               <Link to={"/particule/" + particule.kanjis}>
-                {particule.kanjis}
+                The Japanese particle {particule.kanjis}
               </Link>
             </div>
-            <iframe
-              className="htmlDescription"
-              title="particule test"
-              srcdoc={particule.htmlDescription}
-              style={htmlDescriptionStyle}
-              width="100%"
-            />
+
+            <div>
+              <h2>Summary</h2>
+              {particule.summary}
+
+              <h2>Function of the {particule.kanjis}</h2>
+              {particule.function}
+
+              <h2>How to use the particle {particule.kanjis}</h2>
+              {particule.howToUse}
+
+              <h2>
+                Japanese Examples SENTENCES with the particle {particule.kanjis}
+              </h2>
+              <textarea
+                style={exampleStyle}
+                value={particule.examples}
+                cols={70}
+                rows={20}
+              />
+            </div>
+
             <div className="delete">
               <button
                 className="btn btn-outline-danger"
@@ -48,7 +77,10 @@ ParticuleList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       kanjis: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
+      summary: PropTypes.string.isRequired,
+      function: PropTypes.string,
+      howToUse: PropTypes.string,
+      examples: PropTypes.arrayOf(Object),
       version: PropTypes.number,
     })
   ).isRequired,

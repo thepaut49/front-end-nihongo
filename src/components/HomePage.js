@@ -86,11 +86,11 @@ function HomePage() {
           Find Words with search criteria (kanjis, pronunciation, meaning)
         </li>
       </ul>
-      <h2>Particules</h2>
+      <h2>Particles</h2>
       <ul>
-        <li>List the Particules in the database</li>
-        <li>Add and modify a Particule in the database</li>
-        <li>Delete a Particule in the database</li>
+        <li>List the Particles in the database</li>
+        <li>Add and modify a Particle in the database</li>
+        <li>Delete a Particle in the database</li>
       </ul>
       <h2>Grammar rules</h2>
       <ul>

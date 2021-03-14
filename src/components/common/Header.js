@@ -35,7 +35,7 @@ function Header() {
       </NavLink>
 
       <NavLink activeStyle={activeStyle} to="/particules">
-        Particules
+        Particles
       </NavLink>
 
       <NavLink activeStyle={activeStyle} to="/Translation">

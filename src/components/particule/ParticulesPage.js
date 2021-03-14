@@ -28,10 +28,12 @@ const ParticulesPage = () => {
       <Link className="btn btn-primary" to="/particule">
         Add Particule
       </Link>
-      <ParticuleList
-        particules={particules}
-        deleteParticule={deleteParticule}
-      />
+      {particules && particules.length > 0 && (
+        <ParticuleList
+          particules={particules}
+          deleteParticule={deleteParticule}
+        />
+      )}
     </>
   );
 };
