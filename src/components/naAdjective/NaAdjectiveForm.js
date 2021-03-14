@@ -1,7 +1,7 @@
-import CustomInput from "../common/CustomInput";
-import PropTypes from "prop-types";
-
 import React from "react";
+import CustomInput from "../common/CustomInput";
+import CustomInputPronunciation from "../common/CustomInputPronunciation";
+import PropTypes from "prop-types";
 
 const formStyle = {
   backgroundColor: "#4682B4",
@@ -22,13 +22,15 @@ function NaAdjectiveForm(props) {
         error={props.errors.kanjis}
       />
 
-      <CustomInput
+      <CustomInputPronunciation
         id="pronunciation"
         label="Pronunciation"
         onChange={props.onChange}
         name="pronunciation"
         value={props.naAdjective.pronunciation}
         error={props.errors.pronunciation}
+        onMiddlePointClick={props.onMiddlePointClick}
+        onTranslateClick={props.onTranslateClick}
       />
 
       <CustomInput
@@ -49,6 +51,8 @@ NaAdjectiveForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
+  onMiddlePointClick: PropTypes.func.isRequired,
+  onTranslateClick: PropTypes.func.isRequired,
 };
 
 export default NaAdjectiveForm;

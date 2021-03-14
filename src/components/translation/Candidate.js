@@ -1,5 +1,6 @@
+import React, { useState } from "react";
 import CustomSelect from "../common/CustomSelect";
-import { useState } from "react";
+import PropTypes from "prop-types";
 
 const partStyle = {
   display: "grid",
@@ -63,6 +64,11 @@ const Candidate = (props) => {
       </button>
     </div>
   );
+};
+
+Candidate.prototypes = {
+  part: PropTypes.object.isRequired,
+  onPronunciationChange: PropTypes.func.isRequired,
 };
 
 export default Candidate;

@@ -1,11 +1,9 @@
+import React from "react";
 import CustomInput from "../common/CustomInput";
-import CustomInputPronunciation from "../common/CustomInputPronunciation";
 import CustomSelect from "../common/CustomSelect";
 import verbConstants from "../common/verbConstants";
 import PropTypes from "prop-types";
 import "./verbCriteriaForm.css";
-
-import React from "react";
 
 const filterStyle = {
   backgroundColor: "#4682B4",
@@ -53,13 +51,12 @@ function VerbCriteriaForm(props) {
             value={props.verbCriteria.neutralForm}
           />
 
-          <CustomInputPronunciation
+          <CustomInput
             id="pronunciationCriteria"
             label="PronunciationCriteria"
             onChange={props.onChange}
             name="pronunciationCriteria"
             value={props.verbCriteria.pronunciation}
-            onClick={props.onClick}
           />
 
           <CustomInput

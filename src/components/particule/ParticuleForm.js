@@ -1,8 +1,7 @@
+import React from "react";
 import CustomInput from "../common/CustomInput";
 import CustomTextArea from "../common/CustomTextArea";
 import PropTypes from "prop-types";
-
-import React from "react";
 
 const formStyle = {
   backgroundColor: "#4682B4",

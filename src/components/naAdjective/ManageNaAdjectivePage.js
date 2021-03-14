@@ -5,6 +5,7 @@ import naAdjectiveStore from "../../stores/naAdjectiveStore";
 import { Prompt } from "react-router-dom";
 import * as naAdjectiveActions from "../../actions/naAdjectiveActions";
 import NaAdjectiveConjugationTable from "./NaAdjectiveConjugationTable";
+import { translateRomajiToKana } from "../common/TranslateRomajiToKana";
 
 const ManageNaAdjectivePage = (props) => {
   const [modified, setModified] = useState(false);
@@ -18,6 +19,27 @@ const ManageNaAdjectivePage = (props) => {
     numberOfUse: null,
     version: null,
   });
+
+  const onMiddlePointClick = (event) => {
+    event.preventDefault();
+    let input = document.getElementById("pronunciation");
+    input.value = input.value + event.target.innerText;
+    setNaAdjective({
+      ...naAdjective,
+      pronunciation: naAdjective.pronunciation + event.target.innerText,
+    });
+  };
+
+  const handleTranslateClick = (event) => {
+    event.preventDefault();
+    let input = document.getElementById("pronunciation");
+    const newValue = translateRomajiToKana(input.value);
+    input.value = newValue;
+    setNaAdjective({
+      ...naAdjective,
+      pronunciation: newValue,
+    });
+  };
 
   useEffect(() => {
     const kanjis = props.match.params.kanjis; // from the path /naAdjectives/:naAdjective
@@ -103,6 +125,8 @@ const ManageNaAdjectivePage = (props) => {
         naAdjective={naAdjective}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        onMiddlePointClick={onMiddlePointClick}
+        onTranslateClick={handleTranslateClick}
       />
       {displayConjugationTable && (
         <NaAdjectiveConjugationTable naAdjective={naAdjective} />

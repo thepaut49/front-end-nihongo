@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import wordStore from "../../stores/wordStore";
 import { Prompt } from "react-router-dom";
 import * as wordActions from "../../actions/wordActions";
+import { translateRomajiToKana } from "../common/TranslateRomajiToKana";
 
 const ManageWordPage = (props) => {
   const [modified, setModified] = useState(false);
@@ -16,6 +17,27 @@ const ManageWordPage = (props) => {
     numberOfUse: null,
     version: null,
   });
+
+  const onMiddlePointClick = (event) => {
+    event.preventDefault();
+    let input = document.getElementById("pronunciation");
+    input.value = input.value + event.target.innerText;
+    setWord({
+      ...word,
+      pronunciation: word.pronunciation + event.target.innerText,
+    });
+  };
+
+  const handleTranslateClick = (event) => {
+    event.preventDefault();
+    let input = document.getElementById("pronunciation");
+    const newValue = translateRomajiToKana(input.value);
+    input.value = newValue;
+    setWord({
+      ...word,
+      pronunciation: newValue,
+    });
+  };
 
   useEffect(() => {
     const kanjis = props.match.params.kanjis; // from the path /words/:word
@@ -95,6 +117,8 @@ const ManageWordPage = (props) => {
         word={word}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        onMiddlePointClick={onMiddlePointClick}
+        onTranslateClick={handleTranslateClick}
       />
     </>
   );

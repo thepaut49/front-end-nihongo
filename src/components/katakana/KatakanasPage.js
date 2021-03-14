@@ -1,3 +1,4 @@
+import React from "react";
 import { katakanaMapToDisplay } from "../common/katakana";
 
 const hiraganaListStyle = {
@@ -8,7 +9,7 @@ const hiraganaListStyle = {
 
 const hiraganaStyle = {
   display: "grid",
-  grid: "1fr 1fr / 5em",
+  grid: "1fr 1fr / 3.5em",
   fontSize: "xx-large",
   backgroundColor: "rgba(38, 113, 22, 0.48)",
   margin: "0.5em",

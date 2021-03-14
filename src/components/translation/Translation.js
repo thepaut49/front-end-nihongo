@@ -1,7 +1,7 @@
+import React, { useState, useEffect } from "react";
 import "./Translation.css";
 import ListObject from "./ListObject";
 import ListOfParts from "./ListOfParts";
-import React, { useState, useEffect } from "react";
 import * as translationApi from "../../api/translationApi";
 import CustomSelect from "../common/CustomSelect";
 import CustomIntegerSelect from "../common/CustomIntegerSelect";

@@ -113,16 +113,6 @@ function KanjisPage(props) {
     }
   }
 
-  function handleClickKana(event) {
-    let input = document.getElementById("pronunciationCriteria");
-    input.value = input.value + event.target.innerText;
-    setKanjiCriteria({
-      ...kanjiCriteria,
-      pronunciationCriteria:
-        kanjiCriteria.pronunciationCriteria + event.target.innerText,
-    });
-  }
-
   function handleReset(event) {
     // ne marche pas
     Array.from(document.querySelectorAll("input")).forEach(
@@ -148,7 +138,6 @@ function KanjisPage(props) {
         errors={errors}
         onChange={handleChange}
         onClick={handleClick}
-        onClickKana={handleClickKana}
         onSubmit={handleSubmit}
         onReset={handleReset}
       />

@@ -2,7 +2,6 @@ export const japanesePunctuationList = [
   "。",
   "・",
   "〜",
-  "♪",
   "ー",
   "「",
   "」",
@@ -12,13 +11,13 @@ export const japanesePunctuationList = [
   "ヾ",
   "ゝ",
   "ゞ",
+  "♪",
 ];
 
 export const punctuationListWithoutDoublingkanji = [
   "。",
   "・",
   "〜",
-  "♪",
   "ー",
   "「",
   "」",
@@ -27,4 +26,5 @@ export const punctuationListWithoutDoublingkanji = [
   "ヾ",
   "ゝ",
   "ゞ",
+  "♪",
 ];

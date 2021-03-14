@@ -1,9 +1,9 @@
+import React from "react";
 import CustomInput from "../common/CustomInput";
+import CustomInputPronunciation from "../common/CustomInputPronunciation";
 import CustomSelect from "../common/CustomSelect";
 import verbConstants from "../common/verbConstants";
 import PropTypes from "prop-types";
-
-import React from "react";
 
 const formStyle = {
   backgroundColor: "#4682B4",
@@ -24,13 +24,15 @@ function VerbForm(props) {
         error={props.errors.neutralForm}
       />
 
-      <CustomInput
+      <CustomInputPronunciation
         id="pronunciation"
         label="Pronunciation"
         onChange={props.onChange}
         name="pronunciation"
         value={props.verb.pronunciation}
         error={props.errors.pronunciation}
+        onMiddlePointClick={props.onMiddlePointClick}
+        onTranslateClick={props.onTranslateClick}
       />
 
       <CustomInput
@@ -61,6 +63,8 @@ VerbForm.propTypes = {
   verb: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  onMiddlePointClick: PropTypes.func.isRequired,
+  onTranslateClick: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
 };
 

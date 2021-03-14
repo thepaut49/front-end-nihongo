@@ -1,8 +1,9 @@
-import CustomSelect from "../common/CustomSelect";
 import React, { useState, useEffect } from "react";
 import translationConstants from "../common/translationConstants";
 import ListOfCandidates from "./ListOfCandidates";
 import SplitPopup from "./SplitPopup";
+import CustomSelect from "../common/CustomSelect";
+import PropTypes from "prop-types";
 
 const partStyle = {
   display: "grid",
@@ -101,6 +102,12 @@ const Part = (props) => {
       )}
     </div>
   );
+};
+
+Part.prototypes = {
+  part: PropTypes.object.isRequired,
+  onPartChange: PropTypes.func.isRequired,
+  onPronunciationChange: PropTypes.func.isRequired,
 };
 
 export default Part;

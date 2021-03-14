@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Popup from "reactjs-popup";
 import "./SplitPopup.css";
 import translationConstants from "../common/translationConstants";
+import PropTypes from "prop-types";
 
 const SplitPopup = (props) => {
   const oldPart = props.oldPart;
@@ -31,7 +32,6 @@ const SplitPopup = (props) => {
   });
 
   useEffect(() => {
-    debugger;
     setFirstPart({
       type: translationConstants.TYPE_UNKNOWN,
       kanjis: oldPart.kanjis.substr(0, oldPart.kanjis.length - 1),
@@ -176,6 +176,11 @@ const SplitPopup = (props) => {
       )}
     </Popup>
   );
+};
+
+SplitPopup.prototypes = {
+  onSplitPart: PropTypes.func.isRequired,
+  oldPart: PropTypes.object.isRequired,
 };
 
 export default SplitPopup;

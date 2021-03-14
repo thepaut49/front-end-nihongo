@@ -5,6 +5,7 @@ import iAdjectiveStore from "../../stores/iAdjectiveStore";
 import { Prompt } from "react-router-dom";
 import * as iAdjectiveActions from "../../actions/iAdjectiveActions";
 import IAdjectiveConjugationTable from "./IAdjectiveConjugationTable";
+import { translateRomajiToKana } from "../common/TranslateRomajiToKana";
 
 const ManageIAdjectivePage = (props) => {
   const [modified, setModified] = useState(false);
@@ -18,6 +19,27 @@ const ManageIAdjectivePage = (props) => {
     numberOfUse: null,
     version: null,
   });
+
+  const onMiddlePointClick = (event) => {
+    event.preventDefault();
+    let input = document.getElementById("pronunciation");
+    input.value = input.value + event.target.innerText;
+    setIAdjective({
+      ...iAdjective,
+      pronunciation: iAdjective.pronunciation + event.target.innerText,
+    });
+  };
+
+  const handleTranslateClick = (event) => {
+    event.preventDefault();
+    let input = document.getElementById("pronunciation");
+    const newValue = translateRomajiToKana(input.value);
+    input.value = newValue;
+    setIAdjective({
+      ...iAdjective,
+      pronunciation: newValue,
+    });
+  };
 
   useEffect(() => {
     const kanjis = props.match.params.kanjis; // from the path /iAdjectives/:iAdjective
@@ -101,6 +123,8 @@ const ManageIAdjectivePage = (props) => {
         iAdjective={iAdjective}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        onMiddlePointClick={onMiddlePointClick}
+        onTranslateClick={handleTranslateClick}
       />
       {displayConjugationTable && (
         <IAdjectiveConjugationTable iAdjective={iAdjective} />

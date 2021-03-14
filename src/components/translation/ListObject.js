@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 function ListObject(props) {
   const [objectList, setObjectList] = useState([]);
@@ -28,5 +29,9 @@ function ListObject(props) {
     </div>
   );
 }
+
+ListObject.prototype = {
+  style: PropTypes.object.isRequired,
+};
 
 export default ListObject;

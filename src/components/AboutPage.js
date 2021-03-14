@@ -47,6 +47,7 @@ class AboutPage extends React.Component {
           <li>react-router-dom: 5.2.0</li>
           <li>react-scripts: 4.0.1</li>
           <li>react-toastify: 7.0.3</li>
+          <li>reactjs-popup: 2.0.4</li>
           <li>web-vitals: 0.2.4</li>
         </ul>
       </div>

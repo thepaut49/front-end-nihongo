@@ -1,6 +1,7 @@
+import React, { useState, useEffect } from "react";
 import Part from "./Part";
 import Kanji from "./Kanji";
-import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const listOfPartsStyle = {
   height: "100%",
@@ -125,6 +126,13 @@ const ListOfParts = (props) => {
       </div>
     </div>
   );
+};
+
+ListOfParts.prototypes = {
+  list: PropTypes.arrayOf(Object).isRequired,
+  listOfKanjis: PropTypes.arrayOf(Object).isRequired,
+  onSplitPart: PropTypes.func.isRequired,
+  onPronunciationChange: PropTypes.func.isRequired,
 };
 
 export default ListOfParts;

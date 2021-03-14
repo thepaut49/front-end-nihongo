@@ -5,6 +5,7 @@ import verbStore from "../../stores/verbStore";
 import { Prompt } from "react-router-dom";
 import * as verbActions from "../../actions/verbActions";
 import VerbConjugationTable from "./VerbConjugationTable";
+import { translateRomajiToKana } from "../common/TranslateRomajiToKana";
 
 const ManageVerbPage = (props) => {
   const [modified, setModified] = useState(false);
@@ -18,6 +19,27 @@ const ManageVerbPage = (props) => {
     numberOfUse: null,
     version: null,
   });
+
+  const onMiddlePointClick = (event) => {
+    event.preventDefault();
+    let input = document.getElementById("pronunciation");
+    input.value = input.value + event.target.innerText;
+    setVerb({
+      ...verb,
+      pronunciation: verb.pronunciation + event.target.innerText,
+    });
+  };
+
+  const handleTranslateClick = (event) => {
+    event.preventDefault();
+    let input = document.getElementById("pronunciation");
+    const newValue = translateRomajiToKana(input.value);
+    input.value = newValue;
+    setVerb({
+      ...verb,
+      pronunciation: newValue,
+    });
+  };
 
   useEffect(() => {
     const neutralForm = props.match.params.neutralForm; // from the path /verbs/:verb
@@ -105,6 +127,8 @@ const ManageVerbPage = (props) => {
         verb={verb}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        onMiddlePointClick={onMiddlePointClick}
+        onTranslateClick={handleTranslateClick}
       />
       {displayConjugationTable && <VerbConjugationTable verb={verb} />}
     </>

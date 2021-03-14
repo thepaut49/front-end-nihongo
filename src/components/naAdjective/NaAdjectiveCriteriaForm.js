@@ -1,9 +1,7 @@
+import React from "react";
 import CustomInput from "../common/CustomInput";
-import CustomInputPronunciation from "../common/CustomInputPronunciation";
 import PropTypes from "prop-types";
 import "./NaAdjectiveCriteriaForm.css";
-
-import React from "react";
 
 const filterStyle = {
   backgroundColor: "#4682B4",
@@ -54,13 +52,12 @@ function NaAdjectiveCriteriaForm(props) {
             value={props.naAdjectiveCriteria.kanjis}
           />
 
-          <CustomInputPronunciation
+          <CustomInput
             id="pronunciationCriteria"
             label="PronunciationCriteria"
             onChange={props.onChange}
             name="pronunciationCriteria"
             value={props.naAdjectiveCriteria.pronunciation}
-            onClick={props.onClick}
           />
 
           <CustomInput

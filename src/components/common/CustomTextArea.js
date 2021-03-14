@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { specialKanas } from "./TranslateRomajiToKana";
 import { japanesePunctuationList } from "./japanesePunctuation";
 
 const styleButtons = {
+  marginTop: "0.4em",
   display: "grid",
   gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr",
   gap: "1em 1em",
@@ -31,17 +31,6 @@ function CustomTextArea(props) {
       </div>
       {props.onKanaClick && (
         <div style={styleButtons}>
-          {specialKanas.map((kana, index) => {
-            return (
-              <button
-                key={index}
-                className="btn btn-primary"
-                onClick={props.onKanaClick}
-              >
-                {kana}
-              </button>
-            );
-          })}
           {japanesePunctuationList.map((punctuation, index) => {
             return (
               <button

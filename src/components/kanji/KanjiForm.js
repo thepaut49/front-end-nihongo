@@ -1,10 +1,10 @@
+import React from "react";
 import { GridList, GridListTile } from "@material-ui/core";
 import { radicals, nbrOfStrokesString } from "../common/Radicals";
 import CustomInput from "../common/CustomInput";
+import CustomInputPronunciation from "../common/CustomInputPronunciation";
 import CustomIntegerInput from "../common/CustomIntegerInput";
 import PropTypes from "prop-types";
-
-import React from "react";
 
 function KanjiForm(props) {
   const gridListStyle = { width: "60%" };
@@ -34,13 +34,15 @@ function KanjiForm(props) {
         error={props.errors.kanji}
       />
 
-      <CustomInput
+      <CustomInputPronunciation
         id="pronunciation"
         label="Pronunciation"
         onChange={props.onChange}
         name="pronunciation"
         value={props.kanji.pronunciation}
         error={props.errors.pronunciation}
+        onMiddlePointClick={props.onMiddlePointClick}
+        onTranslateClick={props.onTranslateClick}
       />
 
       <CustomInput
@@ -97,6 +99,8 @@ KanjiForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
+  onMiddlePointClick: PropTypes.func.isRequired,
+  onTranslateClick: PropTypes.func.isRequired,
 };
 
 export default KanjiForm;

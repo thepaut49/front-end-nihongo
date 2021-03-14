@@ -1,9 +1,7 @@
+import React from "react";
 import CustomInput from "../common/CustomInput";
-import CustomInputPronunciation from "../common/CustomInputPronunciation";
 import PropTypes from "prop-types";
 import "./IAdjectiveCriteriaForm.css";
-
-import React from "react";
 
 const filterStyle = {
   backgroundColor: "#4682B4",
@@ -52,13 +50,12 @@ function IAdjectiveCriteriaForm(props) {
             value={props.iAdjectiveCriteria.kanjis}
           />
 
-          <CustomInputPronunciation
+          <CustomInput
             id="pronunciationCriteria"
             label="PronunciationCriteria"
             onChange={props.onChange}
             name="pronunciationCriteria"
             value={props.iAdjectiveCriteria.pronunciation}
-            onClick={props.onClick}
           />
 
           <CustomInput

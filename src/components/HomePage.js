@@ -13,6 +13,22 @@ function HomePage() {
   return (
     <div style={styleHomePage}>
       <h1>Nihongo tools</h1>
+      <h2>Pronunciation fields</h2>
+      <p>
+        All the pronunciation criteria fields in filters and in the translation
+        in this app translate automatically romaji into hiragana and katakana.
+        The others pronunciation fields have a button to translate romaji into
+        hiragana and katakana.
+      </p>
+      <p>For these six hiragana and katakana you have to type :</p>
+      <ul>
+        <li>ん: -n</li>
+        <li>ぢ: dji</li>
+        <li>づ: dzu</li>
+        <li>ン: -N</li>
+        <li>ヂ: DJI</li>
+        <li>ヅ: DZU</li>
+      </ul>
       <h2>Kanjis</h2>
       <ul>
         <li>List the kanjis in the database</li>
@@ -91,6 +107,14 @@ function HomePage() {
           and pronunciation by the user to adapt the result of the search
           according to the context
         </li>
+      </ul>
+      <h2>Hiragana</h2>
+      <ul>
+        <li>List the Hiraganas with their pronunciation</li>
+      </ul>
+      <h2>Katakana</h2>
+      <ul>
+        <li>List the Katakanas with their pronunciation</li>
       </ul>
 
       <Link to="about" className="btn btn-primary">

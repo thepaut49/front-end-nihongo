@@ -1,12 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { specialKanas } from "./TranslateRomajiToKana";
 
 function CustomInputPronunciation(props) {
   const styleButtons = {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr",
-    gap: "1em 1em",
+    margin: "0.4em",
   };
   let wrapperClass = "form-group";
   if (props.error.length > 0) {
@@ -27,17 +24,21 @@ function CustomInputPronunciation(props) {
           maxLength={props.maxLength}
         />
         <div style={styleButtons}>
-          {specialKanas.map((kana, index) => {
-            return (
-              <button
-                key={index}
-                className="btn btn-primary"
-                onClick={props.onClick}
-              >
-                {kana}
-              </button>
-            );
-          })}
+          <button
+            className="btn btn-primary"
+            onClick={props.onMiddlePointClick}
+          >
+            ・
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={props.onMiddlePointClick}
+          >
+            〜
+          </button>
+          <button className="btn btn-primary" onClick={props.onTranslateClick}>
+            Translate to kanas
+          </button>
         </div>
       </div>
       {props.error && <div className="alert alert-danger">{props.error}</div>}
@@ -58,6 +59,8 @@ CustomInputPronunciation.propTypes = {
   value: PropTypes.string,
   error: PropTypes.string,
   maxLength: PropTypes.string,
+  onMiddlePointClick: PropTypes.func.isRequired,
+  onTranslateClick: PropTypes.func.isRequired,
 };
 
 export default CustomInputPronunciation;

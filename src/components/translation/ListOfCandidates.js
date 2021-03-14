@@ -2,6 +2,7 @@ import React from "react";
 import Popup from "reactjs-popup";
 import "./ListOfCandidates.css";
 import Candidate from "./Candidate";
+import PropTypes from "prop-types";
 
 const ListOfCandidates = (props) => {
   const candidatesList = props.candidatesList;
@@ -39,6 +40,11 @@ const ListOfCandidates = (props) => {
       )}
     </Popup>
   );
+};
+
+ListOfCandidates.prototype = {
+  candidatesList: PropTypes.arrayOf(Object).isRequired,
+  onCandidateClick: PropTypes.func.isRequired,
 };
 
 export default ListOfCandidates;

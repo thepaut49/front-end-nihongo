@@ -334,6 +334,15 @@ function secondPhaseOfTranslation(oldString) {
           newString2Letter = tempChaine;
           newString2Letter += "の";
           break;
+        case "-n":
+          indexCaractereAEnlever = newString2Letter.length - 1;
+          tempChaine = "";
+          for (j = 0; j < indexCaractereAEnlever; j++) {
+            tempChaine += newString2Letter[j];
+          }
+          newString2Letter = tempChaine;
+          newString2Letter += "ん";
+          break;
         case "Nア":
           indexCaractereAEnlever = newString2Letter.length - 1;
           tempChaine = "";
@@ -379,7 +388,15 @@ function secondPhaseOfTranslation(oldString) {
           newString2Letter = tempChaine;
           newString2Letter += "ノ";
           break;
-
+        case "-N":
+          indexCaractereAEnlever = newString2Letter.length - 1;
+          tempChaine = "";
+          for (j = 0; j < indexCaractereAEnlever; j++) {
+            tempChaine += newString2Letter[j];
+          }
+          newString2Letter = tempChaine;
+          newString2Letter += "ン";
+          break;
         // !!!!!!!!!!! ha hi fu he ho!!!!!!!!!!!
         case "hあ":
           indexCaractereAEnlever = newString2Letter.length - 1;
@@ -945,24 +962,6 @@ function secondPhaseOfTranslation(oldString) {
           newString2Letter = tempChaine;
           newString2Letter += "だ";
           break;
-        case "じ=":
-          indexCaractereAEnlever = newString2Letter.length - 1;
-          tempChaine = "";
-          for (j = 0; j < indexCaractereAEnlever; j++) {
-            tempChaine += newString2Letter[j];
-          }
-          newString2Letter = tempChaine;
-          newString2Letter += "ぢ";
-          break;
-        case "ず=":
-          indexCaractereAEnlever = newString2Letter.length - 1;
-          tempChaine = "";
-          for (j = 0; j < indexCaractereAEnlever; j++) {
-            tempChaine += newString2Letter[j];
-          }
-          newString2Letter = tempChaine;
-          newString2Letter += "づ";
-          break;
         case "dえ":
           indexCaractereAEnlever = newString2Letter.length - 1;
           tempChaine = "";
@@ -989,24 +988,6 @@ function secondPhaseOfTranslation(oldString) {
           }
           newString2Letter = tempChaine;
           newString2Letter += "ダ";
-          break;
-        case "ジ=":
-          indexCaractereAEnlever = newString2Letter.length - 1;
-          tempChaine = "";
-          for (j = 0; j < indexCaractereAEnlever; j++) {
-            tempChaine += newString2Letter[j];
-          }
-          newString2Letter = tempChaine;
-          newString2Letter += "ヂ";
-          break;
-        case "ズ=":
-          indexCaractereAEnlever = newString2Letter.length - 1;
-          tempChaine = "";
-          for (j = 0; j < indexCaractereAEnlever; j++) {
-            tempChaine += newString2Letter[j];
-          }
-          newString2Letter = tempChaine;
-          newString2Letter += "ヅ";
           break;
         case "Dエ":
           indexCaractereAEnlever = newString2Letter.length - 1;
@@ -2028,6 +2009,44 @@ function thirdPhase(oldString) {
           }
           newString2Letter = tempChaine;
           newString2Letter += "ツ";
+          break;
+
+        // !!!!!!!!! DJI DZU!!!!!!!!
+        case "dじ":
+          indexCaractereAEnlever = newString2Letter.length - 1;
+          tempChaine = "";
+          for (j = 0; j < indexCaractereAEnlever; j++) {
+            tempChaine += newString2Letter[j];
+          }
+          newString2Letter = tempChaine;
+          newString2Letter += "ぢ";
+          break;
+        case "dず":
+          indexCaractereAEnlever = newString2Letter.length - 1;
+          tempChaine = "";
+          for (j = 0; j < indexCaractereAEnlever; j++) {
+            tempChaine += newString2Letter[j];
+          }
+          newString2Letter = tempChaine;
+          newString2Letter += "づ";
+          break;
+        case "Dジ":
+          indexCaractereAEnlever = newString2Letter.length - 1;
+          tempChaine = "";
+          for (j = 0; j < indexCaractereAEnlever; j++) {
+            tempChaine += newString2Letter[j];
+          }
+          newString2Letter = tempChaine;
+          newString2Letter += "ヂ";
+          break;
+        case "Dズ":
+          indexCaractereAEnlever = newString2Letter.length - 1;
+          tempChaine = "";
+          for (j = 0; j < indexCaractereAEnlever; j++) {
+            tempChaine += newString2Letter[j];
+          }
+          newString2Letter = tempChaine;
+          newString2Letter += "ヅ";
           break;
 
         default:

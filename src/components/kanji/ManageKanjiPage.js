@@ -5,6 +5,7 @@ import kanjiStore from "../../stores/kanjiStore";
 import { radicals as radicalsList } from "../common/Radicals";
 import { Prompt } from "react-router-dom";
 import * as kanjiActions from "../../actions/kanjiActions";
+import { translateRomajiToKana } from "../common/TranslateRomajiToKana";
 
 const ManageKanjiPage = (props) => {
   const [modified, setModified] = useState(false);
@@ -19,6 +20,27 @@ const ManageKanjiPage = (props) => {
     numberOfUse: null,
     version: null,
   });
+
+  const onMiddlePointClick = (event) => {
+    event.preventDefault();
+    let input = document.getElementById("pronunciation");
+    input.value = input.value + event.target.innerText;
+    setKanji({
+      ...kanji,
+      pronunciation: kanji.pronunciation + event.target.innerText,
+    });
+  };
+
+  const handleTranslateClick = (event) => {
+    event.preventDefault();
+    let input = document.getElementById("pronunciation");
+    const newValue = translateRomajiToKana(input.value);
+    input.value = newValue;
+    setKanji({
+      ...kanji,
+      pronunciation: newValue,
+    });
+  };
 
   useEffect(() => {
     const character = props.match.params.kanji; // from the path /kanjis/:kanji
@@ -129,6 +151,8 @@ const ManageKanjiPage = (props) => {
         onChange={handleChange}
         onSubmit={handleSubmit}
         onClick={handleClick}
+        onMiddlePointClick={onMiddlePointClick}
+        onTranslateClick={handleTranslateClick}
       />
     </>
   );

@@ -1,3 +1,6 @@
+import React from "react";
+import PropTypes from "prop-types";
+
 const Kanji = (props) => {
   const kanji = props.kanji;
   return (
@@ -33,6 +36,10 @@ const Kanji = (props) => {
       </div>
     </div>
   );
+};
+
+Kanji.prototypes = {
+  kanji: PropTypes.object.isRequired,
 };
 
 export default Kanji;

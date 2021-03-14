@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import nameStore from "../../stores/nameStore";
 import { Prompt } from "react-router-dom";
 import * as nameActions from "../../actions/nameActions";
+import { translateRomajiToKana } from "../common/TranslateRomajiToKana";
 
 const ManageNamePage = (props) => {
   const [modified, setModified] = useState(false);
@@ -16,6 +17,27 @@ const ManageNamePage = (props) => {
     numberOfUse: null,
     version: null,
   });
+
+  const onMiddlePointClick = (event) => {
+    event.preventDefault();
+    let input = document.getElementById("pronunciation");
+    input.value = input.value + event.target.innerText;
+    setName({
+      ...name,
+      pronunciation: name.pronunciation + event.target.innerText,
+    });
+  };
+
+  const handleTranslateClick = (event) => {
+    event.preventDefault();
+    let input = document.getElementById("pronunciation");
+    const newValue = translateRomajiToKana(input.value);
+    input.value = newValue;
+    setName({
+      ...name,
+      pronunciation: newValue,
+    });
+  };
 
   useEffect(() => {
     const kanjis = props.match.params.kanjis; // from the path /names/:name
@@ -95,6 +117,8 @@ const ManageNamePage = (props) => {
         name={name}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        onMiddlePointClick={onMiddlePointClick}
+        onTranslateClick={handleTranslateClick}
       />
     </>
   );
