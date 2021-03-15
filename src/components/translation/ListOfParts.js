@@ -27,12 +27,14 @@ const listOfKanjisToHideStyle = {
   display: "none",
   padding: "0.4em",
   margin: "0.4em",
+  gap: "0.2em",
 };
 
 const listOfPartsToHideStyle = {
   display: "grid",
   padding: "0.4em",
   margin: "0.4em",
+  gap: "0.2em",
   gridTemplateColumns: "repeat(auto-fill,15em)",
 };
 

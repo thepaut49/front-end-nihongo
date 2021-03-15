@@ -62,6 +62,8 @@ const Translation = () => {
   const [listObjectsStyle, setListObjectsStyle] = useState({
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit,3em)",
+    margin: "0.2em",
+    gap: "0.2em",
   });
   const [listParts, setListParts] = useState([]);
   const [listOfKanjis, setListOfKanjis] = useState([]);
@@ -152,11 +154,15 @@ const Translation = () => {
       setListObjectsStyle({
         display: "grid",
         gridTemplateColumns: "repeat(auto-fit,3em)",
+        margin: "0.2em",
+        gap: "0.2em",
       });
     } else {
       setListObjectsStyle({
         display: "grid",
         gridTemplateColumns: "repeat(auto-fit,10em)",
+        margin: "0.2em",
+        gap: "0.2em",
       });
     }
     setListObjects(translationApi.getMostUsedObject(_typeSelect, _quantity));
@@ -184,10 +190,6 @@ const Translation = () => {
 
   const handleClearClick = (event) => {
     event.preventDefault();
-    setSentence("");
-    Array.from(document.querySelectorAll("textarea")).forEach(
-      (textarea) => (textarea.value = "")
-    );
     setListParts([]);
     setListOfKanjis([]);
     setPronunciation("");

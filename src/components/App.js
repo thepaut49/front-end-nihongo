@@ -18,6 +18,8 @@ import ManageWordPage from "./word/ManageWordPage";
 import WordsPage from "./word/WordsPage";
 import ManageParticulePage from "./particule/ManageParticulePage";
 import ParticulesPage from "./particule/ParticulesPage";
+import ManageGrammarRulePage from "./grammarrule/ManageGrammarRulePage";
+import GrammarRulesPage from "./grammarrule/GrammarRulesPage";
 import HiraganasPage from "./hiragana/HiraganasPage";
 import KatakanasPage from "./katakana/KatakanasPage";
 import Translation from "./translation/Translation";
@@ -57,6 +59,9 @@ function App() {
           <Route path="/particules" component={ParticulesPage} />
           <Route path="/particule/:kanjis" component={ManageParticulePage} />
           <Route path="/particule" component={ManageParticulePage} />
+          <Route path="/grammarRules" component={GrammarRulesPage} />
+          <Route path="/grammarRule/:title" component={ManageGrammarRulePage} />
+          <Route path="/grammarRule" component={ManageGrammarRulePage} />
           <Route path="/translation" component={Translation} />
           <Route path="/hiraganas" component={HiraganasPage} />
           <Route path="/katakanas" component={KatakanasPage} />

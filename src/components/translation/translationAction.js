@@ -94,7 +94,7 @@ export const extractParts = (
       }
     }
   }
-
+  debugger;
   listOfParts = addOfUnknownParts(
     sentence,
     listOfParts,
@@ -121,6 +121,7 @@ const addOfUnknownParts = (
 ) => {
   // add of unknown parts
   let listOfPartsWithUnknownParts = [];
+  debugger;
   if (listOfParts.length === 0) {
     let unknownPart = partIsAParticule(
       sentence,
@@ -165,9 +166,35 @@ const addOfUnknownParts = (
               currentPart.currentIndex + currentPart.length <
               sentence.length
             ) {
+              // si la index courant dépasse le dernier charactère on ne rajoute rien car la dernière part se termine au dernier caractère
               let sentenceUnknownPart = sentence.substr(
                 currentPart.currentIndex + currentPart.length
               );
+              if (sentenceUnknownPart.length > 0) {
+                let unknownPart = partIsAParticule(
+                  sentenceUnknownPart,
+                  currentPart.currentIndex + currentPart.length,
+                  particules,
+                  verbs,
+                  naAdjectives,
+                  iAdjectives,
+                  names,
+                  words
+                );
+                listOfPartsWithUnknownParts.push(unknownPart);
+              }
+            }
+            //si on est au bout on fait rien
+          } else {
+            // on regarde la partie suivante
+            let nextPart = listOfParts[index + 1];
+            let sentenceUnknownPart = sentence.substr(
+              currentPart.currentIndex + currentPart.length,
+              nextPart.currentIndex -
+                currentPart.currentIndex -
+                currentPart.length
+            );
+            if (sentenceUnknownPart.length > 0) {
               let unknownPart = partIsAParticule(
                 sentenceUnknownPart,
                 currentPart.currentIndex + currentPart.length,
@@ -180,27 +207,6 @@ const addOfUnknownParts = (
               );
               listOfPartsWithUnknownParts.push(unknownPart);
             }
-            //si on est au bout on fait rien
-          } else {
-            // on regarde la partie suivante
-            let nextPart = listOfParts[index + 1];
-            let sentenceUnknownPart = sentence.substr(
-              currentPart.currentIndex + currentPart.length,
-              nextPart.currentIndex -
-                currentPart.currentIndex -
-                currentPart.length
-            );
-            let unknownPart = partIsAParticule(
-              sentenceUnknownPart,
-              currentPart.currentIndex + currentPart.length,
-              particules,
-              verbs,
-              naAdjectives,
-              iAdjectives,
-              names,
-              words
-            );
-            listOfPartsWithUnknownParts.push(unknownPart);
           }
         }
       } else {
@@ -212,6 +218,31 @@ const addOfUnknownParts = (
             let sentenceUnknownPart = sentence.substr(
               currentPart.currentIndex + currentPart.length
             );
+            if (sentenceUnknownPart.length > 0) {
+              let unknownPart = partIsAParticule(
+                sentenceUnknownPart,
+                currentPart.currentIndex + currentPart.length,
+                particules,
+                verbs,
+                naAdjectives,
+                iAdjectives,
+                names,
+                words
+              );
+              listOfPartsWithUnknownParts.push(unknownPart);
+            }
+          }
+          //si on est au bout on fait rien
+        } else {
+          // on regarde la partie suivante
+          let nextPart = listOfParts[index + 1];
+          let sentenceUnknownPart = sentence.substr(
+            currentPart.currentIndex + currentPart.length,
+            nextPart.currentIndex -
+              currentPart.currentIndex -
+              currentPart.length
+          );
+          if (sentenceUnknownPart.length > 0) {
             let unknownPart = partIsAParticule(
               sentenceUnknownPart,
               currentPart.currentIndex + currentPart.length,
@@ -224,27 +255,6 @@ const addOfUnknownParts = (
             );
             listOfPartsWithUnknownParts.push(unknownPart);
           }
-          //si on est au bout on fait rien
-        } else {
-          // on regarde la partie suivante
-          let nextPart = listOfParts[index + 1];
-          let sentenceUnknownPart = sentence.substr(
-            currentPart.currentIndex + currentPart.length,
-            nextPart.currentIndex -
-              currentPart.currentIndex -
-              currentPart.length
-          );
-          let unknownPart = partIsAParticule(
-            sentenceUnknownPart,
-            currentPart.currentIndex + currentPart.length,
-            particules,
-            verbs,
-            naAdjectives,
-            iAdjectives,
-            names,
-            words
-          );
-          listOfPartsWithUnknownParts.push(unknownPart);
         }
       }
     }

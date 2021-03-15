@@ -14,13 +14,6 @@ const particuleTitleStyle = {
   fontSize: "xxx-large",
 };
 
-const exampleStyle = {
-  backgroundColor: "rgba(38, 113, 22, 0.48)",
-  color: "white",
-  margin: "0.1em",
-  padding: "0.1em",
-};
-
 function ParticuleList(props) {
   return (
     <div>
@@ -46,11 +39,10 @@ function ParticuleList(props) {
               <h2>
                 Japanese Examples SENTENCES with the particle {particule.kanjis}
               </h2>
-              <textarea
-                style={exampleStyle}
-                value={particule.examples}
-                cols={70}
-                rows={20}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: particule.examples,
+                }}
               />
             </div>
 
