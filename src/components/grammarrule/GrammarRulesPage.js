@@ -11,7 +11,7 @@ const GrammarRulesPage = () => {
   const [grammarRules, setGrammarRules] = useState(
     grammarRuleStore.getGrammarRules()
   );
-  debugger;
+
   useEffect(() => {
     grammarRuleStore.addChangeListener(onChange);
     if (grammarRuleStore.getGrammarRules().length === 0) loadGrammarRules();

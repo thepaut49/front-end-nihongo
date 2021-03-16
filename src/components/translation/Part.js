@@ -93,11 +93,16 @@ const Part = (props) => {
       </div>
       {translationConstants.TYPE_UNKNOWN === part.type && (
         <>
-          <SplitPopup oldPart={part} onSplitPart={props.onSplitPart} />
-          <ListOfCandidates
-            candidatesList={part.listOfValues}
-            onCandidateClick={onCandidateClick}
-          />
+          {part.length > 1 && (
+            <SplitPopup oldPart={part} onSplitPart={props.onSplitPart} />
+          )}
+
+          {part.listOfValues.length > 0 && (
+            <ListOfCandidates
+              candidatesList={part.listOfValues}
+              onCandidateClick={onCandidateClick}
+            />
+          )}
         </>
       )}
     </div>

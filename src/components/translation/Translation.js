@@ -22,7 +22,11 @@ import { loadIAdjectives } from "../../actions/iAdjectiveActions";
 import { loadNames } from "../../actions/nameActions";
 import { loadWords } from "../../actions/wordActions";
 import { loadParticules } from "../../actions/particuleActions";
-import { extractListOfKanji, extractParts } from "./translationAction";
+import {
+  extractListOfKanji,
+  extractParts,
+  findListOfCandidates,
+} from "./translationAction";
 
 const typeSelectListOfValue = [
   translationConstants.TYPE_KANJI,
@@ -222,8 +226,31 @@ const Translation = () => {
   };
 
   const handleSplitPart = (newList) => {
-    debugger;
-    setListParts(newList);
+    let newPartsList = [];
+    newList.forEach((part) => {
+      if (
+        part.type === translationConstants.TYPE_UNKNOWN &&
+        part.listOfValues.length === 0
+      ) {
+        let partWithCandidates = {
+          ...part,
+          listOfValues: findListOfCandidates(
+            part.kanjis,
+            part.currentIndex,
+            verbs,
+            naAdjectives,
+            iAdjectives,
+            names,
+            words,
+            particules
+          ),
+        };
+        newPartsList.push(partWithCandidates);
+      } else {
+        newPartsList.push(part);
+      }
+    });
+    setListParts(newPartsList);
   };
 
   return (

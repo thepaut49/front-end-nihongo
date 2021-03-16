@@ -78,7 +78,6 @@ const ListOfParts = (props) => {
           newList.push(part);
         }
       });
-      debugger;
       setListOfParts(newList);
       props.onSplitPart(newList);
     }

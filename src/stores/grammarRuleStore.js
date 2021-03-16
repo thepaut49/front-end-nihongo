@@ -19,7 +19,6 @@ class GrammarRuleStore extends EventEmitter {
   }
 
   getGrammarRules() {
-    debugger;
     return _grammarRules;
   }
 

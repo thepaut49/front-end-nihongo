@@ -23,6 +23,7 @@ import {
 } from "../common/iAdjectiveConjugator";
 import verbConstants from "../common/verbConstants";
 import translationConstants from "../common/translationConstants";
+import { punctuationListWithoutDoublingkanji } from "../common/japanesePunctuation";
 
 export const extractListOfKanji = (sentence, kanjis) => {
   // je transforme ma chaine de charactère en tableau de type SEt pour que chaque element soit unique
@@ -94,7 +95,6 @@ export const extractParts = (
       }
     }
   }
-  debugger;
   listOfParts = addOfUnknownParts(
     sentence,
     listOfParts,
@@ -121,7 +121,6 @@ const addOfUnknownParts = (
 ) => {
   // add of unknown parts
   let listOfPartsWithUnknownParts = [];
-  debugger;
   if (listOfParts.length === 0) {
     let unknownPart = partIsAParticule(
       sentence,
@@ -156,6 +155,54 @@ const addOfUnknownParts = (
           );
           listOfPartsWithUnknownParts.push(unknownPart);
           listOfPartsWithUnknownParts.push(currentPart);
+          if (index === listOfParts.length - 1) {
+            // on est rendu au dernier élément on regarde si il reste une partie inconnu
+            if (
+              currentPart.currentIndex + currentPart.length <
+              sentence.length
+            ) {
+              // si la index courant dépasse le dernier charactère on ne rajoute rien car la dernière part se termine au dernier caractère
+              let sentenceUnknownPart = sentence.substr(
+                currentPart.currentIndex + currentPart.length
+              );
+              if (sentenceUnknownPart.length > 0) {
+                let unknownPart = partIsAParticule(
+                  sentenceUnknownPart,
+                  currentPart.currentIndex + currentPart.length,
+                  particules,
+                  verbs,
+                  naAdjectives,
+                  iAdjectives,
+                  names,
+                  words
+                );
+                listOfPartsWithUnknownParts.push(unknownPart);
+              }
+            }
+            //si on est au bout on fait rien
+          } else {
+            // on regarde la partie suivante
+            let nextPart = listOfParts[index + 1];
+            let sentenceUnknownPart = sentence.substr(
+              currentPart.currentIndex + currentPart.length,
+              nextPart.currentIndex -
+                currentPart.currentIndex -
+                currentPart.length
+            );
+            if (sentenceUnknownPart.length > 0) {
+              let unknownPart = partIsAParticule(
+                sentenceUnknownPart,
+                currentPart.currentIndex + currentPart.length,
+                particules,
+                verbs,
+                naAdjectives,
+                iAdjectives,
+                names,
+                words
+              );
+              listOfPartsWithUnknownParts.push(unknownPart);
+            }
+          }
         }
         // la première partie commence à l'indice 0
         else {
@@ -259,7 +306,106 @@ const addOfUnknownParts = (
       }
     }
   }
+
+  listOfPartsWithUnknownParts = addPunctuationPart(listOfPartsWithUnknownParts);
   return listOfPartsWithUnknownParts;
+};
+
+const addPunctuationPart = (listOfParts) => {
+  let listOfPartsUpdated = [];
+  listOfParts.forEach((part) => {
+    if (part.type === translationConstants.TYPE_UNKNOWN) {
+      let indexKanjis = 0;
+      let currentLength = 1;
+      let sentencePart = part.kanjis.substr(indexKanjis, currentLength);
+      let listOfWord = [];
+      while (
+        indexKanjis < part.kanjis.length &&
+        indexKanjis + currentLength < part.kanjis.length
+      ) {
+        if (
+          indexKanjis === 0 &&
+          currentLength === 1 &&
+          wordContainPunctuation(sentencePart)
+        ) {
+          listOfWord.push(sentencePart);
+          indexKanjis = indexKanjis + currentLength;
+          currentLength = 1;
+          sentencePart = part.kanjis.substr(indexKanjis, currentLength);
+        } else if (wordContainPunctuation(sentencePart)) {
+          // il y a un ponctuation dans sentencePart
+          sentencePart = part.kanjis.substr(indexKanjis, currentLength);
+          listOfWord.push(sentencePart);
+          indexKanjis = indexKanjis + currentLength;
+          currentLength = 1;
+        } else {
+          currentLength++;
+          sentencePart = part.kanjis.substr(indexKanjis, currentLength);
+        }
+      }
+      if (reconstructSentence(listOfWord) !== part.kanjis) {
+        sentencePart = part.kanjis.substr(indexKanjis);
+        listOfWord.push(sentencePart);
+      }
+
+      let currentIndex = part.currentIndex;
+      listOfWord.forEach((word) => {
+        if (wordContainPunctuation(word)) {
+          let newPunctuationPart = {
+            type: translationConstants.TYPE_PUNCTUATION,
+            kanjis: word,
+            selectedPronunciation: word,
+            selectedMeaning: "",
+            pronunciations: [word],
+            meanings: [],
+            unknown: false,
+            length: 1,
+            currentIndex: currentIndex,
+            listOfValues: [],
+          };
+          listOfPartsUpdated.push(newPunctuationPart);
+          currentIndex++;
+        } else {
+          // mot inconnu
+          let newPart = {
+            type: translationConstants.TYPE_UNKNOWN,
+            kanjis: word,
+            selectedPronunciation: "?",
+            selectedMeaning: "?",
+            pronunciations: ["?"],
+            meanings: ["?"],
+            unknown: true,
+            length: word.length,
+            currentIndex: currentIndex,
+            listOfValues: [],
+          };
+          listOfPartsUpdated.push(newPart);
+          currentIndex = currentIndex + word.length;
+        }
+      });
+    } else {
+      listOfPartsUpdated.push(part);
+    }
+  });
+
+  return listOfPartsUpdated;
+};
+
+const wordContainPunctuation = (word) => {
+  for (let index = 0; index < word.length; index++) {
+    if (punctuationListWithoutDoublingkanji.includes(word[index])) {
+      return true;
+    }
+  }
+  return false;
+};
+
+const reconstructSentence = (listOfWord) => {
+  let sentence = "";
+  listOfWord.forEach((word) => {
+    sentence = sentence + word;
+  });
+  return sentence;
 };
 
 function isSuru(verb) {
@@ -686,14 +832,41 @@ const wordCandidate = (sentencePart, currentIndex, words) => {
   return candidateList;
 };
 
-const findListOfCandidates = (
+const particuleCandidate = (sentencePart, currentIndex, particules) => {
+  let part = null;
+  let candidateList = [];
+  debugger;
+  if (!particules) return candidateList;
+  for (let index = 0; index < particules.length; index++) {
+    let particule = particules[index];
+    if (particule.kanjis === sentencePart) {
+      part = {
+        type: translationConstants.TYPE_PARTICULE,
+        kanjis: sentencePart,
+        selectedPronunciation: sentencePart,
+        selectedMeaning: particule.summary,
+        pronunciations: [sentencePart],
+        meanings: [particule.summary],
+        unknown: false,
+        length: sentencePart.length,
+        currentIndex: currentIndex,
+        listOfValues: [],
+      };
+      candidateList.push(part);
+    }
+  }
+  return candidateList;
+};
+
+export const findListOfCandidates = (
   sentencePart,
   currentIndex,
   verbs,
   naAdjectives,
   iAdjectives,
   names,
-  words
+  words,
+  particules
 ) => {
   let listOfCandidates = [];
   let listOfVerbCandidates = verbCandidate(sentencePart, currentIndex, verbs);
@@ -709,6 +882,11 @@ const findListOfCandidates = (
   );
   let listOfNameCandidates = nameCandidate(sentencePart, currentIndex, names);
   let listOfWordCandidates = wordCandidate(sentencePart, currentIndex, words);
+  let listOfparticuleCandidates = particuleCandidate(
+    sentencePart,
+    currentIndex,
+    particules
+  );
 
   if (listOfVerbCandidates.length > 0) {
     listOfCandidates = listOfCandidates.concat(listOfVerbCandidates);
@@ -724,6 +902,10 @@ const findListOfCandidates = (
   }
   if (listOfWordCandidates.length > 0) {
     listOfCandidates = listOfCandidates.concat(listOfWordCandidates);
+  }
+
+  if (listOfparticuleCandidates.length > 0) {
+    listOfCandidates = listOfCandidates.concat(listOfparticuleCandidates);
   }
 
   return listOfCandidates;
@@ -766,7 +948,8 @@ const partIsAParticule = (
     naAdjectives,
     iAdjectives,
     names,
-    words
+    words,
+    particules
   );
   part = {
     type: translationConstants.TYPE_UNKNOWN,

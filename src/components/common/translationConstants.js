@@ -9,6 +9,7 @@ const translationConstants = {
   DEFAULT_TYPE: "Kanji",
   TYPE_UNKNOWN: "Unknown",
   TYPE_PARTICULE: "Particle",
+  TYPE_PUNCTUATION: "Punctuation",
 };
 
 export default translationConstants;
