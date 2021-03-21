@@ -1,5 +1,6 @@
 import { handleResponse, handleError } from "./apiUtils";
-const baseUrl = process.env.REACT_APP_API_URL + "/words/";
+import { REACT_APP_API_URL } from "./apiConstants";
+const baseUrl = REACT_APP_API_URL + "/words/";
 
 export function getWords() {
   return fetch(baseUrl + "all")

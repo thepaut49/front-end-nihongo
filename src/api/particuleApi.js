@@ -1,5 +1,6 @@
 import { handleResponse, handleError } from "./apiUtils";
-const baseUrl = process.env.REACT_APP_API_URL + "/particules/";
+import { REACT_APP_API_URL } from "./apiConstants";
+const baseUrl = REACT_APP_API_URL + "/particules/";
 
 export function getParticules() {
   return fetch(baseUrl + "all")

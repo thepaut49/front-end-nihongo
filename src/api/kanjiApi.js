@@ -1,7 +1,9 @@
 import { handleResponse, handleError } from "./apiUtils";
-const baseUrl = process.env.REACT_APP_API_URL + "/kanjis/";
+import { REACT_APP_API_URL } from "./apiConstants";
+const baseUrl = REACT_APP_API_URL + "/kanjis/";
 
 export function getKanjis() {
+  debugger;
   return fetch(baseUrl + "all")
     .then(handleResponse)
     .catch(handleError);
